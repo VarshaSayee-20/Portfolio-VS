@@ -1626,6 +1626,23 @@ document.addEventListener('DOMContentLoaded', () => {
   if (figures) figures.innerHTML = `
     <h2>Physical Design Evidence</h2><div class="rule"></div>
     <div class="fig-group"><div class="figs"><figure class="fig square"><div class="box"><img class="fig-img" src="images/nn_innovus_layout.png" alt="Complete Innovus layout of nn_engine_tile_top with power grid" loading="lazy" decoding="async"></div><figcaption>Complete routed <code>nn_engine_tile_top</code> Innovus view, including the die boundary and visible power-distribution grid used by the optimization study.</figcaption></figure></div></div>`;
+
+  /* Other legacy renderers also run on DOMContentLoaded. Clean up after every
+     listener has finished so the deprecated overview cards cannot reappear. */
+  setTimeout(() => {
+    panel.querySelectorAll('.results-feature, .research-figure-set, .project-flow-block').forEach(block => block.remove());
+
+    const finalResults = [...panel.querySelectorAll(':scope > .wrap > .sec')].find(section =>
+      section.querySelector(':scope > h2')?.textContent.trim() === 'Results & Measurements');
+    const finalFlow = panel.querySelector('.agentic-closure-flow');
+    if (finalResults && finalFlow) finalResults.insertAdjacentElement('afterend', finalFlow);
+
+    const physicalEvidence = [...panel.querySelectorAll(':scope > .wrap > .sec')].find(section =>
+      section.querySelector(':scope > h2')?.textContent.trim() === 'Physical Design Evidence');
+    if (physicalEvidence) physicalEvidence.innerHTML = `
+      <h2>Physical Design Evidence</h2><div class="rule"></div>
+      <div class="fig-group"><div class="figs"><figure class="fig square"><div class="box"><img class="fig-img" src="images/nn_innovus_layout.png" alt="Complete Innovus layout of the eight-by-eight compute tile with its power grid" loading="lazy" decoding="async"></div><figcaption>Complete routed 8&times;8 compute-tile view from Innovus, including the die boundary and power-distribution grid used in the optimization study.</figcaption></figure></div></div>`;
+  }, 0);
 });
 </script>
 </body>
