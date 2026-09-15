@@ -200,6 +200,13 @@ table.data tbody tr:hover{background:var(--alt)}
 .chart-card .csub{font-size:12px; color:var(--muted); margin:0 0 12px; line-height:1.5}
 .chart-box{position:relative; height:250px}
 .chart-card .cnote{font-size:11.5px; color:var(--muted); margin:10px 0 0; line-height:1.5}
+.qor-values{display:grid;gap:10px;margin-top:6px}
+.qor-value-row{display:grid;grid-template-columns:minmax(92px,1fr) auto 18px auto;align-items:center;gap:8px;padding:11px 0;border-bottom:1px solid var(--line)}
+.qor-value-row:last-child{border-bottom:0}
+.qor-value-row strong{font-size:12px;color:var(--ink)}
+.qor-reading{font-size:12px;color:var(--ink-2);white-space:nowrap}
+.qor-arrow{color:var(--muted);text-align:center}
+.qor-delta{grid-column:2/-1;font-size:10.5px;color:var(--ok);text-align:right;margin-top:-4px}
 
 /* ---------- figures ---------- */
 .fig-group{margin-top:30px}
@@ -1011,38 +1018,47 @@ Object.entries(figureSelections).forEach(([projectId, selected]) => {
 
 const evidenceCatalog = {
   proj_mem: {
-    note:'Original thesis circuits and simulations are shown in signal-path order. The Zhao et al. system figure and published STDP reference architecture/result are excluded.',
+    note:'Circuits and simulations are matched to their original thesis figure numbers. The integration decoder and the decoder-window generator are shown separately; STDP plots are from my Cadence implementation of the cited decoder topology.',
     figures:[
-      ['images/diagrams/memristor-system-architecture.svg','Figure 1 - System architecture','Recreated project-specific RRAM-CMOS encoder and decoder signal path.','wide'],
-      ['images/memristor/fig3.5_current_reference_circuit.png','Figure 2 - PTAT current reference','Authentic current-reference circuit used by the implemented analog front end.'],
-      ['images/memristor/fig3.6_operational_amplifier.png','Figure 3 - V-to-I op-amp','Authentic operational-amplifier stage used for voltage-to-current conversion.'],
-      ['images/memristor/fig3.7_hybrid_neuron_circuit.png','Figure 4 - RRAM-CMOS neuron','Proposed hybrid leaky integrate-and-fire neuron circuit.','wide'],
-      ['images/diagrams/memristor-integration-decoder.svg','Figure 5 - Integration decoder','Recreated adaptive-window and integration-decoder flow.','wide'],
-      ['images/memristor/fig4.3_integration_decoder.png','Figure 6 - Decoder window circuit','Original decoder circuit showing the out-window node, storage capacitors, threshold stage, buffered integration path, and decoder output.','wide'],
-      ['images/memristor/fig4.4_stdp_decoder.png','Figure 7 - STDP decoder reference circuit','Cited literature architecture included for comparison only; it is not presented as an original circuit implementation.','wide'],
-      ['images/memristor/fig5.1_set_iv.png','Figure 8a - RRAM SET characterization','Original simulated SET current-voltage behavior.'],
-      ['images/memristor/fig5.2_reset_iv.png','Figure 8b - RRAM RESET characterization','Original simulated RESET current-voltage behavior.'],
-      ['images/memristor/fig5.13_spike_propagation_4neurons.png','Figure 9 - Four-neuron propagation','Simulated spike propagation through the iterative four-neuron encoder.','wide'],
-      ['images/memristor/fig5.16_isi_encoding_sinewave.png','Figure 10 - ISI temporal encoding','Sine-wave input represented by the inter-spike interval pattern.','wide'],
-      ['images/memristor/fig5.22_decoder_window.png','Figure 11 - Decoder-window response','Simulated out-window transitions across the input-voltage sweep.','wide'],
-      ['images/memristor/fig5.24_decoder_output_levels.png','Figure 12 - Resolved decoder levels','Ten simulated output levels recovered by the integration decoder.','wide'],
-      ['images/memristor/fig5.27_complete_waveforms.png','Figure 13 - End-to-end result','Complete encoder and decoder waveform used as the project hero.','wide']
+      ['images/diagrams/memristor-system-architecture.svg','System overview','Recreated project-specific RRAM-CMOS encoder and two-decoder signal path.','wide'],
+      ['images/memristor/fig3.5_current_reference_circuit.png','Report Fig. 3.5 - PTAT current reference','Current-reference circuit used by the voltage-to-current front end.'],
+      ['images/memristor/fig3.6_operational_amplifier.png','Report Fig. 3.6 - Operational amplifier','Operational amplifier used in the voltage-to-current converter.'],
+      ['images/memristor/fig3.7_hybrid_neuron_circuit.png','Report Fig. 3.7 - Hybrid RRAM-CMOS neuron','Hybrid leaky integrate-and-fire neuron used by the iterative encoder.','wide'],
+      ['images/memristor/fig4.1_spike_window_generator.jpg','Report Fig. 4.1 - Decoder-window generator','The actual window circuit: slow-variable stage, comparator, and Schmitt trigger producing window and out-window.','wide'],
+      ['images/memristor/fig4.3_integration_decoder.png','Report Fig. 4.3 - Complete integration decoder','Full integration-decoder circuit with the out-window-controlled integrator, sampler, threshold stage, buffer, and low-pass output.','wide'],
+      ['images/memristor/fig4.4_stdp_decoder.png','Report Fig. 4.4 - STDP decoder topology','Decoder topology adapted from the cited prior work and implemented and simulated in Cadence for this thesis.','wide'],
+      ['images/memristor/fig5.1_set_iv.png','Report Fig. 5.1 - RRAM SET characteristic','Cadence DC simulation of the 1T-1R device under SET conditions.'],
+      ['images/memristor/fig5.2_reset_iv.png','Report Fig. 5.2 - RRAM RESET characteristic','Cadence DC simulation of the 1T-1R device under RESET conditions.'],
+      ['images/memristor/fig5.11_neuron_spike_waveform.png','Report Fig. 5.11 - Neuron spike train','Simulated neuron output spikes within the active clock window.','wide'],
+      ['images/memristor/fig5.12_memristor_switching_waveform.png','Report Fig. 5.12 - RRAM-neuron switching','Neuron output, RRAM voltage, and resistance during switching.','wide'],
+      ['images/memristor/fig5.13_spike_propagation_4neurons.png','Report Fig. 5.13 - Four-neuron propagation','Spike propagation through the four encoder neurons and combiner.','wide'],
+      ['images/memristor/fig5.16_isi_encoding_sinewave.png','Report Fig. 5.16 - Sine-wave ISI encoding','Inter-spike-interval encoding of the report\'s 100 kHz sine-wave input.','wide'],
+      ['images/memristor/fig5.18_window_output_650mv.png','Report Fig. 5.18 - Window response at 650 mV','Slow-variable window and Schmitt-trigger out-window signals at 650 mV.','wide'],
+      ['images/memristor/fig5.19_window_output_700mv.png','Report Fig. 5.19 - Window response at 700 mV','Window and out-window signals at the upper end of the 650-700 mV input range.','wide'],
+      ['images/memristor/fig5.21_window_pulse_width.jpg','Report Fig. 5.21 - Window pulse width','Simulated window pulse width versus input voltage from 650 to 700 mV.','wide'],
+      ['images/memristor/fig5.22_decoder_window.png','Report Fig. 5.22 - Window from encoded spikes','Out-window response generated from the encoded spike train across the input sweep.','wide'],
+      ['images/memristor/fig5.23_integrator_output.png','Report Fig. 5.23 - Integrator output','Integration-stage output across the allowable 650-700 mV input range.','wide'],
+      ['images/memristor/fig5.24_decoder_output_levels.png','Report Fig. 5.24 - Ten decoded levels','Ten resolved output-voltage levels produced by the integration decoder.','wide'],
+      ['images/memristor/fig5.27_complete_waveforms.png','Report Fig. 5.27 - End-to-end integration decoding','Input, encoded spike train, window, integrator, and decoded output shown on the report time axis.','wide'],
+      ['images/memristor/fig5.29_stdp_aligned.jpg','Report Fig. 5.29 - STDP aligned-spike case','Cadence result when the ISI spikes align with the reference spikes.','wide'],
+      ['images/memristor/fig5.32_stdp_babbaaaa.jpg','Report Fig. 5.32 - STDP BABBAAAA case','Cadence STDP-decoder result for the BABBAAAA before/after-reference pattern.','wide'],
+      ['images/memristor/fig5.33_stdp_babababb.jpg','Report Fig. 5.33 - STDP BABABABB case','Cadence STDP-decoder result for the BABABABB before/after-reference pattern.','wide']
     ]
   },
   proj_elm: {
-    note:'The frequency-versus-current screenshot is omitted because the underlying numerical sweep data was not supplied and its embedded table cannot be published as an image. Classification results remain a native HTML table below.',
+    note:'Circuit names follow the report appendix labels. The Cadence waveforms are retained as simulation evidence, while classification results remain a readable HTML table.',
     figures:[
       ['images/diagrams/elm-system-architecture.svg','Figure 1 - Mixed-signal ELM architecture','Recreated system-level circuit hierarchy.','wide'],
       ['images/elm/A1_dac.png','Figure 2 - Appendix A1: DAC','Complete appendix DAC circuit.','wide'],
       ['images/elm/A2_input_generation_circuit.png','Figure 3 - Appendix A2: Input generation','Complete transistor-level input-generation circuit.','wide'],
       ['images/elm/A3_cascode_current_mirror.png','Figure 4 - Appendix A3: Cascode current mirror','Complete cascode current-mirror circuit used for hidden-layer weights.','wide'],
       ['images/elm/A4_tspc_dflipflop.png','Figure 5 - Appendix A4: TSPC D flip-flop','Complete TSPC storage element used in the digital pipeline.','wide'],
-      ['images/elm/A5_tspc_counter.png','Figure 6 - Appendix A5: TSPC counter','Complete appendix counter circuit.','wide'],
+      ['images/elm/A5_tspc_counter.png','Report Appendix A5 - TSPC counter stage','TSPC stage used in the positive-edge-triggered synchronous counter.','wide'],
       ['images/elm/A6_carry_stage.png','Figure 7 - Appendix A6: Carry stage','Complete carry-stage circuit.','wide'],
       ['images/elm/A7_counter_pipo.png','Figure 8 - Appendix A7: Counter and PIPO','Full embedded appendix image from the report; the source canvas itself ends at the outer wiring boundary.','wide'],
-      ['images/elm/fig5.1_current_mirror_array.png','Figure 9 - Current-mirror array','Project simulation/schematic view of the current-mirror array.','wide'],
-      ['images/elm/fig5.7_rotation_waveforms.png','Figure 10 - Hidden-layer rotation','Authentic system-level rotation waveform.','wide'],
-      ['images/elm/fig5.11_counter_pipo_waveform.png','Figure 11 - Counter/PIPO verification','Authentic waveform verifying the counter and parallel-output pipeline.','wide']
+      ['images/elm/fig5.1_current_mirror_array.png','Report Fig. 5.1 - Current-mirror array','Four-by-four current-mirror array with IGC and bias inputs.','wide'],
+      ['images/elm/fig5.7_rotation_waveforms.png','Report Fig. 5.7 - Hidden-layer rotation','Cadence waveform showing input rotation while rotation enable is asserted.','wide'],
+      ['images/elm/fig5.11_counter_pipo_waveform.png','Report Fig. 5.11 - Counter and PIPO timing','Neuron output clock, six-bit counter state, PIPO output, and PIPO clock.','wide']
     ]
   },
   proj_nncad: {
@@ -1051,41 +1067,41 @@ const evidenceCatalog = {
       ['images/diagrams/nn-cadence-system-architecture.svg','Figure 1 - Logical architecture','Recreated hierarchy of the implemented NN engine tile.','wide'],
       ['images/diagrams/nn-cadence-pe-datapath.svg','Figure 2 - Processing element','Recreated signed-Braun multiplier, accumulator, row-reduce, and activation datapath.','wide'],
       ['images/diagrams/nn-cadence-systolic-dataflow.svg','Figure 3 - Systolic dataflow','Recreated weights-stationary data movement through the PE array.','wide'],
-      ['images/nn_training_curve.png','Figure 4 - Training and validation','Verified project training/validation graph.','wide'],
-      ['images/nn_weight_heatmaps.png','Figure 5 - Quantized weights and biases','Trained Q3.5 weight and bias distributions.','wide'],
-      ['images/nn_innovus_layout.png','Figure 6 - Complete routed layout','Full Cadence Innovus die view from the project report, retaining the complete boundary and Metal3/Metal4 VDD/VSS power-stripe grid.','wide']
+      ['images/nn_training_curve.png','Report Appendix Fig. A6 - Training and validation','Training and validation accuracy across 50 epochs.','wide'],
+      ['images/nn_weight_heatmaps.png','Report Appendix Fig. A7 - Quantized weights and biases','Frozen Q3.5 weight and bias matrices used by the hardware model.','wide'],
+      ['images/nn_innovus_layout.png','Report Fig. 2 - Complete routed layout','Full Cadence Innovus die view, retaining the complete boundary and Metal3/Metal4 VDD/VSS power-stripe grid.','wide']
     ]
   },
   proj_flash: {
     note:'The supplied resistor-ladder file shows the ADE setup rather than the ladder schematic, so it is excluded. DNL/INL equations, values, and plots remain native on this page.',
     figures:[
       ['images/diagrams/flashadc-architecture.svg','Figure 1 - Flash ADC architecture','Recreated comparator-array and encoding signal path.','wide'],
-      ['images/flashadc/fig10_3bit_adc_architecture.png','Figure 2 - Complete ADC circuit','Authentic Cadence full comparator-array, ladder, encoder, and decoder circuit.','wide'],
+      ['images/flashadc/fig10_3bit_adc_architecture.png','Report Fig. 10 - Complete ADC circuit','Cadence comparator array and resistive reference ladder used by the 3-bit converter.','wide'],
       ['images/diagrams/flashadc-dnl-inl.svg','Figure 3 - DNL / INL graph','Native plot recreated from the exact project results table; code 0 INL is not plotted because it was not reported.','wide'],
-      ['images/flashadc/fig1_comparator_schematic.png','Figure 4 - Comparator schematic','Authentic Cadence comparator used in the seven-comparator array.','wide'],
-      ['images/flashadc/fig5_offset_measurement_simulation.png','Figure 5 - Offset measurement','Comparator input-offset simulation.','wide'],
-      ['images/flashadc/fig8_comparator_transient_output.png','Figure 6 - Comparator transient','Transient slicing response of the comparator.','wide'],
-      ['images/flashadc/fig13_thermometer_code_output.png','Figure 7 - Thermometer code','Comparator-array thermometer-code transitions.','wide'],
-      ['images/flashadc/fig17_thermometer_to_gray_encoder.png','Figure 8 - Thermometer-to-Gray encoder','Authentic Cadence digital encoder schematic.'],
-      ['images/flashadc/fig18_decoder_design.png','Figure 9 - Gray-to-binary decoder','Authentic Cadence decoder schematic.'],
-      ['images/flashadc/fig20_decoder_transient_simulation.png','Figure 10 - Encoder/decoder verification','Transient verification of the digital back end.','wide'],
-      ['images/flashadc/fig22_3bit_adc_transient_simulation.png','Figure 11 - Complete end-to-end ADC waveform','Full original Cadence figure retaining the circuit view and every waveform panel, trace name, axis, unit, legend, and scale.','wide tall-evidence'],
-      ['images/flashadc/fig27_adc_transfer_function_plot.png','Figure 12 - MATLAB transfer function','Original simulated-versus-ideal transfer curve.','wide result-evidence']
+      ['images/flashadc/fig1_comparator_schematic.png','Report Fig. 1 - Comparator schematic','PMOS-input comparator used in the seven-comparator array.','wide'],
+      ['images/flashadc/fig5_offset_measurement_simulation.png','Report Fig. 5 - Offset measurement','Comparator input-offset simulation; reported offset is -0.6569 mV.','wide'],
+      ['images/flashadc/fig8_comparator_transient_output.png','Report Fig. 8 - Comparator transient','Transient comparator output from the report testbench.','wide'],
+      ['images/flashadc/fig13_thermometer_code_output.png','Report Fig. 13 - Thermometer code','Comparator-array thermometer-code transitions.','wide'],
+      ['images/flashadc/fig17_thermometer_to_gray_encoder.png','Report Fig. 17 - Thermometer-to-Gray encoder','Cadence digital encoder schematic.'],
+      ['images/flashadc/fig18_decoder_design.png','Report Fig. 18 - Gray-to-binary decoder','Cadence decoder schematic.'],
+      ['images/flashadc/fig20_decoder_transient_simulation.png','Report Fig. 20 - Decoder transient','Transient verification of the digital back end.','wide'],
+      ['images/flashadc/fig22_3bit_adc_transient_simulation.png','Report Fig. 22 - Complete ADC transient','Full original Cadence waveform with trace names, axes, units, legends, and scales retained.','wide tall-evidence'],
+      ['images/flashadc/fig27_adc_transfer_function_plot.png','Report Fig. 27 - MATLAB transfer function','Original simulated-versus-ideal ADC transfer curve.','wide result-evidence']
     ]
   },
   proj_sys: {
-    note:'The completed physical array evidence is labelled exactly as 4x1. The project demonstrates a complete 4x4 schematic, not a complete 4x4 layout.',
+    note:'Captions follow the Word report figure list. The completed physical array is 4x1; the 4x4 evidence is a complete schematic and pre-layout simulation, not a 4x4 layout.',
     figures:[
       ['images/diagrams/systolic-4x4-dataflow.svg','Figure 1 - 4x4 dataflow','Recreated systolic multiply-accumulate flow.','wide'],
-      ['images/systolic/fig18_dpu_schematic.png','Figure 2 - DPU schematic','Authentic datapath-unit schematic.'],
-      ['images/systolic/fig19_dpu_layout.png','Figure 3 - DPU layout','Authentic datapath-unit physical layout.','wide portrait-medium'],
-      ['images/systolic/fig_dpu_post_layout_simulation_result.png','Figure 4 - DPU post-layout result','Extracted/post-layout DPU verification waveform.','wide'],
-      ['images/systolic/fig20_4x1_systolic_array_schematic.png','Figure 5 - Complete 4x1 schematic','Authentic completed four-by-one array schematic.','wide portrait-evidence'],
-      ['images/systolic/fig21_4x1_systolic_array_layout.png','Figure 6 - Completed 4x1 layout','Authentic completed four-by-one array layout; not a 4x4 layout.','wide portrait-evidence'],
-      ['images/systolic/fig_4x1_array_post_layout_simulation_result.png','Figure 7 - 4x1 post-layout result','Post-layout waveform for the completed 4x1 array.','wide'],
-      ['images/systolic/fig26_4x4_systolic_array_schematic.png','Figure 8 - Complete 4x4 schematic','Authentic complete 4x4 Cadence array schematic.','wide'],
-      ['images/systolic/fig_4x4_array_pre_layout_simulation_result.png','Figure 9a - 4x4 pre-layout simulation','Pre-layout 4x4 array waveform.','wide'],
-      ['images/systolic/fig_4x4_array_simulation_result.png','Figure 9b - 4x4 array simulation','Array-level simulation; no unsupported post-layout claim is made.','wide']
+      ['images/systolic/fig18_dpu_schematic.png','Report Fig. 18 - DPU schematic','Cadence schematic containing the two input registers, multiplier, adder, and accumulator register.'],
+      ['images/systolic/fig19_dpu_layout.png','Report Fig. 19 - DPU layout','Completed 978 µm² datapath-unit layout.','wide portrait-medium'],
+      ['images/systolic/fig_dpu_post_layout_simulation_result.png','Report Fig. 28 - DPU post-layout simulation','Extracted DPU verification waveform.','wide'],
+      ['images/systolic/fig20_4x1_systolic_array_schematic.png','Report Fig. 20 - 4x1 schematic','Completed four-by-one array schematic.','wide portrait-evidence'],
+      ['images/systolic/fig21_4x1_systolic_array_layout.png','Report Fig. 21 - 4x1 layout','Completed four-by-one array layout; this is not a 4x4 layout.','wide portrait-evidence'],
+      ['images/systolic/fig_4x1_array_post_layout_simulation_result.png','Report Fig. 29 - 4x1 post-layout simulation','Post-layout waveform for the completed 4x1 array.','wide'],
+      ['images/systolic/fig26_4x4_systolic_array_schematic.png','Report Fig. 26 - 4x4 schematic','Complete 4x4 Cadence array schematic assembled from four 4x1 rows.','wide'],
+      ['images/systolic/fig_4x4_array_pre_layout_simulation_result.png','Report Fig. 30a - 4x4 pre-layout outputs','First output-bank view from the 4x4 pre-layout simulation.','wide'],
+      ['images/systolic/fig_4x4_array_simulation_result.png','Report Fig. 30b - 4x4 pre-layout outputs','Second output-bank view from the same 4x4 pre-layout simulation; no post-layout claim is made.','wide']
     ]
   },
   proj_spmm: {
@@ -1101,12 +1117,12 @@ const evidenceCatalog = {
     note:'The literature-adapted system overview is excluded and replaced by a project-specific SVG. All remaining schematics, photographs, and traces are original project evidence.',
     figures:[
       ['images/diagrams/eog-system-overview.svg','Figure 1 - EOG control architecture','Recreated five-electrode, two-channel acquisition and robot-control path.','wide'],
-      ['images/eog/eog_analog_frontend.png','Figure 2 - Analog front end','Authentic LTspice acquisition, filtering, and level-shifting circuit.','wide'],
-      ['images/eog/eog_simulated_waveform.png','Figure 3 - AFE simulation','Simulated input and level-shifted output.','wide'],
-      ['images/eog/eog_electrodes.png','Figure 4 - Prepared electrodes','Original prepared Ag/AgCl electrodes.'],
-      ['images/eog/eog_robot_car.png','Figure 5 - Robot prototype','Original wireless robot-car prototype and project hero.'],
-      ['images/eog/eog_measured_waveforms.png','Figure 6 - Measured EOG','Original oscilloscope measurement of horizontal and vertical channels.','wide'],
-      ['images/eog/eog_digital_waveforms.png','Figure 7 - Digitized gestures','Digitized left/right movement and blink signals.','wide']
+      ['images/eog/eog_analog_frontend.png','Report Fig. 12 - Analog front end','LTspice acquisition, filtering, amplification, and level-shifting circuit for one channel.','wide'],
+      ['images/eog/eog_simulated_waveform.png','Report Fig. 13 - Front-end transient','Simulated microvolt input and level-shifted output of the complete analog channel.','wide'],
+      ['images/eog/eog_electrodes.png','Report Fig. 17 - Prepared electrodes','Prepared Ag/AgCl electrodes used for EOG acquisition.'],
+      ['images/eog/eog_robot_car.png','Report Fig. 18 - Robot prototype','Robot car with its Arduino and HC-12 wireless-control hardware.'],
+      ['images/eog/eog_measured_waveforms.png','Report Fig. 29 - Measured EOG channels','Oscilloscope measurement of the horizontal and vertical channels during left-right movement.','wide'],
+      ['images/eog/eog_digital_waveforms.png','Report Fig. 37 - Digitized gestures','Digitized horizontal left-right movement and vertical fast-blink waveforms.','wide']
     ]
   }
 };
@@ -1124,6 +1140,9 @@ Object.entries(evidenceCatalog).forEach(([projectId,catalog]) => {
   section.innerHTML = `<h2>Research Figures</h2><div class="rule"></div><p>${catalog.note}</p><div class="research-figure-grid">${figures}</div>`;
   panel.querySelector('.phead')?.insertAdjacentElement('afterend',section);
 });
+
+const memristorProjectNote = document.querySelector('#proj_mem > .wrap > .note');
+if (memristorProjectNote) memristorProjectNote.textContent = 'The thesis evidence below includes the actual decoder-window generator, the complete integration decoder, device and neuron characterization, window simulations, and representative STDP-decoder simulations.';
 
 function addProjectFlow(projectId, title, accessibleLabel, steps){
   const panel = document.getElementById(projectId);
@@ -1352,19 +1371,33 @@ function fade(c, a){
 
 function drawCharts(panelId){
   if (drawn.has(panelId)) return;
-  const specs = (CHART_DATA[panelId] || []).map(spec => spec.id === 'qor_abs' ? {
-    ...spec,
-    horizontal:true,
-    title:'Best-run QoR index',
-    sub:'Baseline = 100 for every metric',
-    labels:['Setup slack','Hold slack','Cell area','Total power'],
-    datasets:[
-      {label:'Clean baseline',data:[100,100,100,100]},
-      {label:'Best run',data:[123.8,103.5,99.2,96.3]}
-    ],
-    xTitle:'Index (baseline = 100)',
-    note:'Higher is better for slack; lower is better for area and power.'
-  } : spec);
+  if (panelId === 'proj_agentic') {
+    const absoluteCanvas = document.getElementById('qor_abs');
+    const absoluteCard = absoluteCanvas && absoluteCanvas.closest('.chart-card');
+    if (absoluteCard) absoluteCard.innerHTML = `
+      <h4>Original QoR values</h4>
+      <p class="csub">Clean baseline compared directly with the best observed implementation run</p>
+      <div class="qor-values" aria-label="Original baseline and best-run quality-of-results values">
+        <div class="qor-value-row"><strong>Setup WNS</strong><span class="qor-reading">+1.789 ns</span><span class="qor-arrow">&rarr;</span><span class="qor-reading">+2.215 ns</span><span class="qor-delta">+23.8% slack</span></div>
+        <div class="qor-value-row"><strong>Hold WNS</strong><span class="qor-reading">+0.170 ns</span><span class="qor-arrow">&rarr;</span><span class="qor-reading">+0.176 ns</span><span class="qor-delta">+3.5% slack</span></div>
+        <div class="qor-value-row"><strong>Cell area</strong><span class="qor-reading">199,338.698 &micro;m&sup2;</span><span class="qor-arrow">&rarr;</span><span class="qor-reading">197,728.015 &micro;m&sup2;</span><span class="qor-delta">0.8% smaller</span></div>
+        <div class="qor-value-row"><strong>Total power</strong><span class="qor-reading">16.586 mW</span><span class="qor-arrow">&rarr;</span><span class="qor-reading">15.976 mW</span><span class="qor-delta">3.7% lower</span></div>
+      </div>`;
+  }
+  const specs = (CHART_DATA[panelId] || [])
+    .filter(spec => spec.id !== 'qor_abs')
+    .map(spec => spec.id === 'qor_drc' ? {
+      ...spec,
+      type:'bar',
+      horizontal:true,
+      title:'DRC recovery during exploration',
+      sub:'Failed configuration compared with the final guarded run',
+      labels:['Failed exploration run','After guarded convergence'],
+      datasets:[{label:'DRC violations',data:[150,0]}],
+      unit:' violations',
+      xTitle:'DRC violations',
+      yTitle:undefined
+    } : spec);
   if (!specs.length) { drawn.add(panelId); return; }
 
   // Chart.js is served from a CDN. If it didn't load, drop the chart cards --
@@ -1547,14 +1580,12 @@ document.addEventListener('DOMContentLoaded', () => {
       cards[0].querySelector('.csub').textContent = 'Positive is better for slack; negative is better for area and power';
     }
     if (cards[1]) {
-      cards[1].querySelector('h4').textContent = 'Best-run QoR index';
-      cards[1].querySelector('.csub').textContent = 'Baseline = 100 for each metric';
-      const note = cards[1].querySelector('.cnote');
-      if (note) note.textContent = 'Higher is better for setup and hold slack; lower is better for area and power.';
+      cards[1].querySelector('h4').textContent = 'Original QoR values';
+      cards[1].querySelector('.csub').textContent = 'Clean baseline compared directly with the best observed implementation run';
     }
     if (cards[2]) {
       cards[2].querySelector('h4').textContent = 'DRC recovery during exploration';
-      cards[2].querySelector('.csub').textContent = 'Failing configurations were retained as evidence and rejected by the guardrails';
+      cards[2].querySelector('.csub').textContent = 'Failed configuration compared with the final guarded run';
     }
   }
 
@@ -1649,6 +1680,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (physicalEvidence) physicalEvidence.innerHTML = `
       <h2>Physical Design Evidence</h2><div class="rule"></div>
       <div class="fig-group"><div class="figs"><figure class="fig wide physical-evidence"><div class="box"><img class="fig-img" src="images/nn_innovus_layout.png" alt="Complete Innovus layout of the eight-by-eight compute tile with its power grid" loading="lazy" decoding="async"></div><figcaption>Complete routed 8&times;8 compute-tile view from Innovus, including the die boundary and power-distribution grid used in the optimization study.</figcaption></figure></div></div>`;
+
+    const finalMemristorNote = document.querySelector('#proj_mem > .wrap > .note');
+    if (finalMemristorNote) finalMemristorNote.textContent = 'The thesis evidence below includes the actual decoder-window generator, the complete integration decoder, device and neuron characterization, window simulations, and representative STDP-decoder simulations.';
   }, 0);
 
   /* Keep the implemented SpMM story concise and evidence-led. */
