@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 720" role="img" aria-labelledby="title desc">
+  <title id="title">AI-assisted RTL-to-GDS and Tempus closure flow</title>
+  <desc id="desc">RTL and constraints pass through Genus, Innovus, and Tempus. Source-linked metrics feed a constrained AI planner whose validated ECOs return to Innovus. Passing Tempus results are recorded in the dashboard.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#766c5e"/>
+    </marker>
+    <style>
+      .eyebrow{font:700 21px Inter,Segoe UI,Arial,sans-serif;letter-spacing:5px;fill:#85633e}
+      .heading{font:700 38px Inter,Segoe UI,Arial,sans-serif;fill:#25231f}
+      .label{font:700 28px Inter,Segoe UI,Arial,sans-serif;fill:#25231f;text-anchor:middle}
+      .sub{font:500 20px Inter,Segoe UI,Arial,sans-serif;fill:#655f56;text-anchor:middle}
+      .lane{font:700 18px Inter,Segoe UI,Arial,sans-serif;letter-spacing:2px;fill:#867d70}
+      .arrow{fill:none;stroke:#766c5e;stroke-width:4;marker-end:url(#arrow)}
+      .feed{fill:none;stroke:#a16e38;stroke-width:4;marker-end:url(#arrow)}
+    </style>
+  </defs>
+
+  <rect width="1600" height="720" rx="34" fill="#f8f6f1"/>
+  <text x="74" y="70" class="eyebrow">IMPLEMENTED WORKFLOW</text>
+  <text x="74" y="118" class="heading">Evidence-controlled RTL-to-GDS optimization</text>
+
+  <text x="76" y="174" class="lane">EDA FLOW</text>
+  <g>
+    <rect x="74" y="202" width="280" height="130" rx="18" fill="#ffffff" stroke="#d8d0c3" stroke-width="3"/>
+    <text x="214" y="256" class="label">RTL + constraints</text>
+    <text x="214" y="291" class="sub">Verilog · SDC · libraries</text>
+
+    <rect x="416" y="202" width="280" height="130" rx="18" fill="#f2eadf" stroke="#b58a58" stroke-width="3"/>
+    <text x="556" y="256" class="label">Genus</text>
+    <text x="556" y="291" class="sub">Synthesis</text>
+
+    <rect x="758" y="202" width="280" height="130" rx="18" fill="#f2eadf" stroke="#b58a58" stroke-width="3"/>
+    <text x="898" y="256" class="label">Innovus</text>
+    <text x="898" y="291" class="sub">Place · CTS · route · ECO</text>
+
+    <rect x="1100" y="202" width="280" height="130" rx="18" fill="#2d2a26" stroke="#2d2a26" stroke-width="3"/>
+    <text x="1240" y="256" class="label" fill="#ffffff" style="fill:#ffffff">Tempus</text>
+    <text x="1240" y="291" class="sub" fill="#e9e3d9" style="fill:#e9e3d9">Independent setup / hold</text>
+
+    <path d="M354 267 H402" class="arrow"/>
+    <path d="M696 267 H744" class="arrow"/>
+    <path d="M1038 267 H1086" class="arrow"/>
+  </g>
+
+  <text x="76" y="410" class="lane">CONTROLLED FEEDBACK</text>
+  <g>
+    <rect x="274" y="438" width="290" height="126" rx="18" fill="#ffffff" stroke="#d8d0c3" stroke-width="3"/>
+    <text x="419" y="488" class="label">Parsed evidence</text>
+    <text x="419" y="524" class="sub">Timing · DRC · area · power</text>
+
+    <rect x="655" y="438" width="290" height="126" rx="18" fill="#eee8df" stroke="#9d8d78" stroke-width="3"/>
+    <text x="800" y="488" class="label">Bounded AI planner</text>
+    <text x="800" y="524" class="sub">Selects only allowed actions</text>
+
+    <rect x="1036" y="438" width="290" height="126" rx="18" fill="#fff8ee" stroke="#a16e38" stroke-width="3"/>
+    <text x="1181" y="488" class="label">Validated ECO</text>
+    <text x="1181" y="524" class="sub">Apply · reroute · re-extract</text>
+
+    <path d="M564 501 H641" class="arrow"/>
+    <path d="M945 501 H1022" class="arrow"/>
+    <path d="M1181 438 V405 H898 V346" class="feed"/>
+    <path d="M1240 332 V378 H419 V424" class="arrow"/>
+    <text x="1070" y="367" class="lane" style="letter-spacing:1px">FAIL / TIGHT SLACK</text>
+  </g>
+
+  <g>
+    <path d="M1380 267 H1455 V607 H1322" class="arrow"/>
+    <rect x="1000" y="600" width="322" height="70" rx="35" fill="#e7ecdf" stroke="#8a9a71" stroke-width="3"/>
+    <circle cx="1027" cy="635" r="12" fill="#6f8454"/>
+    <text x="1171" y="644" class="label" style="font-size:24px">Closed + dashboarded</text>
+    <text x="1419" y="248" class="lane" style="letter-spacing:1px">PASS</text>
+  </g>
+
+  <text x="74" y="666" class="sub" text-anchor="start" style="text-anchor:start">Deterministic checks decide whether each AI-assisted change is accepted.</text>
+</svg>
