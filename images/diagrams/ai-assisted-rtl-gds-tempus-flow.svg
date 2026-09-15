@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 720" role="img" aria-labelledby="title desc">
-  <title id="title">AI-assisted RTL-to-GDS and Tempus closure flow</title>
-  <desc id="desc">RTL and constraints pass through Genus, Innovus, and Tempus. Source-linked metrics feed a constrained AI planner whose validated ECOs return to Innovus. Passing Tempus results are recorded in the dashboard.</desc>
+  <title id="title">LLM-assisted RTL-to-GDS and Tempus closure flow</title>
+  <desc id="desc">RTL and constraints pass through Genus, Innovus, and Tempus. Source-linked metrics help a constrained LLM planning assistant suggest an ECO, which returns to Innovus only after deterministic validation. Passing Tempus results are recorded in the dashboard.</desc>
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
       <path d="M0,0 L10,5 L0,10 Z" fill="#766c5e"/>
@@ -50,7 +50,7 @@
     <text x="419" y="524" class="sub">Timing · DRC · area · power</text>
 
     <rect x="655" y="438" width="290" height="126" rx="18" fill="#eee8df" stroke="#9d8d78" stroke-width="3"/>
-    <text x="800" y="488" class="label">Bounded AI planner</text>
+    <text x="800" y="488" class="label">LLM planning aid</text>
     <text x="800" y="524" class="sub">Selects only allowed actions</text>
 
     <rect x="1036" y="438" width="290" height="126" rx="18" fill="#fff8ee" stroke="#a16e38" stroke-width="3"/>
@@ -72,5 +72,5 @@
     <text x="1419" y="248" class="lane" style="letter-spacing:1px">PASS</text>
   </g>
 
-  <text x="74" y="666" class="sub" text-anchor="start" style="text-anchor:start">Deterministic checks decide whether each AI-assisted change is accepted.</text>
+  <text x="74" y="666" class="sub" text-anchor="start" style="text-anchor:start">Deterministic checks decide whether each LLM-assisted change is accepted.</text>
 </svg>
