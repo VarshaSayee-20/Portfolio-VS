@@ -1,76 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 720" role="img" aria-labelledby="title desc">
-  <title id="title">LLM-assisted RTL-to-GDS and Tempus closure flow</title>
-  <desc id="desc">RTL and constraints pass through Genus, Innovus, and Tempus. Source-linked metrics help a constrained LLM planning assistant suggest an ECO, which returns to Innovus only after deterministic validation. Passing Tempus results are recorded in the dashboard.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">LLM-assisted physical-design optimization and Tempus closure flow</title>
+  <desc id="desc">RTL, constraints, libraries, and MMMC views move through Genus synthesis, Innovus floorplanning, placement, clock-tree synthesis and routing, parasitic extraction, and independent Tempus setup and hold analysis. Source-linked reports guide a bounded LLM experiment; deterministic command validation, DRC, connectivity, timing, and provenance gates decide whether an ECO is accepted.</desc>
   <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L10,5 L0,10 Z" fill="#766c5e"/>
-    </marker>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 Z" fill="#766c5e"/></marker>
+    <marker id="loopArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 Z" fill="#9a6b3d"/></marker>
     <style>
-      .eyebrow{font:700 21px Inter,Segoe UI,Arial,sans-serif;letter-spacing:5px;fill:#85633e}
-      .heading{font:700 38px Inter,Segoe UI,Arial,sans-serif;fill:#25231f}
-      .label{font:700 28px Inter,Segoe UI,Arial,sans-serif;fill:#25231f;text-anchor:middle}
-      .sub{font:500 20px Inter,Segoe UI,Arial,sans-serif;fill:#655f56;text-anchor:middle}
-      .lane{font:700 18px Inter,Segoe UI,Arial,sans-serif;letter-spacing:2px;fill:#867d70}
-      .arrow{fill:none;stroke:#766c5e;stroke-width:4;marker-end:url(#arrow)}
-      .feed{fill:none;stroke:#a16e38;stroke-width:4;marker-end:url(#arrow)}
+      .eyebrow{font:700 19px Inter,Segoe UI,Arial,sans-serif;letter-spacing:4px;fill:#85633e}.heading{font:700 34px Inter,Segoe UI,Arial,sans-serif;fill:#25231f}.lane{font:700 16px Inter,Segoe UI,Arial,sans-serif;letter-spacing:2px;fill:#867d70}.label{font:700 23px Inter,Segoe UI,Arial,sans-serif;fill:#25231f;text-anchor:middle}.labelLight{font:700 23px Inter,Segoe UI,Arial,sans-serif;fill:#fff;text-anchor:middle}.sub{font:500 16px Inter,Segoe UI,Arial,sans-serif;fill:#655f56;text-anchor:middle}.subLight{font:500 16px Inter,Segoe UI,Arial,sans-serif;fill:#e9e3d9;text-anchor:middle}.tiny{font:600 13px Inter,Segoe UI,Arial,sans-serif;fill:#655f56;text-anchor:middle}.metric{font:700 13px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#85633e;text-anchor:middle}.arrow{fill:none;stroke:#766c5e;stroke-width:4;marker-end:url(#arrow)}.loop{fill:none;stroke:#9a6b3d;stroke-width:4;marker-end:url(#loopArrow)}
     </style>
   </defs>
+  <rect width="1600" height="900" rx="34" fill="#f8f6f1"/>
+  <text x="68" y="62" class="eyebrow">IMPLEMENTED PHYSICAL-DESIGN WORKFLOW</text>
+  <text x="68" y="108" class="heading">LLM-assisted RTL-to-GDS optimization with independent Tempus closure</text>
+  <text x="70" y="158" class="lane">IMPLEMENTATION + SIGN-OFF</text>
 
-  <rect width="1600" height="720" rx="34" fill="#f8f6f1"/>
-  <text x="74" y="70" class="eyebrow">IMPLEMENTED WORKFLOW</text>
-  <text x="74" y="118" class="heading">Evidence-controlled RTL-to-GDS optimization</text>
+  <g transform="translate(68 188)"><rect width="250" height="160" rx="18" fill="#fff" stroke="#d8d0c3" stroke-width="3"/><text x="125" y="44" class="label">Design inputs</text><text x="125" y="78" class="sub">RTL · SDC · Liberty</text><text x="125" y="104" class="sub">LEF / tech LEF · RC corners</text><text x="125" y="134" class="metric">MMMC views + constraints</text></g>
+  <g transform="translate(370 188)"><rect width="250" height="160" rx="18" fill="#f2eadf" stroke="#b58a58" stroke-width="3"/><text x="125" y="44" class="label">Genus</text><text x="125" y="78" class="sub">Elaborate · map · optimize</text><text x="125" y="104" class="sub">SDC and timing checks</text><text x="125" y="134" class="metric">netlist · SDC · reports</text></g>
+  <g transform="translate(672 168)"><rect width="330" height="200" rx="18" fill="#f2eadf" stroke="#b58a58" stroke-width="3"/><text x="165" y="42" class="label">Innovus implementation</text><rect x="20" y="66" width="137" height="46" rx="9" fill="#fff" stroke="#d8d0c3"/><rect x="173" y="66" width="137" height="46" rx="9" fill="#fff" stroke="#d8d0c3"/><rect x="20" y="124" width="137" height="46" rx="9" fill="#fff" stroke="#d8d0c3"/><rect x="173" y="124" width="137" height="46" rx="9" fill="#fff" stroke="#d8d0c3"/><text x="88" y="94" class="tiny">Floorplan + PG</text><text x="241" y="94" class="tiny">Place + pre-CTS opt</text><text x="88" y="152" class="tiny">CTS + hold opt</text><text x="241" y="152" class="tiny">Route + post-route opt</text><text x="165" y="190" class="metric">DRC · connectivity · SPEF</text></g>
+  <g transform="translate(1054 188)"><rect width="250" height="160" rx="18" fill="#2d2a26" stroke="#2d2a26" stroke-width="3"/><text x="125" y="44" class="labelLight">Tempus MMMC STA</text><text x="125" y="78" class="subLight">RC extraction + SPEF</text><text x="125" y="104" class="subLight">Setup / hold path analysis</text><text x="125" y="134" class="metric" style="fill:#e2c59f">WNS · TNS · FEP</text></g>
+  <g transform="translate(1356 188)"><rect width="176" height="160" rx="18" fill="#e7ecdf" stroke="#8a9a71" stroke-width="3"/><text x="88" y="43" class="label" style="font-size:20px">Sign-off gate</text><text x="88" y="76" class="tiny">setup / hold TNS = 0</text><text x="88" y="101" class="tiny">FEP = 0</text><text x="88" y="126" class="tiny">DRC / connectivity = 0</text><text x="88" y="148" class="metric">PASS / ITERATE</text></g>
+  <path d="M318 268H356" class="arrow"/><path d="M620 268H658" class="arrow"/><path d="M1002 268H1040" class="arrow"/><path d="M1304 268H1342" class="arrow"/>
 
-  <text x="76" y="174" class="lane">EDA FLOW</text>
-  <g>
-    <rect x="74" y="202" width="280" height="130" rx="18" fill="#ffffff" stroke="#d8d0c3" stroke-width="3"/>
-    <text x="214" y="256" class="label">RTL + constraints</text>
-    <text x="214" y="291" class="sub">Verilog · SDC · libraries</text>
-
-    <rect x="416" y="202" width="280" height="130" rx="18" fill="#f2eadf" stroke="#b58a58" stroke-width="3"/>
-    <text x="556" y="256" class="label">Genus</text>
-    <text x="556" y="291" class="sub">Synthesis</text>
-
-    <rect x="758" y="202" width="280" height="130" rx="18" fill="#f2eadf" stroke="#b58a58" stroke-width="3"/>
-    <text x="898" y="256" class="label">Innovus</text>
-    <text x="898" y="291" class="sub">Place · CTS · route · ECO</text>
-
-    <rect x="1100" y="202" width="280" height="130" rx="18" fill="#2d2a26" stroke="#2d2a26" stroke-width="3"/>
-    <text x="1240" y="256" class="label" fill="#ffffff" style="fill:#ffffff">Tempus</text>
-    <text x="1240" y="291" class="sub" fill="#e9e3d9" style="fill:#e9e3d9">Independent setup / hold</text>
-
-    <path d="M354 267 H402" class="arrow"/>
-    <path d="M696 267 H744" class="arrow"/>
-    <path d="M1038 267 H1086" class="arrow"/>
-  </g>
-
-  <text x="76" y="410" class="lane">CONTROLLED FEEDBACK</text>
-  <g>
-    <rect x="274" y="438" width="290" height="126" rx="18" fill="#ffffff" stroke="#d8d0c3" stroke-width="3"/>
-    <text x="419" y="488" class="label">Parsed evidence</text>
-    <text x="419" y="524" class="sub">Timing · DRC · area · power</text>
-
-    <rect x="655" y="438" width="290" height="126" rx="18" fill="#eee8df" stroke="#9d8d78" stroke-width="3"/>
-    <text x="800" y="488" class="label">LLM planning aid</text>
-    <text x="800" y="524" class="sub">Selects only allowed actions</text>
-
-    <rect x="1036" y="438" width="290" height="126" rx="18" fill="#fff8ee" stroke="#a16e38" stroke-width="3"/>
-    <text x="1181" y="488" class="label">Validated ECO</text>
-    <text x="1181" y="524" class="sub">Apply · reroute · re-extract</text>
-
-    <path d="M564 501 H641" class="arrow"/>
-    <path d="M945 501 H1022" class="arrow"/>
-    <path d="M1181 438 V405 H898 V346" class="feed"/>
-    <path d="M1240 332 V378 H419 V424" class="arrow"/>
-    <text x="1070" y="367" class="lane" style="letter-spacing:1px">FAIL / TIGHT SLACK</text>
-  </g>
-
-  <g>
-    <path d="M1380 267 H1455 V607 H1322" class="arrow"/>
-    <rect x="1000" y="600" width="322" height="70" rx="35" fill="#e7ecdf" stroke="#8a9a71" stroke-width="3"/>
-    <circle cx="1027" cy="635" r="12" fill="#6f8454"/>
-    <text x="1171" y="644" class="label" style="font-size:24px">Closed + dashboarded</text>
-    <text x="1419" y="248" class="lane" style="letter-spacing:1px">PASS</text>
-  </g>
-
-  <text x="74" y="666" class="sub" text-anchor="start" style="text-anchor:start">Deterministic checks decide whether each LLM-assisted change is accepted.</text>
+  <text x="70" y="432" class="lane">SOURCE-LINKED, HUMAN-REVIEWED OPTIMIZATION LOOP</text>
+  <g transform="translate(68 468)"><rect width="270" height="150" rx="18" fill="#fff" stroke="#d8d0c3" stroke-width="3"/><text x="135" y="42" class="label">Report parsers</text><text x="135" y="76" class="sub">Genus · Innovus · Tempus</text><text x="135" y="104" class="sub">timing · DRC · area · power</text><text x="135" y="132" class="metric">source + line provenance</text></g>
+  <g transform="translate(390 468)"><rect width="270" height="150" rx="18" fill="#eee8df" stroke="#9d8d78" stroke-width="3"/><text x="135" y="42" class="label">Bounded LLM plan</text><text x="135" y="76" class="sub">Choose one legal experiment</text><text x="135" y="104" class="sub">utilization · margin · aspect ratio</text><text x="135" y="132" class="metric">or localized timing ECO</text></g>
+  <g transform="translate(712 468)"><rect width="270" height="150" rx="18" fill="#fff" stroke="#d8d0c3" stroke-width="3"/><text x="135" y="42" class="label">Command guardrails</text><text x="135" y="76" class="sub">Whitelist + syntax validation</text><text x="135" y="104" class="sub">One controlled change per run</text><text x="135" y="132" class="metric">reject unsafe proposal</text></g>
+  <g transform="translate(1034 468)"><rect width="270" height="150" rx="18" fill="#fff8ee" stroke="#a16e38" stroke-width="3"/><text x="135" y="42" class="label">Apply physical ECO</text><text x="135" y="76" class="sub">Buffer insert · cell resize</text><text x="135" y="104" class="sub">Reroute · re-extract parasitics</text><text x="135" y="132" class="metric">fresh implementation only</text></g>
+  <g transform="translate(1356 468)"><rect width="176" height="150" rx="18" fill="#fff" stroke="#8a9a71" stroke-width="3"/><text x="88" y="42" class="label" style="font-size:20px">Dashboard V2</text><text x="88" y="75" class="tiny">compare 16 runs</text><text x="88" y="101" class="tiny">retain failures</text><text x="88" y="127" class="metric">audit provenance</text></g>
+  <path d="M338 543H376" class="arrow"/><path d="M660 543H698" class="arrow"/><path d="M982 543H1020" class="arrow"/><path d="M1304 543H1342" class="arrow"/>
+  <path d="M1444 348V430H203V454" class="arrow"/><text x="1130" y="420" class="lane" style="letter-spacing:1px">FAIL / TIGHT SLACK → PARSE THE NEW WORST PATH</text>
+  <path d="M1169 468V414H837V382" class="loop"/><text x="955" y="401" class="lane" style="letter-spacing:1px;fill:#9a6b3d">VALIDATED ECO → INNOVUS RERUN</text>
+  <path d="M1444 618V676H837V632" class="arrow"/><text x="1040" y="701" class="lane" style="letter-spacing:1px">PASS → RECORD QoR, PROVENANCE, AND STOPPING DECISION</text>
+  <g transform="translate(68 750)"><rect width="1464" height="92" rx="16" fill="#efede7" stroke="#d8d0c3" stroke-width="2"/><text x="28" y="35" class="lane" style="letter-spacing:1px">ACCEPTANCE RULE</text><text x="28" y="66" class="sub" style="text-anchor:start">The LLM proposes the next bounded experiment; Python validation, rerun reports, independent Tempus analysis, and the engineer decide whether the change is kept.</text></g>
 </svg>

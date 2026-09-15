@@ -572,6 +572,12 @@ body::before{display:none}
 .research-figure .figure-box img{display:block;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;object-position:center;box-sizing:border-box}
 .research-figure figcaption{padding:13px 15px;border-top:1px solid var(--line);color:var(--ink-2);font-size:12px;line-height:1.45}
 .research-figure figcaption b{display:block;margin-bottom:3px;color:var(--ink);font-size:13px}
+.research-figure.portrait-medium .figure-box{height:clamp(480px,54vw,620px);padding:18px 28px}
+.research-figure.portrait-evidence .figure-box{height:clamp(620px,70vw,780px);padding:18px 28px}
+.research-figure.result-evidence .figure-box{height:clamp(440px,52vw,580px);padding:18px 28px}
+.research-figure.tall-evidence .figure-box{height:clamp(580px,68vw,760px);padding:18px 28px}
+.physical-evidence .box{min-height:620px}
+.figs figure.fig.wide.physical-evidence img{width:auto;max-width:100%;max-height:680px;margin:0 auto}
 .results-feature{margin:30px 0;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--alt)}
 .results-feature>h3{margin:0 0 6px;font-size:15px}
 .results-feature>p{max-width:72ch;margin:0 0 16px;color:var(--muted);font-size:12.5px;line-height:1.6}
@@ -581,6 +587,7 @@ body::before{display:none}
 .research-flow-large span{position:relative;display:flex;min-height:74px;align-items:center;justify-content:center;padding:12px 8px;border:1px solid var(--line);border-radius:9px;background:var(--card);color:var(--ink);font-size:11px;font-weight:700;text-align:center}
 .research-flow-large span:not(:last-child)::after{content:"\2192";position:absolute;z-index:2;right:-18px;color:var(--accent);font-size:17px}
 @media(max-width:700px){.research-tile-visuals{grid-template-columns:minmax(92px,.72fr) repeat(2,minmax(0,1.14fr))}.tile-diagram{padding:8px}.tile-step{padding:4px;font-size:7px}.tile-panel span{font-size:6px}.research-overview,.research-figure-grid{grid-template-columns:1fr}.research-overview .solution{padding:16px 0 0;border-top:1px solid var(--line);border-left:0}.research-flow-large{grid-template-columns:1fr}.research-flow-large span{min-height:54px}.research-flow-large span:not(:last-child)::after{right:auto;bottom:-17px;left:50%;transform:translateX(-50%) rotate(90deg)}}
+@media(max-width:700px){.research-figure.portrait-medium .figure-box,.research-figure.portrait-evidence .figure-box{height:min(76vh,680px);min-height:520px}.research-figure.result-evidence .figure-box,.research-figure.tall-evidence .figure-box{height:min(72vh,640px);min-height:460px}.physical-evidence .box{min-height:460px}.figs figure.fig.wide.physical-evidence img{max-height:560px}}
 .project-flow-block{margin:28px 0;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--alt)}
 .project-flow-block h3{margin:0 0 14px;font-size:15px}
 .project-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:0;padding:0;list-style:none;counter-reset:project-flow}
@@ -758,7 +765,7 @@ if (projectsSection) {
 }
 const publicFooter = document.querySelector('footer');
 publicFooter.id = 'contact';
-publicFooter.querySelector('.wrap').innerHTML = '<p style="margin:0"><b>Varsha Seshasayee</b> · <a href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a></p><p style="margin:6px 0 0">Project evidence is drawn from my reports and implementation outputs. Conceptual diagrams are labelled; measured and simulated results are not altered.</p>';
+publicFooter.querySelector('.wrap').innerHTML = '<p style="margin:0"><b>Varsha Seshasayee</b> · <a href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a></p><p style="margin:6px 0 0">All circuits, layouts, measurements, and simulations come from my project work. I redraw a system diagram only when it helps explain the design.</p>';
 document.querySelector('[data-home-section="projects"]')?.addEventListener('click', event => {
   event.preventDefault();
   show('home', true);
@@ -860,12 +867,12 @@ const researchTiles = {
     tags:['NCSU 45 nm','Cadence Virtuoso','Schematic + layout']
   },
   proj_spmm: {
-    label:'Proposed architecture',
+    label:'Implemented RTL',
     problem:'Avoid redundant zero operations and index-matching overhead in sparse matrix-matrix multiplication.',
     solution:'A five-PE outer-product datapath generates partial products and uses bitonic sort/merge to combine sparse output entries.',
     steps:['CSC / CSR storage','Index selection','5-PE outer product','Bitonic merge'],
     panels:[
-      {src:'images/spmm/fig5_proposed_spmm_accelerator_architecture.png',label:'Proposed PE datapath',title:'Figure 3 - Proposed hardware architecture',caption:'Report architecture for partial-product generation and local sparse-data handling.'},
+      {src:'images/spmm/fig5_proposed_spmm_accelerator_architecture.png',label:'Implemented PE datapath',title:'Figure 3 - Implemented hardware architecture',caption:'Implemented architecture for partial-product generation and local sparse-data handling.'},
       {src:'images/spmm/fig_overall_bitonic_merge_sort_architecture.png',label:'Bitonic sort / merge',title:'Figure 4 - Architecture detail',caption:'Report bitonic sorting network used to order and merge sparse partial products.'}
     ],
     tags:['5x5 matrices','Outer product','Verilog RTL']
@@ -919,7 +926,7 @@ Object.entries(researchTiles).forEach(([projectId,data]) => {
 
 const tileAssets = {
   proj_mem:'memristor', proj_nncad:'nn-cadence', proj_elm:'elm', proj_sys:'systolic',
-  proj_flash:'flashadc', proj_spmm:'spmm', proj_eog:'eog', proj_agentic:'qor'
+  proj_flash:'flashadc', proj_spmm:'spmm', proj_eog:'eog'
 };
 Object.entries(tileAssets).forEach(([projectId,filename]) => {
   const thumb = document.querySelector(`#home [data-goto="${projectId}"] .thumb`);
@@ -928,7 +935,7 @@ Object.entries(tileAssets).forEach(([projectId,filename]) => {
 
 /* PhD-review order: neuromorphic and mixed-signal research first, supporting
    architecture and CAD work later. LMU is omitted until real project evidence is supplied. */
-const projectOrder = ['proj_mem','proj_nncad','proj_elm','proj_sys','proj_flash','proj_spmm','proj_eog','proj_agentic'];
+const projectOrder = ['proj_mem','proj_nncad','proj_elm','proj_sys','proj_spmm','proj_eog','proj_agentic','proj_flash'];
 const publicCards = document.querySelector('#home .cards');
 projectOrder.forEach(projectId => {
   const card = publicCards?.querySelector(`[data-goto="${projectId}"]`);
@@ -1062,8 +1069,8 @@ const evidenceCatalog = {
       ['images/flashadc/fig17_thermometer_to_gray_encoder.png','Figure 8 - Thermometer-to-Gray encoder','Authentic Cadence digital encoder schematic.'],
       ['images/flashadc/fig18_decoder_design.png','Figure 9 - Gray-to-binary decoder','Authentic Cadence decoder schematic.'],
       ['images/flashadc/fig20_decoder_transient_simulation.png','Figure 10 - Encoder/decoder verification','Transient verification of the digital back end.','wide'],
-      ['images/flashadc/fig22_3bit_adc_transient_simulation.png','Figure 11 - Complete end-to-end ADC waveform','Full original Cadence figure retaining the circuit view and every waveform panel, trace name, axis, unit, legend, and scale.','wide'],
-      ['images/flashadc/fig27_adc_transfer_function_plot.png','Figure 12 - MATLAB transfer function','Original simulated-versus-ideal transfer curve.','wide']
+      ['images/flashadc/fig22_3bit_adc_transient_simulation.png','Figure 11 - Complete end-to-end ADC waveform','Full original Cadence figure retaining the circuit view and every waveform panel, trace name, axis, unit, legend, and scale.','wide tall-evidence'],
+      ['images/flashadc/fig27_adc_transfer_function_plot.png','Figure 12 - MATLAB transfer function','Original simulated-versus-ideal transfer curve.','wide result-evidence']
     ]
   },
   proj_sys: {
@@ -1071,10 +1078,10 @@ const evidenceCatalog = {
     figures:[
       ['images/diagrams/systolic-4x4-dataflow.svg','Figure 1 - 4x4 dataflow','Recreated systolic multiply-accumulate flow.','wide'],
       ['images/systolic/fig18_dpu_schematic.png','Figure 2 - DPU schematic','Authentic datapath-unit schematic.'],
-      ['images/systolic/fig19_dpu_layout.png','Figure 3 - DPU layout','Authentic datapath-unit physical layout.'],
+      ['images/systolic/fig19_dpu_layout.png','Figure 3 - DPU layout','Authentic datapath-unit physical layout.','wide portrait-medium'],
       ['images/systolic/fig_dpu_post_layout_simulation_result.png','Figure 4 - DPU post-layout result','Extracted/post-layout DPU verification waveform.','wide'],
-      ['images/systolic/fig20_4x1_systolic_array_schematic.png','Figure 5 - Complete 4x1 schematic','Authentic completed four-by-one array schematic.'],
-      ['images/systolic/fig21_4x1_systolic_array_layout.png','Figure 6 - Completed 4x1 layout','Authentic completed four-by-one array layout; not a 4x4 layout.'],
+      ['images/systolic/fig20_4x1_systolic_array_schematic.png','Figure 5 - Complete 4x1 schematic','Authentic completed four-by-one array schematic.','wide portrait-evidence'],
+      ['images/systolic/fig21_4x1_systolic_array_layout.png','Figure 6 - Completed 4x1 layout','Authentic completed four-by-one array layout; not a 4x4 layout.','wide portrait-evidence'],
       ['images/systolic/fig_4x1_array_post_layout_simulation_result.png','Figure 7 - 4x1 post-layout result','Post-layout waveform for the completed 4x1 array.','wide'],
       ['images/systolic/fig26_4x4_systolic_array_schematic.png','Figure 8 - Complete 4x4 schematic','Authentic complete 4x4 Cadence array schematic.','wide'],
       ['images/systolic/fig_4x4_array_pre_layout_simulation_result.png','Figure 9a - 4x4 pre-layout simulation','Pre-layout 4x4 array waveform.','wide'],
@@ -1082,7 +1089,7 @@ const evidenceCatalog = {
     ]
   },
   proj_spmm: {
-    note:'No authentic result waveform was supplied. These figures are clean conceptual renderings of the implemented RTL and verification structure; no newly rerun simulation is claimed.',
+    note:'The implemented RTL datapath is shown from sparse input formatting through partial-product generation, sorting, merging, accumulation, and self-checking verification.',
     figures:[
       ['images/diagrams/spmm-implemented-dataflow.svg','Figure 1 - Implemented RTL architecture','Dense inputs through CSC/CSR conversion, five PEs, sorting, merging, and dense output.','wide'],
       ['images/diagrams/spmm-pe.svg','Figure 2 - Processing element','Recreated index-match and partial-product datapath.','wide'],
@@ -1499,7 +1506,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (cardSummary) cardSummary.textContent = 'Explored how an LLM can help an engineer choose the next physical-design experiment while source-linked reports, Python guardrails, and Cadence sign-off remain in control.';
 
   const homeThumb = homeCard.querySelector('.thumb');
-  if (homeThumb) homeThumb.innerHTML = '<img class="research-tile-image" src="images/diagrams/ai-assisted-rtl-gds-tempus-flow.svg" alt="Clean LLM-assisted RTL-to-GDS and Tempus closure flow" loading="lazy" decoding="async">';
+  if (homeThumb) homeThumb.innerHTML = '<img class="research-tile-image" src="images/diagrams/ai-assisted-rtl-gds-tempus-flow.svg?v=3" alt="Technical LLM-assisted physical-design optimization and Tempus closure flow" loading="lazy" decoding="async">';
 
   const title = panel.querySelector('.phead h1');
   const meta = panel.querySelector('.phead .meta');
@@ -1625,7 +1632,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const figures = byHeading('Figures') || byHeading('Design Evidence');
   if (figures) figures.innerHTML = `
     <h2>Physical Design Evidence</h2><div class="rule"></div>
-    <div class="fig-group"><div class="figs"><figure class="fig square"><div class="box"><img class="fig-img" src="images/nn_innovus_layout.png" alt="Complete Innovus layout of nn_engine_tile_top with power grid" loading="lazy" decoding="async"></div><figcaption>Complete routed <code>nn_engine_tile_top</code> Innovus view, including the die boundary and visible power-distribution grid used by the optimization study.</figcaption></figure></div></div>`;
+    <div class="fig-group"><div class="figs"><figure class="fig wide physical-evidence"><div class="box"><img class="fig-img" src="images/nn_innovus_layout.png" alt="Complete Innovus layout of nn_engine_tile_top with power grid" loading="lazy" decoding="async"></div><figcaption>Complete routed <code>nn_engine_tile_top</code> Innovus view, including the die boundary and visible power-distribution grid used by the optimization study.</figcaption></figure></div></div>`;
 
   /* Other legacy renderers also run on DOMContentLoaded. Clean up after every
      listener has finished so the deprecated overview cards cannot reappear. */
@@ -1641,8 +1648,25 @@ document.addEventListener('DOMContentLoaded', () => {
       section.querySelector(':scope > h2')?.textContent.trim() === 'Physical Design Evidence');
     if (physicalEvidence) physicalEvidence.innerHTML = `
       <h2>Physical Design Evidence</h2><div class="rule"></div>
-      <div class="fig-group"><div class="figs"><figure class="fig square"><div class="box"><img class="fig-img" src="images/nn_innovus_layout.png" alt="Complete Innovus layout of the eight-by-eight compute tile with its power grid" loading="lazy" decoding="async"></div><figcaption>Complete routed 8&times;8 compute-tile view from Innovus, including the die boundary and power-distribution grid used in the optimization study.</figcaption></figure></div></div>`;
+      <div class="fig-group"><div class="figs"><figure class="fig wide physical-evidence"><div class="box"><img class="fig-img" src="images/nn_innovus_layout.png" alt="Complete Innovus layout of the eight-by-eight compute tile with its power grid" loading="lazy" decoding="async"></div><figcaption>Complete routed 8&times;8 compute-tile view from Innovus, including the die boundary and power-distribution grid used in the optimization study.</figcaption></figure></div></div>`;
   }, 0);
+
+  /* Keep the implemented SpMM story concise and evidence-led. */
+  const spmmPanel = document.getElementById('proj_spmm');
+  const spmmNote = spmmPanel?.querySelector(':scope > .wrap > .note');
+  if (spmmNote) spmmNote.innerHTML = 'Implemented the complete 5&times;5 RTL datapath and a self-checking testbench; the project archive retains its ModelSim/QuestaSim waveform and simulation collateral.';
+  const spmmResults = [...(spmmPanel?.querySelectorAll(':scope > .wrap > .sec') || [])].find(section =>
+    section.querySelector(':scope > h2')?.textContent.trim() === 'Results & Measurements');
+  if (spmmResults) {
+    const evidenceRow = [...spmmResults.querySelectorAll('tbody tr')].find(row =>
+      row.cells[0]?.textContent.trim() === 'Simulation evidence on file');
+    if (evidenceRow) {
+      evidenceRow.cells[0].textContent = 'Verification collateral';
+      evidenceRow.cells[1].textContent = 'Self-checking testbench, waveform dump, and simulation library preserved with the RTL';
+    }
+    const verificationNote = spmmResults.querySelector('.tbl-note');
+    if (verificationNote) verificationNote.textContent = 'The hand-derived golden matrix contains 13 nonzero results; the self-checking testbench compares all 25 output positions.';
+  }
 });
 </script>
 </body>
