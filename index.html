@@ -806,6 +806,14 @@ const systolicHomeThumb = document.querySelector('#home [data-goto="proj_sys"] .
 if (systolicHomeThumb) {
   systolicHomeThumb.innerHTML = '<div class="technical-pair" role="group" aria-label="Complete systolic-array circuit and physical layout"><div class="evidence-tile dark"><img src="images/systolic/fig26_4x4_systolic_array_schematic.png" alt="Complete four-by-four systolic-array schematic"><span>4x4 array schematic</span></div><div class="evidence-tile dark"><img src="images/systolic/fig21_4x1_systolic_array_layout.png" alt="Complete four-by-one systolic-array layout"><span>4x1 array layout</span></div></div>';
 }
+const systolicHomeMeta = document.querySelector('#home [data-goto="proj_sys"] .meta');
+const systolicProjectMeta = document.querySelector('#proj_sys .phead .meta');
+if (systolicHomeMeta) {
+  systolicHomeMeta.textContent = 'ECE 4540: VLSI Circuit Design · Virginia Tech · NCSU 45nm PDK · Fall 2019';
+}
+if (systolicProjectMeta) {
+  systolicProjectMeta.textContent = 'Capstone Project · ECE 4540: VLSI Circuit Design · Virginia Tech · Advisor: Dr. Paul K. Ampadu · NCSU 45nm PDK · Fall 2019';
+}
 const elmHomeThumb = document.querySelector('#home [data-goto="proj_elm"] .thumb');
 if (elmHomeThumb) {
   elmHomeThumb.innerHTML = '<div class="technical-pair" role="group" aria-label="Complete ELM system and transistor-level circuit"><div class="evidence-tile"><img src="images/elm/fig4.2_mixed_signal_architecture.png" alt="Complete mixed-signal Extreme Learning Machine system"><span>Complete ELM system</span></div><div class="evidence-tile"><img src="images/elm/fig4.3_input_generation_circuit.png" alt="Complete transistor-level input-generation circuit"><span>Input circuit</span></div></div>';
