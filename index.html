@@ -200,6 +200,8 @@ table.data tbody tr:hover{background:var(--alt)}
 .chart-card .csub{font-size:12px; color:var(--muted); margin:0 0 12px; line-height:1.5}
 .chart-box{position:relative; height:250px}
 .chart-card .cnote{font-size:11.5px; color:var(--muted); margin:10px 0 0; line-height:1.5}
+#proj_agentic .chart-card:has(#qor_drc){grid-column:1/-1}
+#proj_agentic .chart-card:has(#qor_drc) .chart-box{height:330px}
 .qor-values{display:grid;gap:10px;margin-top:6px}
 .qor-value-row{display:grid;grid-template-columns:minmax(92px,1fr) auto 18px auto;align-items:center;gap:8px;padding:11px 0;border-bottom:1px solid var(--line)}
 .qor-value-row:last-child{border-bottom:0}
@@ -1364,13 +1366,32 @@ function drawCharts(panelId){
       ...spec,
       type:'bar',
       horizontal:false,
-      title:'DRC cleanup',
-      sub:'Violations before repair and after the final clean run',
-      labels:['Failed run','Final clean run'],
-      datasets:[{label:'DRC violations',data:[150,0]}],
+      title:'DRC results across 16 implementation runs',
+      sub:'11 DRC-clean runs · 4 runs with violations · 1 run without a saved DRC report',
+      labels:['R1','R2','R3','R4','R5','R6','R7','R8','R9','R10','R11','R12','R13','R14','R15','R16'],
+      datasets:[{label:'DRC violations',data:[150,404,128,null,0,0,0,0,0,0,0,0,0,0,0,30],drcColors:true}],
       unit:' violations',
-      xTitle:'DRC violations',
-      yTitle:undefined
+      yTitle:'DRC violations',
+      xTitle:'Implementation run',
+      showValues:true,
+      runNames:[
+        'Initial baseline',
+        'Lower-utilization DRC repair',
+        'Margin-8 DRC repair',
+        'Interim final01 (DRC report unavailable)',
+        'Clean baseline final02',
+        'Run 002 · Claude',
+        'Run 002 · Codex',
+        'Run 003 · power recovery',
+        'Run 004 · coarse QoR sweep',
+        'Run 005 · aspect-ratio sweep',
+        'Run 006 · coarse QoR sweep',
+        'Run 007 · power/area sweep',
+        'Run 008 · power/area reclaim',
+        'Run 008 · higher-utilization sweep',
+        'Run 009 · Genus area reclaim',
+        'Run 010 · area/buffer relief'
+      ]
     } : spec);
   if (!specs.length) { drawn.add(panelId); return; }
 
@@ -1412,6 +1433,8 @@ function drawCharts(panelId){
           const good = lowerIsBetter ? v < 0 : v > 0;
           return good ? css('--ok') : css('--bad');
         });
+      } else if (d.drcColors) {
+        colors = d.data.map(v => v === null ? muted : (v === 0 ? css('--ok') : css('--warn')));
       } else if (d.highlight) {
         colors = d.data.map((_, k) => d.highlight.includes(k) ? pal[0] : pal[2]);
       } else {
@@ -1457,14 +1480,39 @@ function drawCharts(panelId){
       }
     };
 
+    const valueLabelPlugin = {
+      id: 'portfolioValueLabels',
+      afterDatasetsDraw(chart){
+        if (!spec.showValues) return;
+        const ctx = chart.ctx;
+        ctx.save();
+        ctx.fillStyle = ink;
+        ctx.font = '600 11px ' + (css('--sans') || 'system-ui, sans-serif');
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        chart.data.datasets.forEach((dataset, datasetIndex) => {
+          dataset.data.forEach((value, index) => {
+            const bar = chart.getDatasetMeta(datasetIndex).data[index];
+            const x = bar && Number.isFinite(bar.x) ? bar.x : chart.scales.x.getPixelForValue(index);
+            const y = value === null
+              ? chart.scales.y.getPixelForValue(0) - 7
+              : Math.max(chart.chartArea.top + 13, bar.y - 7);
+            ctx.fillText(value === null ? 'N/A' : String(value), x, y);
+          });
+        });
+        ctx.restore();
+      }
+    };
+
     new Chart(el, {
       type: spec.type === 'doughnut' ? 'doughnut' : spec.type,
       data: {labels: spec.labels, datasets},
+      plugins: spec.showValues ? [valueLabelPlugin] : [],
       options: {
         indexAxis: horiz ? 'y' : 'x',
         responsive: true, maintainAspectRatio: false,
         cutout: isPie ? '58%' : undefined,
-        layout: {padding: {top: 4, right: 8}},
+        layout: {padding: {top: spec.showValues ? 22 : 4, right: 8}},
         plugins: {
           legend: {
             display: isPie || datasets.length > 1,
@@ -1477,6 +1525,9 @@ function drawCharts(panelId){
             backgroundColor: 'rgba(24,23,19,.94)', padding:10, cornerRadius:6,
             titleFont:{size:12}, bodyFont:{size:12}, displayColors:!isPie,
             callbacks: {
+              title: items => spec.runNames && items.length
+                ? items[0].label + ' · ' + spec.runNames[items[0].dataIndex]
+                : items[0]?.label,
               label: c => {
                 const v = isPie ? c.parsed : (horiz ? c.parsed.x : c.parsed.y);
                 if (v === null || v === undefined) return null;
@@ -1558,8 +1609,8 @@ document.addEventListener('DOMContentLoaded', () => {
       cards[1].querySelector('.csub').textContent = 'Clean baseline compared directly with the best observed implementation run';
     }
     if (cards[2]) {
-      cards[2].querySelector('h4').textContent = 'DRC cleanup';
-      cards[2].querySelector('.csub').textContent = 'Violations before repair and after the final clean run';
+      cards[2].querySelector('h4').textContent = 'DRC results across 16 implementation runs';
+      cards[2].querySelector('.csub').textContent = '11 DRC-clean runs · 4 runs with violations · 1 run without a saved DRC report';
     }
   }
 
