@@ -1568,7 +1568,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cardMeta = homeCard.querySelector('.meta');
   const cardSummary = homeCard.querySelector('.body > p:not(.meta)');
   if (cardTitle) cardTitle.textContent = 'LLM-Assisted RTL-to-GDS Optimization & Tempus Closure';
-  if (cardMeta) cardMeta.textContent = 'Personal R&D · Cadence Genus / Innovus / Tempus · GPDK090 · 2026';
+  if (cardMeta) cardMeta.textContent = 'Independent R&D · Cadence Genus / Innovus / Tempus · GPDK090 · 2026';
   if (cardSummary) cardSummary.textContent = 'Explored how an LLM can help an engineer choose the next physical-design experiment while source-linked reports, Python guardrails, and Cadence sign-off remain in control.';
 
   const homeThumb = homeCard.querySelector('.thumb');
@@ -1579,7 +1579,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const ppa = panel.querySelector('.ppa');
   const scopeNote = panel.querySelector('.phead + .ppa + .note');
   if (title) title.textContent = 'LLM-Assisted RTL-to-GDS Optimization & Tempus Closure';
-  if (meta) meta.textContent = 'Personal R&D Project · Cadence Genus / Innovus / Tempus · GPDK090 90 nm · 2026';
+  if (meta) meta.textContent = 'Independent R&D Project · Cadence Genus / Innovus / Tempus · GPDK090 90 nm · 2026';
   if (ppa) ppa.innerHTML = '16-run V2 study &middot; best Innovus run: +23.8% setup WNS, -0.8% area, -3.7% power &middot; final nominal Tempus: setup +2.192 ns, hold 0.000 ns, TNS 0, FEP 0';
   if (scopeNote) scopeNote.innerHTML = 'I built this project to explore a practical question: can an LLM help an engineer decide what to try next in an RTL-to-GDS flow? Claude and Codex interpreted compact, source-linked reports and suggested bounded experiments; Python guardrails and Cadence sign-off decided what was accepted. Across 16 implementation runs, the flow improved the 8&times;8 compute tile and reached clean nominal setup and hold in Tempus.';
   if (scopeNote && !panel.querySelector('.ppa-dashboard-link')) {
