@@ -4,19 +4,19 @@
 <script>document.documentElement.classList.remove('nojs');</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Varsha Seshasayee | Neuromorphic &amp; In-Memory Computing Research</title>
-<meta name="description" content="Research portfolio of Varsha Seshasayee focused on neuromorphic and in-memory computing, analog/mixed-signal circuits, hardware accelerators, and physical implementation.">
+<title>Varsha Seshasayee | Energy-Efficient In-Memory Computing Research</title>
+<meta name="description" content="Research portfolio of Varsha Seshasayee focused on energy-efficient in-memory computing, neuromorphic hardware, analog/mixed-signal circuits, accelerators, and physical implementation.">
 <meta name="author" content="Varsha Seshasayee">
-<meta property="og:title" content="Varsha Seshasayee - Neuromorphic &amp; In-Memory Computing Research">
-<meta property="og:description" content="Research in memristor-based temporal computing, analog/mixed-signal circuits, hardware accelerators, and RTL-to-GDSII implementation.">
+<meta property="og:title" content="Varsha Seshasayee - Energy-Efficient In-Memory Computing Research">
+<meta property="og:description" content="Research in energy-efficient memristive and neuromorphic computing, analog/mixed-signal circuits, hardware accelerators, and RTL-to-GDSII implementation.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="og.png">
 <meta property="og:image:width" content="1734">
 <meta property="og:image:height" content="907">
 <meta property="og:image:alt" content="Varsha Seshasayee electrical engineering project portfolio">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Varsha Seshasayee - Neuromorphic &amp; In-Memory Computing Research">
-<meta name="twitter:description" content="Research in memristor-based temporal computing, analog/mixed-signal circuits, hardware accelerators, and physical implementation.">
+<meta name="twitter:title" content="Varsha Seshasayee - Energy-Efficient In-Memory Computing Research">
+<meta name="twitter:description" content="Research in energy-efficient memristive and neuromorphic computing, analog/mixed-signal circuits, hardware accelerators, and physical implementation.">
 <meta name="twitter:image" content="og.png">
 <meta name="theme-color" content="#f7f6f2">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -790,13 +790,13 @@ const publicNav = document.querySelector('nav.tabs');
 publicNav.innerHTML = '<button class="tab" data-target="home" role="tab" aria-selected="true">Home</button><a class="site-link" href="#projects" data-home-section="projects">Research Projects</a><a class="site-link" href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a><a class="site-link" href="#contact">Contact</a>';
 document.getElementById('research')?.remove();
 const homeHero = document.querySelector('#home .hero');
-homeHero.querySelector('.role').textContent = 'Neuromorphic and in-memory computing · Analog/mixed-signal ICs · Hardware accelerators';
-homeHero.querySelector('.lede').textContent = 'I study hardware for neuromorphic and in-memory computing, connecting memristive devices, mixed-signal circuits, and accelerator architectures for temporal and sensory processing. My current independent research maps Legendre Memory Unit state-space computation to analog memristor arrays and evaluates programming variation, read noise, conductance quantization, and energy as coupled design constraints.';
+homeHero.querySelector('.role').textContent = 'Energy-efficient in-memory computing · Neuromorphic hardware · Analog/mixed-signal ICs';
+homeHero.querySelector('.lede').textContent = 'I study energy-efficient in-memory computing systems that connect memristive devices, mixed-signal circuits, and accelerator architectures for temporal and sensory processing. My current independent research maps Legendre Memory Unit state-space computation to analog memristor arrays and evaluates programming variation, read noise, conductance quantization, and energy as coupled design constraints.';
 homeHero.querySelector('.hero-meta').innerHTML = '<a class="pill cta" href="#projects" data-home-section="projects">View Research Projects</a><a class="pill" href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a><a class="pill" href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a>';
 const researchFocus = document.createElement('section');
 researchFocus.className = 'research-focus';
 researchFocus.setAttribute('aria-labelledby', 'research-focus-title');
-researchFocus.innerHTML = '<p class="eyebrow">Research interests</p><h2 id="research-focus-title">Hardware-aware neuromorphic and in-memory computing</h2><p class="focus-lede">My research direction connects emerging memory devices with circuits and architectures for time-varying information. I am particularly interested in designs that evaluate accuracy, energy, and robustness together rather than treating device and circuit nonidealities as separate problems.</p><div class="research-focus-grid"><div class="research-focus-item"><h3>Neuromorphic temporal computing</h3><p>Analog state-space models, spike-based encoding and decoding, and hardware mappings for temporal inference.</p></div><div class="research-focus-item"><h3>RRAM-CMOS circuits</h3><p>Memristor arrays, neuron and interface circuits, and robustness to variation, noise, quantization, and mismatch.</p></div><div class="research-focus-item"><h3>Accelerator implementation</h3><p>Mixed-signal and RTL architectures carried through verification, physical design, timing analysis, and sign-off.</p></div></div>';
+researchFocus.innerHTML = '<p class="eyebrow">Research interests</p><h2 id="research-focus-title">Energy-efficient in-memory computing from devices to systems</h2><p class="focus-lede">My research direction connects emerging memory devices with circuits and architectures that reduce data movement and support time-varying computation. I am particularly interested in designs that evaluate accuracy, energy, and robustness together rather than treating device and circuit nonidealities as separate problems.</p><div class="research-focus-grid"><div class="research-focus-item"><h3>Memristive in-memory computing</h3><p>RRAM arrays, analog computation, and hardware-aware mappings that reduce memory movement and energy.</p></div><div class="research-focus-item"><h3>Neuromorphic temporal processing</h3><p>Analog state-space models, neuron circuits, and spike-based encoding and decoding for temporal inference.</p></div><div class="research-focus-item"><h3>Hardware implementation</h3><p>Mixed-signal and RTL architectures carried through verification, physical design, timing analysis, and sign-off.</p></div></div>';
 homeHero.insertAdjacentElement('afterend', researchFocus);
 document.querySelector('#home .stats')?.remove();
 document.getElementById('home-skills')?.remove();
