@@ -4,19 +4,19 @@
 <script>document.documentElement.classList.remove('nojs');</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Varsha Seshasayee | Electrical Engineering Project Portfolio</title>
-<meta name="description" content="Project portfolio of Varsha Seshasayee, an electrical engineering researcher working across analog/mixed-signal ICs, RTL-to-GDSII implementation, hardware accelerators, and neuromorphic computing.">
+<title>Varsha Seshasayee | Neuromorphic &amp; Hardware Research Portfolio</title>
+<meta name="description" content="Research portfolio of Varsha Seshasayee focused on energy-efficient neuromorphic and in-memory computing, analog/mixed-signal circuits, hardware accelerators, and physical implementation.">
 <meta name="author" content="Varsha Seshasayee">
-<meta property="og:title" content="Varsha Seshasayee - Electrical Engineering Project Portfolio">
-<meta property="og:description" content="Selected projects spanning custom circuits, RTL-to-GDSII implementation, hardware accelerators, CAD methodology, and neuromorphic computing.">
+<meta property="og:title" content="Varsha Seshasayee - Neuromorphic &amp; Hardware Research Portfolio">
+<meta property="og:description" content="Research in memristor-based temporal computing, analog/mixed-signal circuits, hardware accelerators, and RTL-to-GDSII implementation.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="og.png">
 <meta property="og:image:width" content="1734">
 <meta property="og:image:height" content="907">
 <meta property="og:image:alt" content="Varsha Seshasayee electrical engineering project portfolio">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Varsha Seshasayee - Electrical Engineering Project Portfolio">
-<meta name="twitter:description" content="Selected engineering projects in analog IC design, RTL-to-GDSII implementation, hardware accelerators, and CAD methodology.">
+<meta name="twitter:title" content="Varsha Seshasayee - Neuromorphic &amp; Hardware Research Portfolio">
+<meta name="twitter:description" content="Research in memristor-based temporal computing, analog/mixed-signal circuits, hardware accelerators, and physical implementation.">
 <meta name="twitter:image" content="og.png">
 <meta name="theme-color" content="#f7f6f2">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -610,6 +610,15 @@ body::before{display:none}
 .research-frame-item+.research-frame-item{border-left:1px solid var(--line)}
 .research-frame-item b{display:block;margin-bottom:7px;color:var(--accent);font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
 .research-frame-item p{margin:0;color:var(--ink-2);font-size:13px;line-height:1.65;text-align:left}
+.research-focus{margin:26px 0 56px;padding:28px;border:1px solid var(--line);border-radius:18px;background:var(--card)}
+.research-focus .eyebrow{margin:0 0 10px;color:var(--accent);font-family:var(--mono);font-size:10px;font-weight:750;letter-spacing:.16em;text-transform:uppercase}
+.research-focus>h2{max-width:27ch;margin:0 0 12px;color:var(--ink);font-size:clamp(25px,3.3vw,38px);line-height:1.12;letter-spacing:-.035em}
+.research-focus>.focus-lede{max-width:78ch;margin:0;color:var(--ink-2);font-size:15px;line-height:1.75}
+.research-focus-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:24px;border-top:1px solid var(--line)}
+.research-focus-item{padding:18px 20px 0 0}
+.research-focus-item+.research-focus-item{padding-left:20px;border-left:1px solid var(--line)}
+.research-focus-item h3{margin:0 0 7px;color:var(--ink);font-size:14px}
+.research-focus-item p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.65}
 .project-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:0;padding:0;list-style:none;counter-reset:project-flow}
 .project-flow li{position:relative;display:flex;min-height:82px;align-items:center;justify-content:center;padding:22px 10px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font-size:11px;font-weight:680;line-height:1.35;text-align:center;counter-increment:project-flow}
 .project-flow li::before{content:counter(project-flow,decimal-leading-zero);position:absolute;top:8px;left:9px;color:var(--accent);font-family:var(--mono);font-size:9px}
@@ -628,13 +637,16 @@ body::before{display:none}
 .closure-step:not(:last-child)::after{content:"\2192";position:absolute;right:-19px;top:50%;z-index:2;transform:translateY(-50%);color:var(--accent);font-size:18px}
 .closure-feedback::before{content:"Evidence-controlled feedback to Innovus";grid-column:1/-1;margin-bottom:-6px;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.1em;text-align:center;text-transform:uppercase}
 @media (max-width:820px){
-  .closure-lane,.closure-feedback,.research-frame{grid-template-columns:1fr;width:100%;gap:8px}
+  .closure-lane,.closure-feedback,.research-frame,.research-focus-grid{grid-template-columns:1fr;width:100%;gap:8px}
   .closure-feedback{margin-top:18px;padding-top:18px}
   .closure-step{min-height:68px;padding:12px 14px}
   .closure-step::after{display:none}
   .research-frame{border-bottom:0}
   .research-frame-item{padding:15px 4px;border-bottom:1px solid var(--line)}
   .research-frame-item+.research-frame-item{border-left:0}
+  .research-focus{padding:22px}
+  .research-focus-item,.research-focus-item+.research-focus-item{padding:16px 0;border-left:0;border-bottom:1px solid var(--line)}
+  .research-focus-item:last-child{border-bottom:0}
 }
 .native-analysis{margin-top:24px;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--alt)}
 .native-analysis h3{margin:0 0 14px;font-size:15px}
@@ -778,9 +790,14 @@ const publicNav = document.querySelector('nav.tabs');
 publicNav.innerHTML = '<button class="tab" data-target="home" role="tab" aria-selected="true">Home</button><a class="site-link" href="#projects" data-home-section="projects">Research Projects</a><a class="site-link" href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a><a class="site-link" href="#contact">Contact</a>';
 document.getElementById('research')?.remove();
 const homeHero = document.querySelector('#home .hero');
-homeHero.querySelector('.role').textContent = 'Electrical engineering researcher working across neuromorphic computing, mixed-signal ICs, hardware accelerators, and physical design.';
-homeHero.querySelector('.lede').textContent = 'My projects move between device and circuit behavior, accelerator architecture, RTL verification, and physical implementation. I use simulation and implementation results to explain each design choice and its limits.';
+homeHero.querySelector('.role').textContent = 'Neuromorphic and in-memory computing · Analog/mixed-signal ICs · Hardware accelerators';
+homeHero.querySelector('.lede').textContent = 'I study how memristive devices, mixed-signal circuits, and accelerator architectures can support energy-efficient temporal and sensory processing. My current independent research maps Legendre Memory Unit state-space computation to analog memristor arrays and evaluates the effects of programming variation, read noise, and conductance quantization.';
 homeHero.querySelector('.hero-meta').innerHTML = '<a class="pill cta" href="#projects" data-home-section="projects">View Research Projects</a><a class="pill" href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a><a class="pill" href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a>';
+const researchFocus = document.createElement('section');
+researchFocus.className = 'research-focus';
+researchFocus.setAttribute('aria-labelledby', 'research-focus-title');
+researchFocus.innerHTML = '<p class="eyebrow">Research interests</p><h2 id="research-focus-title">Energy-efficient, hardware-aware computing from devices to physical implementation</h2><p class="focus-lede">My research direction connects emerging memory devices with circuits and architectures that can process time-varying information at lower energy. I am particularly interested in designs whose accuracy, power, and robustness are evaluated together rather than treating device and circuit nonidealities as separate problems.</p><div class="research-focus-grid"><div class="research-focus-item"><h3>Neuromorphic temporal computing</h3><p>Analog state-space models, spike-based encoding and decoding, and energy-efficient hardware mappings for temporal inference.</p></div><div class="research-focus-item"><h3>RRAM-CMOS circuits</h3><p>Memristor arrays, neuron and interface circuits, and robustness to variation, noise, quantization, and mismatch.</p></div><div class="research-focus-item"><h3>Accelerator implementation</h3><p>Mixed-signal and RTL architectures carried through verification, physical design, timing analysis, and sign-off.</p></div></div>';
+homeHero.insertAdjacentElement('afterend', researchFocus);
 document.querySelector('#home .stats')?.remove();
 document.getElementById('home-skills')?.remove();
 document.getElementById('home-education')?.remove();
@@ -1054,13 +1071,13 @@ const evidenceCatalog = {
       ['images/memristor/fig3.5_current_reference_circuit.png','Fig. 3.5 - PTAT current reference','Current-reference circuit used by the voltage-to-current front end.'],
       ['images/memristor/fig3.6_operational_amplifier.png','Fig. 3.6 - Operational amplifier','Operational amplifier used in the voltage-to-current converter.'],
       ['images/memristor/fig3.7_hybrid_neuron_circuit.png','Fig. 3.7 - Hybrid RRAM-CMOS neuron','Hybrid leaky integrate-and-fire neuron used by the iterative encoder.','wide'],
-      ['images/memristor/fig5.11_neuron_spike_waveform.png','Fig. 5.11 - Neuron spike train','Simulated neuron output spikes within the active clock window.','wide'],
-      ['images/memristor/fig5.12_memristor_switching_waveform.png','Fig. 5.12 - RRAM-neuron switching','Neuron output, RRAM voltage, and resistance during switching.','wide'],
+      ['images/memristor/fig5.11_neuron_spike_waveform.png?v=2','Fig. 5.11 - Neuron spike train','Simulated neuron output spikes within the active clock window.','wide'],
+      ['images/memristor/fig5.12_memristor_switching_waveform.png?v=2','Fig. 5.12 - RRAM-neuron switching','Neuron output, RRAM voltage, and resistance during switching.','wide'],
       ['images/memristor/fig5.13_spike_propagation_4neurons.png','Fig. 5.13 - Four-neuron propagation','Spike propagation through the four encoder neurons and combiner.','wide'],
       ['images/memristor/fig5.16_isi_encoding_sinewave.png','Fig. 5.16 - Sine-wave ISI encoding','Inter-spike-interval encoding of the report\'s 100 kHz sine-wave input.','wide'],
       ['images/memristor/fig4.1_spike_window_generator.jpg','Fig. 4.1 - Decoder-window generator','Slow-variable stage adapted from prior neuron work, followed by the project comparator and Schmitt-trigger window logic.','wide'],
-      ['images/memristor/fig5.18_window_output_650mv.png','Fig. 5.18 - Window response at 650 mV','Slow-variable window and Schmitt-trigger out-window signals at 650 mV.','wide'],
-      ['images/memristor/fig5.19_window_output_700mv.png','Fig. 5.19 - Window response at 700 mV','Window and out-window signals at the upper end of the 650-700 mV input range.','wide'],
+      ['images/memristor/fig5.18_window_output_650mv.png?v=2','Fig. 5.18 - Window response at 650 mV','Slow-variable window and Schmitt-trigger out-window signals at 650 mV.','wide'],
+      ['images/memristor/fig5.19_window_output_700mv.png?v=2','Fig. 5.19 - Window response at 700 mV','Window and out-window signals at the upper end of the 650-700 mV input range.','wide'],
       ['images/memristor/fig5.21_window_pulse_width.jpg','Fig. 5.21 - Window pulse width','Simulated window pulse width versus input voltage from 650 to 700 mV.','wide'],
       ['images/memristor/fig5.22_decoder_window.png','Fig. 5.22 - Window from encoded spikes','Out-window response generated from the encoded spike train across the input sweep.','wide'],
       ['images/memristor/fig4.3_integration_decoder.png','Fig. 4.3 - Complete integration decoder','Full integration-decoder circuit with the out-window-controlled integrator, sampler, threshold stage, buffer, and low-pass output.','wide'],
