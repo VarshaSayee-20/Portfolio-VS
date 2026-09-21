@@ -779,6 +779,9 @@ footer a{color:var(--accent)}
   nav.tabs{flex-wrap:wrap;justify-content:flex-start;column-gap:12px}
   .education-grid{grid-template-columns:1fr;gap:36px}
 }
+@media(max-width:600px){
+  .card .meta,.tab,.site-link{font-size:13px}
+}
 </style>
 </head>
 <body>
@@ -841,7 +844,7 @@ const publicNav = document.querySelector('nav.tabs');
 publicNav.innerHTML = '<button class="tab" data-target="home" role="tab" aria-selected="true">Home</button><a class="site-link" href="#projects" data-home-section="projects">Research Projects</a><button class="tab" data-target="about" role="tab" aria-selected="false">About</button><button class="tab" data-target="education" role="tab" aria-selected="false">Education</button><a class="site-link" href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a><a class="site-link" href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a>';
 document.getElementById('research')?.remove();
 const homeHero = document.querySelector('#home .hero');
-homeHero.insertAdjacentHTML('afterbegin','<div class="portrait-frame"><img class="portfolio-portrait" src="images/varsha-portrait.jpeg?v=full" alt="Varsha Seshasayee" width="4000" height="5600" loading="eager" decoding="async"></div>');
+homeHero.insertAdjacentHTML('afterbegin','<div class="portrait-frame"><img class="portfolio-portrait" src="images/varsha-portrait.jpeg?v=web-20260921" alt="Varsha Seshasayee" width="800" height="1120" loading="eager" decoding="async"></div>');
 homeHero.querySelector('.role').textContent = 'Energy-efficient in-memory computing · Neuromorphic hardware · Analog/mixed-signal ICs';
 homeHero.querySelector('.lede').textContent = 'I study energy-efficient in-memory computing from memristive and mixed-signal circuits to working systems. My ongoing independent research explores how state-space models might map to analog memory hardware under variation, noise, and energy constraints. The projects below show the circuit and implementation work behind that direction.';
 homeHero.querySelector('.hero-meta').innerHTML = '<a class="pill cta" href="#projects" data-home-section="projects">View Research Projects</a><a class="pill" href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a><a class="pill" href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a><a class="pill" href="https://www.mics.ece.vt.edu/People/Graduate/varsha_seshasayee.html" target="_blank" rel="noopener">Virginia Tech MICS alumni profile</a>';
