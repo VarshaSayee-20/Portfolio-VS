@@ -765,6 +765,10 @@ footer a{color:var(--accent)}
 .course-list{margin:0;padding-left:20px;color:var(--ink-2);font-size:14px;line-height:1.55}
 .course-list li{margin:0 0 5px}
 .education-entry a{color:var(--accent);text-underline-offset:3px}
+.about-section{max-width:930px;margin:60px 0 64px}
+.about-copy{max-width:72ch;color:var(--ink-2);font-size:16px;line-height:1.75}
+.about-copy p{margin:0 0 20px}
+.about-copy a{color:var(--accent);text-underline-offset:3px}
 @media(max-width:700px){
   #home .hero{grid-template-columns:1fr;padding:18px 0 26px}
   #home .hero .portrait-frame{grid-column:1;grid-row:1;width:140px;height:140px;margin-bottom:22px}
@@ -834,12 +838,12 @@ projectCount.querySelector('span').textContent = 'engineering projects';
 
 /* Keep the public portfolio project-first and evidence-led. */
 const publicNav = document.querySelector('nav.tabs');
-publicNav.innerHTML = '<button class="tab" data-target="home" role="tab" aria-selected="true">Home</button><a class="site-link" href="#projects" data-home-section="projects">Research Projects</a><button class="tab" data-target="education" role="tab" aria-selected="false">Education</button><a class="site-link" href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a><a class="site-link" href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a>';
+publicNav.innerHTML = '<button class="tab" data-target="home" role="tab" aria-selected="true">Home</button><a class="site-link" href="#projects" data-home-section="projects">Research Projects</a><button class="tab" data-target="about" role="tab" aria-selected="false">About</button><button class="tab" data-target="education" role="tab" aria-selected="false">Education</button><a class="site-link" href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a><a class="site-link" href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a>';
 document.getElementById('research')?.remove();
 const homeHero = document.querySelector('#home .hero');
 homeHero.insertAdjacentHTML('afterbegin','<div class="portrait-frame"><img class="portfolio-portrait" src="images/varsha-portrait.jpeg?v=full" alt="Varsha Seshasayee" width="4000" height="5600" loading="eager" decoding="async"></div>');
 homeHero.querySelector('.role').textContent = 'Energy-efficient in-memory computing · Neuromorphic hardware · Analog/mixed-signal ICs';
-homeHero.querySelector('.lede').textContent = 'I am interested in energy-efficient in-memory computing, especially the path from memristive devices and mixed-signal circuits to working systems. My current independent LMU study investigates how state-space computation might map to analog memristor arrays, with programming variation, read noise, conductance quantization, and energy considered together. The projects below show the circuit and implementation work behind that direction.';
+homeHero.querySelector('.lede').textContent = 'I study energy-efficient in-memory computing from memristive and mixed-signal circuits to working systems. My ongoing independent research explores how state-space models might map to analog memory hardware under variation, noise, and energy constraints. The projects below show the circuit and implementation work behind that direction.';
 homeHero.querySelector('.hero-meta').innerHTML = '<a class="pill cta" href="#projects" data-home-section="projects">View Research Projects</a><a class="pill" href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a><a class="pill" href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a><a class="pill" href="https://www.mics.ece.vt.edu/People/Graduate/varsha_seshasayee.html" target="_blank" rel="noopener">Virginia Tech MICS alumni profile</a>';
 const researchFocus = document.createElement('section');
 researchFocus.className = 'research-focus';
@@ -855,6 +859,19 @@ if (projectsSection) {
   const heading = projectsSection.querySelector('h2');
   if (heading) heading.textContent = 'Research Projects';
 }
+const aboutPanel = document.createElement('section');
+aboutPanel.className = 'panel';
+aboutPanel.id = 'about';
+aboutPanel.setAttribute('role', 'tabpanel');
+aboutPanel.innerHTML = `<div class="wrap"><section class="sec about-section">
+  <h2>About</h2><div class="rule"></div>
+  <div class="about-copy">
+    <p>I am an electrical engineer interested in making intelligent hardware more energy efficient. My work has moved between biological signals, memristive and mixed-signal circuits, RTL accelerators, and physical design.</p>
+    <p>I began with an eye-movement-controlled robot and a CMOS Extreme Learning Machine, then designed a memristor-based temporal encoder and decoder at Virginia Tech. At Intel, I worked on advanced-node CMOS library validation and automated circuit and post-layout checks. More recently, I carried a neural-network accelerator from RTL through physical implementation.</p>
+    <p>My ongoing independent research asks how state-space models could run on analog memory hardware while accounting for variation, noise, and energy. I am especially interested in when compute-in-memory and event-driven designs provide a useful system-level advantage for wearable, assistive, or environmental sensing.</p>
+    <p><a href="#projects" data-home-section="projects">View selected projects</a></p>
+  </div></section></div>`;
+document.getElementById('home').insertAdjacentElement('afterend', aboutPanel);
 const educationPanel = document.createElement('section');
 educationPanel.className = 'panel';
 educationPanel.id = 'education';
@@ -904,16 +921,16 @@ educationPanel.innerHTML = `<div class="wrap"><section class="sec education-sect
         </ul>
       </article>
     </div></section></div>`;
-document.getElementById('home').insertAdjacentElement('afterend', educationPanel);
+aboutPanel.insertAdjacentElement('afterend', educationPanel);
 const publicFooter = document.querySelector('footer');
 publicFooter.removeAttribute('id');
 publicFooter.querySelector('.wrap').innerHTML = '<p style="margin:0"><b>Varsha Seshasayee</b> · <a href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a></p>';
 document.querySelector('#proj_mem .phead .meta')?.insertAdjacentHTML('afterend','<p class="profile-link"><a href="https://www.mics.ece.vt.edu/People/Graduate/varsha_seshasayee.html" target="_blank" rel="noopener">Virginia Tech MICS alumni profile ↗</a></p>');
-document.querySelector('[data-home-section="projects"]')?.addEventListener('click', event => {
+document.querySelectorAll('[data-home-section="projects"]').forEach(link => link.addEventListener('click', event => {
   event.preventDefault();
   show('home', true);
   setTimeout(() => document.getElementById('projects')?.scrollIntoView({behavior:'smooth',block:'start'}), 180);
-});
+}));
 
 /* Strong, project-specific evidence for the home cards; contain prevents clipping. */
 const homeThumbnails = {
