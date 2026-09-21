@@ -1177,7 +1177,10 @@ const evidenceCatalog = {
       ['images/elm/A6_carry_stage.png','A6 - Carry stage','Carry-stage circuit used by the counter.','wide'],
       ['images/elm/A7_counter_pipo.png','A7 - Counter and PIPO','Counter and PIPO circuit used for rotation counting.','wide'],
       ['images/elm/fig5.7_rotation_waveforms.png','Fig. 5.7 - Hidden-layer rotation','Cadence waveform showing input rotation while rotation enable is asserted.','wide'],
-      ['images/elm/fig5.11_counter_pipo_waveform.png','Fig. 5.11 - Counter and PIPO timing','Neuron output clock, six-bit counter state, PIPO output, and PIPO clock.','wide']
+      ['images/elm/fig5.11_counter_pipo_waveform.png','Fig. 5.11 - Counter and PIPO timing','Neuron output clock, six-bit counter state, PIPO output, and PIPO clock.','wide'],
+      ['images/elm/fig5.2_timing_diagram.png','Fig. 5.2 - Input and neuron timing','Demultiplexer selects the input channel; neuron enable starts the oscillator after data loading.','wide'],
+      ['images/elm/fig5.9_hidden_layer_rotation.png','Fig. 5.9 - Rotation response','One neuron output changes frequency after the rotation control pulse for the report\'s example input pattern.','wide'],
+      ['images/elm/fig5.10_counter_waveform.png','Fig. 5.10 - Six-bit counter','The neuron output clocks the p5–p0 counter during the enabled interval.','wide']
     ]
   },
   proj_nncad: {
@@ -1257,7 +1260,7 @@ const evidenceCatalog = {
 
 const evidenceGroups = {
   proj_mem: {design:[0,3,4,5,6,13,18,21], simulation:[1,2,9,10,11,12,14,15,17,19,22,23,24], results:[7,8,16,20]},
-  proj_elm: {design:[0,1,2,3,5,6,7,8,9,10], simulation:[4,12], results:[11]},
+  proj_elm: {design:[0,1,2,3,5,6,7,8,9,10], simulation:[4,13,14,15,12], results:[11]},
   proj_nncad: {design:[0,1,2,5,6,8], simulation:[3,7,12], results:[4,9,10,11,13]},
   proj_flash: {design:[0,1,4,5,7,8], simulation:[2,3,6,9], results:[10]},
   proj_sys: {design:[0,1,2,4,5,7], simulation:[3,6], results:[8,9]},
@@ -1336,10 +1339,34 @@ if (flashResultsSection) {
 }
 const elmResultsSection = projectSection('proj_elm', 'Results & Measurements');
 if (elmResultsSection) {
-  elmResultsSection.insertAdjacentHTML('beforeend',
-    '<div class="native-analysis"><h3>Classification results</h3><p>The question this project set out to answer was whether a current-mode analog datapath, whose random projection comes from transistor mismatch instead of a generator, can stand in for the MATLAB model. It was tested on a binary UCI Skin Segmentation task with 29 training and 12 held-out samples.</p><div class="tbl-wrap"><table class="data"><thead><tr><th>Implementation</th><th>Held-out set</th></tr></thead><tbody><tr><td>Mixed-signal circuit with MATLAB readout</td><td>7 / 12</td></tr><tr><td>MATLAB software model</td><td>8 / 12</td></tr><tr><td>Training set</td><td>Both paths separated it completely</td></tr></tbody></table></div><p class="equation-note">Twelve samples on a two-class task cannot support an accuracy claim &mdash; chance alone is 50% &mdash; so no generalization result is reported here. Table 5.9 of my report gives each implementation&rsquo;s totals but not a sample-by-sample comparison, so I cannot say how often the two paths made the same call.</p></div>');
-  elmResultsSection.insertAdjacentHTML('beforeend',
-    '<div class="native-analysis"><h3>Input scaling and hidden-layer rotation</h3><p>The report recorded 84.299 &micro;A, 161.98 &micro;A, and 324.073 &micro;A when all DAC inputs were high in the 1&times;1, 2&times;2, and 4&times;4 configurations. The rotation experiment produced these frequency measurements for one input pattern.</p><div class="tbl-wrap"><table class="data"><thead><tr><th>Rotation</th><th>Vout1 (MHz)</th><th>Vout2 (MHz)</th><th>Vout3 (MHz)</th><th>Vout4 (MHz)</th></tr></thead><tbody><tr><td>0</td><td>543.810</td><td>554.377</td><td>536.679</td><td>549.832</td></tr><tr><td>1</td><td>535.325</td><td>546.505</td><td>527.052</td><td>538.773</td></tr></tbody></table></div><p class="equation-note">Source: report Table 5.3. These are simulated outputs for one pattern, not a distribution across devices or inputs.</p></div>');
+  const elmSimulationSection = document.createElement('div');
+  elmSimulationSection.className = 'sec elm-simulation';
+  elmSimulationSection.innerHTML = `
+    <h2>Circuit simulation</h2><div class="rule"></div>
+    <p>The 180 nm CMOS circuits were simulated at 1.8 V. The DAC and current-mirror inputs drove an axon-hillock oscillator; its frequency changed with input current. As the input array grew, the neuron enable and reset devices were widened to sustain oscillation at low drive current.</p>
+    <div class="tbl-cap">All-active DAC inputs and neuron sizing (report Table 5.1 and Fig. 5.6)</div>
+    <div class="tbl-wrap"><table class="data"><thead><tr><th>Array</th><th>W1 = W2 = W3</th><th>Input current I<sub>z</sub></th></tr></thead><tbody>
+      <tr><td>1&times;1</td><td>3 &micro;m</td><td>84.299 &micro;A</td></tr>
+      <tr><td>2&times;2</td><td>5 &micro;m</td><td>161.98 &micro;A</td></tr>
+      <tr><td>4&times;4</td><td>10 &micro;m</td><td>324.073 &micro;A</td></tr>
+    </tbody></table></div>
+    <p class="tbl-note">These are input-current readings, not sampled points from the frequency-versus-current plot. The report uses a 21 fF neuron capacitor and V<sub>leak</sub> = 1.8 V in these configurations.</p>
+    <div class="tbl-cap">Four oscillator outputs before and after one weight rotation (report Table 5.3)</div>
+    <div class="tbl-wrap"><table class="data"><thead><tr><th>Rotation</th><th>Vout1 (MHz)</th><th>Vout2 (MHz)</th><th>Vout3 (MHz)</th><th>Vout4 (MHz)</th></tr></thead><tbody>
+      <tr><td>0</td><td>543.810</td><td>554.377</td><td>536.679</td><td>549.832</td></tr>
+      <tr><td>1</td><td>535.325</td><td>546.505</td><td>527.052</td><td>538.773</td></tr>
+    </tbody></table></div>
+    <p class="tbl-note">One 4&times;4 input pattern was simulated. The input and rotation waveforms, six-bit counter, and PIPO capture traces are shown in the figure gallery.</p>`;
+  elmResultsSection.before(elmSimulationSection);
+  elmResultsSection.innerHTML = `
+    <h2>Results</h2><div class="rule"></div>
+    <p>The six-bit circuit counter outputs formed a 20-neuron hidden-layer matrix H. MATLAB calculated the output weights from H and performed the final classification; the second-stage readout was not implemented in hardware. The report compared this path with a MATLAB-only ELM on the same UCI Skin Segmentation split: 29 training samples and 12 test samples.</p>
+    <div class="tbl-cap">Binary classification (report Table 5.9)</div>
+    <div class="tbl-wrap"><table class="data"><thead><tr><th>Path</th><th>Training</th><th>Test</th></tr></thead><tbody>
+      <tr><td>Circuit-derived hidden layer + MATLAB readout</td><td>29 / 29 (100%)</td><td>7 / 12 (58.33%)</td></tr>
+      <tr><td>MATLAB-only ELM</td><td>29 / 29 (100%)</td><td>8 / 12 (66.67%)</td></tr>
+    </tbody></table></div>
+    <p class="tbl-note">Table 5.9 reports aggregate accuracy, not a sample-by-sample comparison. Twelve test samples are too few to establish generalization, and the report does not give measured chip power, area, or speed for a complete classifier.</p>`;
 }
 
 // Keep every project text-first: contributions, tools, results, challenges,
@@ -1941,7 +1968,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Implemented the TSPC D flip-flop, counter, carry, and PIPO circuits for rotation counting. The counter approach follows Thotat and Mal (MicroCom 2016), cited in the project report.',
         'Verified oscillator response, digital timing, hidden-layer rotation, and the MATLAB readout classification results.'
       ],
-      interpretation: 'The CMOS hidden layer produced frequency-coded responses for a MATLAB-trained readout; the second stage was not implemented in hardware. On the 12-sample test split, the circuit and MATLAB paths differed by one classification. The report proposes FPGA integration of the readout, more inputs and hidden nodes, and tests of larger datasets, noise, mismatch, and temperature.'
+      interpretation: 'The CMOS hidden layer produced frequency-coded responses for a MATLAB-trained readout; the second stage was not implemented in hardware. Test totals were 7/12 for the circuit-derived path and 8/12 for the MATLAB-only ELM, without reported per-sample agreement. The report proposes FPGA integration of the readout and input extension, then larger datasets and tests of noise, mismatch, temperature, and power.'
     },
     proj_agentic: {
       question: 'Can an LLM help choose useful RTL-to-GDS experiments without being allowed to bypass deterministic implementation and sign-off checks?',
@@ -2108,7 +2135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     proj_elm: [
       'The oscillator and its driver/reset devices needed joint sizing so the neuron would still oscillate at low input current as the input circuit grew.',
       'Rotation reused the analog hidden-layer hardware, but the counter and PIPO register had to capture an oscillator whose period changed with the input pattern.',
-      'The trained readout remained in MATLAB. The 12-sample held-out test and nominal simulations do not establish generalization or tolerance to noise, mismatch, and temperature.'
+      'Only hidden-layer extension was simulated; the trained readout remained in MATLAB. The 12-sample test cannot establish generalization, and the report leaves input extension, noise, temperature, and the always-on DAC power for future work.'
     ],
     proj_sys: [
       'The registers had no hardware reset; the simulations relied on zero initialization.',
