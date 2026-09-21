@@ -769,6 +769,10 @@ footer a{color:var(--accent)}
 .about-copy{max-width:72ch;color:var(--ink-2);font-size:16px;line-height:1.75}
 .about-copy p{margin:0 0 20px}
 .about-copy a{color:var(--accent);text-underline-offset:3px}
+.career-path{margin:0 0 32px;padding:0 0 28px;border-bottom:1px solid var(--line)}
+.career-path h2{margin:0 0 10px;font-size:20px;color:var(--ink)}
+.career-path p{max-width:80ch;margin:0;color:var(--ink-2);font-size:14px;line-height:1.7}
+.career-path a{color:var(--accent);text-underline-offset:3px}
 @media(max-width:700px){
   #home .hero{grid-template-columns:1fr;padding:18px 0 26px}
   #home .hero .portrait-frame{grid-column:1;grid-row:1;width:140px;height:140px;margin-bottom:22px}
@@ -845,14 +849,18 @@ publicNav.innerHTML = '<button class="tab" data-target="home" role="tab" aria-se
 document.getElementById('research')?.remove();
 const homeHero = document.querySelector('#home .hero');
 homeHero.insertAdjacentHTML('afterbegin','<div class="portrait-frame"><img class="portfolio-portrait" src="images/varsha-portrait.jpeg?v=web-20260921" alt="Varsha Seshasayee" width="800" height="1120" loading="eager" decoding="async"></div>');
-homeHero.querySelector('.role').textContent = 'Energy-efficient in-memory computing · Neuromorphic hardware · Analog/mixed-signal ICs';
-homeHero.querySelector('.lede').textContent = 'I study energy-efficient in-memory computing from memristive and mixed-signal circuits to working systems. My ongoing independent research explores how state-space models might map to analog memory hardware under variation, noise, and energy constraints. The projects below show the circuit and implementation work behind that direction.';
+homeHero.querySelector('.role').textContent = 'Energy-efficient intelligent hardware · Compute-in-memory · Neuromorphic circuits';
+homeHero.querySelector('.lede').textContent = 'I study energy-efficient intelligent hardware from memristive and mixed-signal circuits to working systems. My ongoing independent research explores how state-space models might map to analog memory hardware under variation, noise, and energy constraints. The projects below show the circuit and implementation work behind that direction.';
 homeHero.querySelector('.hero-meta').innerHTML = '<a class="pill cta" href="#projects" data-home-section="projects">View Research Projects</a><a class="pill" href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a><a class="pill" href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a><a class="pill" href="https://www.mics.ece.vt.edu/People/Graduate/varsha_seshasayee.html" target="_blank" rel="noopener">Virginia Tech MICS alumni profile</a>';
 const researchFocus = document.createElement('section');
 researchFocus.className = 'research-focus';
 researchFocus.setAttribute('aria-labelledby', 'research-focus-title');
-researchFocus.innerHTML = '<p class="eyebrow">Research interests</p><h2 id="research-focus-title">Energy-efficient in-memory computing from devices to systems</h2><p class="focus-lede">My research direction connects emerging memory devices with circuits and architectures that reduce data movement and support time-varying computation. I am particularly interested in designs that evaluate accuracy, energy, and robustness together rather than treating device and circuit nonidealities as separate problems.</p><div class="research-focus-grid"><div class="research-focus-item"><h3>Memristive in-memory computing</h3><p>RRAM arrays, analog computation, and hardware-aware mappings that reduce memory movement and energy.</p></div><div class="research-focus-item"><h3>Neuromorphic temporal processing</h3><p>Analog state-space models, neuron circuits, and spike-based encoding and decoding for temporal inference.</p></div><div class="research-focus-item"><h3>Hardware implementation</h3><p>Mixed-signal and RTL architectures carried through verification, physical design, timing analysis, and sign-off.</p></div></div>';
+researchFocus.innerHTML = '<p class="eyebrow">Research interests</p><h2 id="research-focus-title">Energy-efficient in-memory computing</h2><p class="focus-lede">I study how emerging memory devices, mixed-signal circuits, and architectures can support reliable, low-energy intelligence. My interests center on compute-in-memory and neuromorphic hardware, especially for signals that change over time.</p><div class="research-focus-grid"><div class="research-focus-item"><h3>When does compute-in-memory save energy?</h3><p>I want to count data movement, converters, programming, calibration, and control—not just the array itself—and compare analog, digital, and hybrid designs on equal terms.</p></div><div class="research-focus-item"><h3>Which biological ideas help in silicon?</h3><p>I am interested in sparse events, adaptation, and recurrence for temporal sensing, and in whether each benefit justifies its hardware cost.</p></div><div class="research-focus-item"><h3>How can imperfect hardware remain useful?</h3><p>Variation, noise, and drift affect accuracy. I want to test when calibration helps and when its overhead outweigh the gain.</p></div></div><p class="focus-lede">I use device measurements or validated models, circuit simulation, variation analysis, and system-level energy and accuracy comparisons to test these ideas. My current independent work uses state-space models to study temporal computation on analog memory hardware. I am especially drawn to wearable, assistive, and environmental sensing.</p>';
 homeHero.insertAdjacentElement('afterend', researchFocus);
+const careerPath = document.createElement('section');
+careerPath.className = 'career-path';
+careerPath.innerHTML = '<h2>My path to this research</h2><p>I began with biological signals and brain-inspired circuits, then designed a memristor-based temporal encoder and decoder at Virginia Tech. At Intel, I worked on advanced-node library validation and design automation; more recently, I took a neural-network accelerator from RTL through physical implementation. <a href="#about" data-goto="about">Read more about my path</a>.</p>';
+researchFocus.insertAdjacentElement('afterend', careerPath);
 document.querySelector('#home .stats')?.remove();
 document.getElementById('home-skills')?.remove();
 document.getElementById('home-education')?.remove();
@@ -869,9 +877,9 @@ aboutPanel.setAttribute('role', 'tabpanel');
 aboutPanel.innerHTML = `<div class="wrap"><section class="sec about-section">
   <h2>About</h2><div class="rule"></div>
   <div class="about-copy">
-    <p>I am an electrical engineer interested in making intelligent hardware more energy efficient. My work has moved between biological signals, memristive and mixed-signal circuits, RTL accelerators, and physical design.</p>
-    <p>I began with an eye-movement-controlled robot and a CMOS Extreme Learning Machine, then designed a memristor-based temporal encoder and decoder at Virginia Tech. At Intel, I worked on advanced-node CMOS library validation and automated circuit and post-layout checks. More recently, I carried a neural-network accelerator from RTL through physical implementation.</p>
-    <p>My ongoing independent research asks how state-space models could run on analog memory hardware while accounting for variation, noise, and energy. I am especially interested in when compute-in-memory and event-driven designs provide a useful system-level advantage for wearable, assistive, or environmental sensing.</p>
+    <p>I am an electrical engineer interested in making intelligent hardware more energy efficient and useful in everyday settings. My work spans memristive and mixed-signal circuits, neuromorphic systems, RTL accelerators, and physical design.</p>
+    <p>I began by working with biological signals and brain-inspired computation, including an eye-movement-controlled robot and a CMOS Extreme Learning Machine. At Virginia Tech, I designed a memristor-based temporal encoder and decoder. At Intel, I validated advanced-node CMOS design libraries and automated circuit and post-layout checks. More recently, I carried a neural-network accelerator from RTL through physical implementation.</p>
+    <p>My ongoing independent research examines how state-space models might run on analog memory hardware when variation, noise, and energy are considered together. More broadly, I want to understand when compute-in-memory and event-driven designs offer a real advantage at the system level. I am especially interested in low-power wearable, assistive, and environmental sensing.</p>
     <p><a href="#projects" data-home-section="projects">View selected projects</a></p>
   </div></section></div>`;
 document.getElementById('home').insertAdjacentElement('afterend', aboutPanel);
