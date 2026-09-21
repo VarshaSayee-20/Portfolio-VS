@@ -298,7 +298,7 @@ header.top{
 .topbar{gap:28px}
 .brand b{font-size:16px; font-weight:750; letter-spacing:-.025em}
 .brand span{font-size:9px; font-weight:700; color:var(--accent); letter-spacing:.2em; margin-top:3px}
-nav.tabs{gap:2px; padding-block:7px; mask-image:linear-gradient(90deg,transparent,#000 14px,#000 calc(100% - 14px),transparent)}
+nav.tabs{gap:2px; padding-block:7px; mask-image:none}
 .tab{font-size:12px; font-weight:650; padding:8px 11px; border:1px solid transparent}
 .tab:hover{background:var(--card); border-color:var(--line); text-decoration:none}
 .tab[aria-selected="true"]{background:var(--ink); border-color:var(--ink); color:var(--card)}
@@ -363,7 +363,7 @@ nav.tabs{gap:2px; padding-block:7px; mask-image:linear-gradient(90deg,transparen
 
 .sec{margin-top:72px}
 .sec > h2{font-size:16px;letter-spacing:-.005em;color:var(--ink);margin:0 0 10px}
-.sec > h2 + .rule{height:1px;background:linear-gradient(90deg,var(--accent),var(--line) 22%,transparent);margin-bottom:24px}
+.sec > h2 + .rule{height:1px;background:var(--line);margin-bottom:24px}
 #home .sec:nth-child(3) > h2{font-family:var(--serif);font-size:clamp(28px,4vw,44px);font-weight:740;letter-spacing:-.045em;text-transform:none;color:var(--ink);margin-bottom:14px}
 #home .sec:nth-child(3) > h2::after{content:"RRAM circuits and temporal coding, mixed-signal design, accelerator RTL, and physical implementation.";display:block;max-width:70ch;margin-top:9px;color:var(--muted);font-size:14px;font-weight:450;line-height:1.6;letter-spacing:0}
 
@@ -543,7 +543,7 @@ body::before{display:none}
 .research-figure.wide .figure-box{height:auto;min-height:0;padding:0}
 .research-figure.dark .figure-box{background:#050505}
 .research-figure .figure-box img{display:block;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;object-position:center;box-sizing:border-box}
-.research-figure.wide .figure-box img{width:100%;height:auto;max-height:none}
+.research-figure.wide .figure-box img{width:auto;max-width:100%;height:auto;max-height:none}
 .research-figure figcaption{padding:13px 15px;border-top:1px solid var(--line);color:var(--ink-2);font-size:12px;line-height:1.45}
 .research-figure figcaption b{display:block;margin-bottom:3px;color:var(--ink);font-size:13px}
 .research-figure.portrait-medium .figure-box{height:clamp(480px,54vw,620px);padding:18px 28px}
@@ -606,7 +606,24 @@ body::before{display:none}
 .closure-step small{margin-top:4px;color:var(--muted);font-size:10px;line-height:1.35}
 .closure-step:not(:last-child)::after{content:"\2192";position:absolute;right:-19px;top:50%;z-index:2;transform:translateY(-50%);color:var(--accent);font-size:18px}
 .closure-feedback::before{content:"Evidence-controlled feedback to Innovus";grid-column:1/-1;margin-bottom:-6px;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.1em;text-align:center;text-transform:uppercase}
+.agentic-results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.agentic-result{padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.agentic-result h3{margin:0 0 6px;color:var(--ink);font-size:16px}
+.agentic-result p{min-height:38px;margin:0 0 18px;color:var(--ink-2);font-size:13px;line-height:1.45}
+.agentic-bar{display:grid;grid-template-columns:64px minmax(0,1fr) 62px;gap:9px;align-items:center;margin-top:12px;color:var(--ink-2);font-size:12px}
+.agentic-bar strong{color:var(--ink);font-size:12px;font-weight:650;text-align:right;white-space:nowrap}
+.agentic-track{height:14px;overflow:hidden;border-radius:3px;background:#EEF0EC}
+.agentic-fill{display:block;height:100%;border-radius:3px;background:#627B8B}
+.agentic-result.hold .agentic-fill{background:#78947D}
+.agentic-result.savings .agentic-fill{background:#B48858}
+.agentic-result small{display:block;margin-top:14px;color:var(--muted);font-size:11px}
+.agentic-detail{margin-top:20px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--alt)}
+.agentic-detail summary{cursor:pointer;color:var(--accent);font-weight:650}
+.agentic-detail[open] summary{margin-bottom:20px}
+#proj_agentic .agentic-intro{max-width:78ch;margin:18px 0 0;color:var(--ink-2);line-height:1.65}
 @media (max-width:820px){
+  .agentic-results{grid-template-columns:1fr}
+  .agentic-result p{min-height:0}
   .closure-lane,.closure-feedback,.research-frame,.research-focus-grid{grid-template-columns:1fr;width:100%;gap:8px}
   .closure-feedback{margin-top:18px;padding-top:18px}
   .closure-step{min-height:68px;padding:12px 14px}
@@ -703,7 +720,7 @@ footer a{color:var(--accent)}
 #home .hero{min-height:0;display:grid;grid-template-columns:190px minmax(0,1fr);column-gap:36px;align-items:start;overflow:visible;padding:24px 0 34px;border:0;border-radius:0;background:none;box-shadow:none}
 #home .hero::before,#home .hero::after,#home .hero h1::before{display:none}
 #home .hero .portrait-frame{grid-column:1;grid-row:1/5;position:relative;display:block;width:190px;height:190px;overflow:hidden;border:1px solid var(--line);border-radius:50%;background:#E1E8ED}
-#home .hero .portfolio-portrait{position:absolute;top:5%;left:50%;display:block;width:110%;max-width:none;height:auto;transform:translateX(-50%)}
+#home .hero .portfolio-portrait{position:absolute;top:0;left:0;display:block;width:100%;max-width:none;height:auto;transform:none}
 #home .hero h1,#home .hero .role,#home .hero .lede,#home .hero .hero-meta{grid-column:2}
 #home .hero h1{max-width:none;margin:0 0 14px;color:var(--ink);font-size:clamp(34px,5vw,54px);line-height:1.08;letter-spacing:-.035em}
 #home .hero .role{color:var(--ink-2);font-size:16px;font-weight:600}
@@ -718,6 +735,9 @@ footer a{color:var(--accent)}
 .profile-link{margin:12px 0 0;font-size:14px}
 .research-focus .eyebrow,.sec>h2,.research-frame-item b,.brand span{font-family:var(--sans);font-size:18px;font-weight:650;letter-spacing:0;text-transform:none;color:var(--ink)}
 .research-focus .eyebrow,.research-frame-item b,.brand span{font-size:13px}
+.research-focus>.focus-lede{max-width:72ch}
+.research-focus>.focus-lede+.focus-lede{margin-top:16px}
+.research-focus>h3{max-width:72ch;margin:26px 0 8px;color:var(--ink);font-size:18px}
 .panel[id^="proj_"] .chips{display:none}
 .education-section{margin:60px 0 64px}
 .education-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;margin-top:24px}
@@ -749,6 +769,7 @@ footer a{color:var(--accent)}
 }
 @media(max-width:600px){
   .card .meta,.tab,.site-link{font-size:13px}
+  .research-figure figcaption,.research-figure figcaption b,.chart-card .csub,.chart-card .cnote,.tbl-note,.equation-note,table.data th,table.data td{font-size:13px}
 }
 </style>
 </head>
@@ -828,22 +849,19 @@ projectCount.querySelector('span').textContent = 'engineering projects';
 
 /* Keep the public portfolio project-first and evidence-led. */
 const publicNav = document.querySelector('nav.tabs');
-publicNav.innerHTML = '<button class="tab" data-target="home" role="tab" aria-selected="true">Home</button><a class="site-link" href="#projects" data-home-section="projects">Research Projects</a><button class="tab" data-target="about" role="tab" aria-selected="false">About</button><button class="tab" data-target="education" role="tab" aria-selected="false">Education</button><a class="site-link" href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a><a class="site-link" href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a>';
+publicNav.innerHTML = '<button class="tab" data-target="home" role="tab" aria-selected="true">Home</button><a class="site-link" href="#research-focus" data-home-section="research-focus">Research</a><a class="site-link" href="#projects" data-home-section="projects">Projects</a><button class="tab" data-target="about" role="tab" aria-selected="false">About</button><button class="tab" data-target="education" role="tab" aria-selected="false">Education</button><a class="site-link" href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a><a class="site-link" href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a>';
 document.getElementById('research')?.remove();
 const homeHero = document.querySelector('#home .hero');
 homeHero.insertAdjacentHTML('afterbegin','<div class="portrait-frame"><img class="portfolio-portrait" src="images/varsha-portrait.jpeg?v=web-20260921" alt="Varsha Seshasayee" width="800" height="1120" loading="eager" decoding="async"></div>');
-homeHero.querySelector('.role').textContent = 'Analog and mixed-signal circuits · Compute-in-memory · Neuromorphic hardware';
-homeHero.querySelector('.lede').innerHTML = `I design analog and mixed-signal hardware for machine learning. The question I keep coming back to is which parts of biological computation actually earn their place in silicon, and which are cheaper to leave in software.<br><br>For my M.Eng. thesis at Virginia Tech I built a four-neuron RRAM-CMOS temporal encoder and a ten-level integration decoder that ran at 1.199 mW. I then spent three years at Intel validating PCells across the 18A and 14A nodes, and more recently took a 64-PE accelerator from Verilog to a routed layout at 100 MHz. I am now working on state-space models for temporal processing: a behavioural framework that maps the state operator onto differential memristor arrays and treats programming variation, read noise, and conductance quantization as part of the computation rather than as noise to be assumed away. Circuit-level validation is in progress and a manuscript is in preparation.`;
+homeHero.querySelector('.role').textContent = 'Energy-efficient in-memory computing · Mixed-signal circuits · Hardware–algorithm co-design';
+homeHero.querySelector('.lede').textContent = 'I work at the boundary of circuits and computing. I want sensors and AI hardware that can make useful decisions with less energy and at a cost that allows wider deployment. My path began with biosignal interfaces and CMOS neuron circuits, moved through a memristor-based thesis and advanced-node methodology work at Intel, and now includes RTL-to-GDS accelerator design. Those experiences taught me to test a new device in a complete system, not only in isolation.';
 homeHero.querySelector('.hero-meta').innerHTML = '<a class="pill cta" href="#projects" data-home-section="projects">View Research Projects</a><a class="pill" href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a><a class="pill" href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a><a class="pill" href="https://www.mics.ece.vt.edu/People/Graduate/varsha_seshasayee.html" target="_blank" rel="noopener">Virginia Tech MICS alumni profile</a>';
 const researchFocus = document.createElement('section');
 researchFocus.className = 'research-focus';
+researchFocus.id = 'research-focus';
 researchFocus.setAttribute('aria-labelledby', 'research-focus-title');
-researchFocus.innerHTML = `<p class="eyebrow">Research interests</p><h2 id="research-focus-title">Energy-efficient hardware for intelligence that has to run all the time</h2><p class="focus-lede">I work on analog and mixed-signal hardware for machine learning: memristive and emerging devices, neuromorphic circuits, hardware accelerators, and the physical-design flow that turns them into silicon. What ties those together is hardware&ndash;algorithm co-design &mdash; deciding what belongs in the device, what belongs in the circuit, and what is cheaper to leave in software.</p><p class="focus-lede">The reason is the application, not the architecture. I care about devices that sit on a person or in a field and have to keep working: assistive interfaces, wearable health sensing, long-lived environmental monitors. That came out of my undergraduate work building an eye-movement interface for someone who cannot use a conventional one, and it has shaped what I have chosen to build since. Models are also getting more expensive, not less &mdash; transformer-class inference is pushing energy per decision in exactly the wrong direction for anything battery-powered &mdash; which is what makes the hardware question urgent rather than academic.</p><p class="focus-lede">It also decides which numbers I trust. Energy per MAC flatters an analog array, because the multiply inside a crossbar is nearly free while the converters, programming, calibration and routing around it are not. The metrics I think are honest are <b>energy per correct and timely decision</b>, <b>battery life or maintenance interval</b>, <b>sensor-to-decision latency</b>, <b>reliability across users and conditions</b>, and <b>how much data has to leave the device at all</b>. Cost matters for the same reason: hardware that is cheap enough to deploy widely is hardware that actually reaches people.</p><p class="focus-lede">So I try to work in one order &mdash; measure the device, design the circuit around what it actually does, then check whether the system still wins once the periphery is counted. I characterised RRAM switching before designing a neuron on top of it, and what I measured changed the circuit. I closed a 64-PE accelerator at 100&nbsp;MHz on 90&nbsp;nm to know what the digital baseline costs: 15.97&nbsp;mW and 0.589&nbsp;TOPS/W. That is the number an analog array has to beat, and I would rather find out when it does not.</p>`;
+researchFocus.innerHTML = `<p class="eyebrow">Research interests</p><h2 id="research-focus-title">Energy-efficient in-memory computing</h2><p class="focus-lede">I am interested in computing close to where signals are sensed or stored. Memristors and other emerging memories could reduce data movement, but the circuit around an array matters as much as the array itself. I want to connect device behavior, analog and mixed-signal design, and hardware–algorithm co-design for always-on health, assistive, and environmental sensors.</p><p class="focus-lede">My current work examines hardware-aware temporal models using memristor arrays. I am also interested in whether memory-centric accelerators can make state-space models and transformer inference practical under tight power and cost limits. Both workloads make the cost of memory traffic and peripheral circuits hard to ignore.</p><p class="focus-lede">For a sensor that must operate all day, energy per multiplication is only one part of the story. I look at energy per correct decision, sensor-to-decision latency, battery life, silicon area, component cost, and reliability when devices and inputs vary. Converters, programming, calibration, memory traffic, and routing count too. An algorithm and its hardware need to be evaluated together, against the same application and a credible digital baseline.</p>`;
 homeHero.insertAdjacentElement('afterend', researchFocus);
-const careerPath = document.createElement('section');
-careerPath.className = 'career-path';
-careerPath.innerHTML = `<h2>How I got here</h2><p>I started with biosignals: an electrooculogram front end that drove a robot from eye movements, built on a breadboard and then on a PCB. In the same year I mapped an Extreme Learning Machine onto 180 nm CMOS, using transistor mismatch as the source of the random weights instead of generating them. At Virginia Tech I worked with Dr. Yang Yi on a memristor-based temporal encoder and decoder. Then three years at Intel on PDK validation and design automation for the 18A and 14A nodes, and an RTL-to-GDS accelerator through the Indian Institute of Science. <a href="#about" data-goto="about">More about the path</a>.</p>`;
-researchFocus.insertAdjacentElement('afterend', careerPath);
 document.querySelector('#home .stats')?.remove();
 document.getElementById('home-skills')?.remove();
 document.getElementById('home-education')?.remove();
@@ -860,13 +878,11 @@ aboutPanel.setAttribute('role', 'tabpanel');
 aboutPanel.innerHTML = `<div class="wrap"><section class="sec about-section">
   <h2>About</h2><div class="rule"></div>
   <div class="about-copy">
-    <p>I am an analog and mixed-signal engineer. I like the part of a problem where a device stops being a footnote in the datasheet and starts dictating the architecture.</p>
-    <p>I started with biosignals. At Shiv Nadar University I built an electrooculogram front end that let someone steer a robot with their eyes &mdash; an instrumentation amplifier, a fourth-order Sallen&ndash;Key low-pass and a second-order high-pass, tuned to a 0.72&ndash;15.9 Hz passband, first on a breadboard and then on a PCB. The reason that project still matters to me is the application: assistive hardware for people who cannot use a conventional interface.</p>
-    <p>In the same year I worked with Dr. Sonal Singhal on mapping an Extreme Learning Machine onto 180 nm CMOS. The idea I liked was that you do not need a random number generator for the random projection layer &mdash; transistor mismatch already gives you one, for free, if you are willing to characterise it. Partway through, a server crash destroyed the data. I rebuilt the circuits and parallelised the Monte Carlo runs across five machines to finish in three months, which taught me more about doing research than the result did.</p>
-    <p>For my M.Eng. at Virginia Tech I worked with Dr. Yang Yi on a memristor-based temporal encoder and decoder. I modelled 1T-1R RRAM in Verilog-A, then designed a four-neuron hybrid RRAM-CMOS integrate-and-fire encoder with subthreshold PTAT biasing, and a ten-level integration decoder whose adaptive window shortened the active decoding interval by up to 45%. The whole system simulated at 1.199 mW.</p>
-    <p>I then spent three years at Intel as an analog methodology engineer, on PDK validation and design automation for the 18A and 14A nodes.</p>
-    <p>More recently I took a 64-PE systolic accelerator from Verilog through synthesis, place-and-route and signoff on a 90 nm PDK, closing at 100 MHz with every one of 319 gate-level outputs matching the software reference. I have since used that same tile as a testbed for LLM-assisted design-space search, keeping every reported number traceable to the report line it came from.</p>
-    <p>What I want to work on next is which parts of biological computation genuinely earn their silicon &mdash; and to be willing to say when the answer is that they do not.</p>
+    <p>I am an electrical engineer interested in low-energy computing that can work close to a sensor. A wearable or assistive device has to make a reliable decision with a small battery and a realistic cost; a promising circuit result means little if the complete device cannot do that.</p>
+    <p>At Shiv Nadar University I built an eye-movement interface that controlled a robot car. It made the application personal: the quality of the electrodes, analog front end, classifier, and wireless link all affected whether a command arrived. I also studied a current-mode Extreme Learning Machine in CMOS, using device variation as part of its computation.</p>
+    <p>At Virginia Tech, my M.Eng. thesis moved that interest toward memory devices. I modeled RRAM and designed a hybrid RRAM-CMOS temporal encoder and integration decoder. The work made me pay attention to the behavior of the device, the timing of the circuit, and the power of the complete encoder–decoder system.</p>
+    <p>I spent the next three years at Intel in analog methodology, validating PDK cells and automating checks for advanced CMOS nodes. That experience changed how I think about research hardware: a useful idea must also survive process rules, layout, extraction, and repeatable verification.</p>
+    <p>More recently, I took a 64-PE neural-network accelerator from RTL through physical implementation and gate-level verification. I now study hardware-aware temporal computing with memristor arrays. I want to compare new mixed-signal approaches fairly with digital hardware and build systems that earn their energy and cost advantages at the application level.</p>
     <p><a href="#projects" data-home-section="projects">View selected projects</a></p>
   </div></section></div>`;
 document.getElementById('home').insertAdjacentElement('afterend', aboutPanel);
@@ -924,10 +940,14 @@ const publicFooter = document.querySelector('footer');
 publicFooter.removeAttribute('id');
 publicFooter.querySelector('.wrap').innerHTML = '<p style="margin:0"><b>Varsha Seshasayee</b> · <a href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a></p>';
 document.querySelector('#proj_mem .phead .meta')?.insertAdjacentHTML('afterend','<p class="profile-link"><a href="https://www.mics.ece.vt.edu/People/Graduate/varsha_seshasayee.html" target="_blank" rel="noopener">Virginia Tech MICS alumni profile ↗</a></p>');
-document.querySelectorAll('[data-home-section="projects"]').forEach(link => link.addEventListener('click', event => {
+function openHomeSection(target, push){
+  show('home', false);
+  if (push && location.hash !== '#' + target) history.pushState(null, '', '#' + target);
+  setTimeout(() => document.getElementById(target)?.scrollIntoView({behavior:push ? 'smooth' : 'auto',block:'start'}), 60);
+}
+document.querySelectorAll('[data-home-section]').forEach(link => link.addEventListener('click', event => {
   event.preventDefault();
-  show('home', true);
-  setTimeout(() => document.getElementById('projects')?.scrollIntoView({behavior:'smooth',block:'start'}), 180);
+  openHomeSection(link.dataset.homeSection, true);
 }));
 
 /* Strong, project-specific evidence for the home cards; contain prevents clipping. */
@@ -1229,9 +1249,10 @@ const evidenceCatalog = {
   proj_nncad: {
     note:'Architecture, precision study, physical implementation, and gate-level verification of the 64-PE compute tile.',
     figures:[
-      ['images/diagrams/nn-cadence-system-architecture.svg?v=4','Compute-tile hierarchy','Activations and frozen weights feed the 64-PE nn_engine_tile_top.','wide'],
-      ['images/diagrams/nn-cadence-systolic-dataflow.svg?v=5','Systolic dataflow','Weights remain local to each PE; activations move horizontally and partial sums move vertically.','wide'],
-      ['images/diagrams/nn-cadence-pe-datapath.svg','Processing element datapath','Signed-Braun multiplication, accumulation, and activation.','wide'],
+      ['images/diagrams/nn-cadence-system-architecture.svg?v=7','Compute-tile hierarchy','Activations and frozen weights feed the 64-PE nn_engine_tile_top.','wide'],
+      ['images/diagrams/nn-cadence-systolic-dataflow.svg?v=7','Systolic dataflow','Weights remain local to each PE; activations move horizontally and partial sums move vertically.','wide'],
+      ['images/diagrams/nn-cadence-pe-datapath.svg?v=7','Processing element datapath','Signed-Braun multiplication, accumulation, and activation.','wide'],
+      ['images/nn_systolic_pipeline.png','ModelSim RTL pipeline waveform','A PE product passes through row reduction and accumulation; the visible traces show the pipeline timing.','wide'],
       ['images/nn_training_curve.png','Training and validation curve','The floating-point model reached 91.54% on the held-out test set; the Q3.5 hardware reached 90.28% on the same 319 samples.','wide'],
       ['images/nn_weight_heatmaps.png','Quantized weights and biases','Frozen Q3.5 weight and bias matrices used by the hardware model.','wide'],
       ['images/nn_floorplan.png','Floorplan','Core and power-distribution planning before placement.','wide'],
@@ -1240,7 +1261,8 @@ const evidenceCatalog = {
       ['images/nn_timing_report.png','Post-route timing','Timing evidence for the 100 MHz implementation target.','wide'],
       ['images/nn_area_report.png','Cell-area report','Area breakdown for the completed compute tile.','wide'],
       ['images/nn_power_report.png','Power report','Post-route power estimate using default activity.','wide'],
-      ['images/nn_gate_level_sim.png','SDF gate-level verification','Gate-level simulation used to compare the tile with the fixed-point model.','wide']
+      ['images/nn_gate_level_sim.png','SDF gate-level verification','Cadence Xcelium gate-level simulation used to compare the tile with the fixed-point model.','wide'],
+      ['images/nn_classification_summary.png','Classification test summary','The tile engine matched the software golden model on all 319 held-out samples.','wide']
     ]
   },
   proj_flash: {
@@ -1280,7 +1302,9 @@ const evidenceCatalog = {
       ['images/diagrams/spmm-implemented-dataflow.svg','SpMM datapath','Dense inputs pass through sparse formatting, five PEs, sorting, merging, accumulation, and dense output.','wide'],
       ['images/diagrams/spmm-pe.svg','Processing element','Index matching and partial-product generation.','wide'],
       ['images/diagrams/spmm-bitonic-sort.svg?v=4','Sorting network','Eight-input sorting stage ahead of equal-index merging.','wide'],
-      ['images/diagrams/spmm-verification-flow.svg','Verification flow','The testbench compares all 25 DUT outputs with the expected matrix.','wide']
+      ['images/diagrams/spmm-verification-flow.svg','Verification flow','The testbench compares all 25 DUT outputs with the expected matrix.','wide'],
+      ['images/spmm/spmm_waveform_chunking.png','ModelSim RTL waveform','Simulation traces for the SpMM controller and sparse-input chunk indexing.','wide'],
+      ['images/spmm/spmm_testbench_pass.png','ModelSim testbench result','The simulation log shows the final matrix and a passing testbench.','wide']
     ]
   },
   proj_eog: {
@@ -1426,7 +1450,11 @@ tabs.forEach((t, i) => t.addEventListener('keydown', e => {
 }));
 document.querySelectorAll('[data-goto]').forEach(el =>
   el.addEventListener('click', e => { e.preventDefault(); show(el.dataset.goto, true); }));
-addEventListener('popstate', () => show(valid(location.hash.slice(1)), false));
+addEventListener('popstate', () => {
+  const target = location.hash.slice(1);
+  if (target === 'research-focus' || target === 'projects') openHomeSection(target, false);
+  else show(valid(target), false);
+});
 
 function valid(id){
   return panels.some(p => p.id === id) ? id : 'home';
@@ -1742,7 +1770,9 @@ function drawCharts(panelId){
 }
 
 /* ===================== BOOT ===================== */
-show(valid(location.hash.slice(1)), false);
+const initialTarget = location.hash.slice(1);
+if (initialTarget === 'research-focus' || initialTarget === 'projects') openHomeSection(initialTarget, false);
+else show(valid(initialTarget), false);
 
 });
 </script>
@@ -1759,7 +1789,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cardSummary = homeCard.querySelector('.body > p:not(.meta)');
   if (cardTitle) cardTitle.textContent = 'LLM-Assisted RTL-to-GDS Optimization & Tempus Closure';
   if (cardMeta) cardMeta.textContent = 'Independent R&D · Cadence Genus / Innovus / Tempus · GPDK090 · 2026';
-  if (cardSummary) cardSummary.textContent = 'Explored how an LLM can help an engineer choose the next physical-design experiment while source-linked reports, Python guardrails, and Cadence sign-off remain in control.';
+  if (cardSummary) cardSummary.textContent = 'Used a human-reviewed LLM workflow to explore physical-design changes, then checked each run with Cadence reports and sign-off timing.';
 
   const homeThumb = homeCard.querySelector('.thumb');
   if (homeThumb) homeThumb.innerHTML = '<img class="research-tile-image" src="images/diagrams/ai-assisted-rtl-gds-tempus-flow.svg?v=3" alt="Technical LLM-assisted physical-design optimization and Tempus closure flow" loading="lazy" decoding="async">';
@@ -1767,11 +1797,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const title = panel.querySelector('.phead h1');
   const meta = panel.querySelector('.phead .meta');
   const ppa = panel.querySelector('.ppa');
-  const scopeNote = panel.querySelector('.phead + .ppa + .note');
+  let scopeNote = panel.querySelector(':scope > .wrap > .agentic-intro');
+  if (!scopeNote && ppa) {
+    scopeNote = document.createElement('p');
+    scopeNote.className = 'agentic-intro';
+    ppa.insertAdjacentElement('afterend', scopeNote);
+  }
   if (title) title.textContent = 'LLM-Assisted RTL-to-GDS Optimization & Tempus Closure';
   if (meta) meta.textContent = 'Independent R&D Project · Cadence Genus / Innovus / Tempus · GPDK090 90 nm · 2026';
-  if (ppa) ppa.innerHTML = '23 recorded runs &middot; best Innovus exploration run: +0.426 ns setup WNS, 0.8% less cell area, 3.7% less power &middot; final Tempus: +2.192 ns setup, 0.000 ns hold, TNS 0, FEP 0';
-  if (scopeNote) scopeNote.innerHTML = 'I reused the 64-PE <code>nn_engine_tile_top</code> from my neural-network accelerator as a test case for physical-design optimization. This study starts from a new floorplan baseline, so its area and power differ from the earlier implementation. Across 23 recorded runs&mdash;16 Codex, 2 Claude, and 5 baseline or manual&mdash;the language models helped choose experiments; I reviewed each proposal, and fresh Cadence results determined whether the change stayed.';
+  if (ppa) ppa.innerHTML = '23 recorded runs &middot; one 64-PE compute tile &middot; Genus, Innovus, and Tempus';
+  if (scopeNote) scopeNote.innerHTML = 'I used my neural-network accelerator tile to test a simple idea: can an LLM suggest useful physical-design changes without deciding whether they pass? I reviewed each proposal, reran the Cadence flow, and kept the result only when the timing and physical checks passed.';
   if (scopeNote && !panel.querySelector('.ppa-dashboard-link')) {
     scopeNote.insertAdjacentHTML('afterend', '<div class="hero-meta ppa-dashboard-link" style="margin-top:16px"><a class="pill cta" href="https://varshasayee-20.github.io/ppa-dashboard/" target="_blank" rel="noopener">Open PPA V2 Dashboard &nearr;</a></div>');
   }
@@ -1782,82 +1817,71 @@ document.addEventListener('DOMContentLoaded', () => {
   const contributions = byHeading('My Contributions');
   if (contributions) contributions.innerHTML = `
     <h2>What I built</h2><div class="rule"></div><div class="entry"><ul>
-      <li>Built deterministic Python parsers that reduce Genus, Innovus, and Tempus reports to compact timing, physical-verification, area, power, congestion, and runtime records with source provenance.</li>
-      <li>Built a constrained, human-reviewed LLM planning assistant for Claude/Codex. It reads compact implementation evidence and selects from an allowed physical-design action space, while Python validates commands, scores QoR, records proposals, and enforces DRC, connectivity, setup, and hold guardrails.</li>
-      <li>Built a dashboard for all 23 recorded runs. It keeps failed experiments alongside passing ones and links timing, area, power, and physical-check values to their source reports.</li>
-      <li>Used independent Tempus STA to identify ten small nominal fast-corner hold failures after Innovus was clean. Applied two bounded hold-repair passes: three BUFX2 insertions plus seven half-adder downsizes reduced the failing endpoints to five; five additional local BUFX2 insertions closed the residual paths.</li>
-      <li>Rerouted the ECOs, re-extracted parasitics, and rechecked both tools. The final nominal Tempus check reported +2.192 ns setup WNS and 0.000 ns hold WNS, with zero TNS and failing endpoints. Innovus on the post-ECO database reported +2.164 ns setup WNS, +0.248 ns hold WNS, and zero DRC and connectivity violations.</li>
+      <li>Parsed Genus, Innovus, and Tempus reports into source-linked timing, area, power, and physical-check results.</li>
+      <li>Built a human-reviewed LLM proposal loop with allowed actions, Python validation, and a dashboard that retains all 23 runs, including failed experiments.</li>
+      <li>Used independent Tempus timing analysis to find ten hold-failing endpoints, then closed them through two targeted ECO passes and fresh routing and extraction.</li>
     </ul></div>`;
 
   const tools = byHeading('Tools & Technologies');
   if (tools) tools.innerHTML = `
     <h2>Tools</h2><div class="rule"></div>
-    <p class="toolline">Cadence Genus &middot; Cadence Innovus &middot; Cadence Tempus &middot; Python report parsing &middot; TCL ECO automation &middot; SPEF &middot; MMMC &middot; Claude/Codex planning &middot; Git</p>
-    <div class="chips" style="margin-top:12px"><span class="chip">LLM-Assisted EDA</span><span class="chip">Physical Design</span><span class="chip">Static Timing Analysis</span><span class="chip">Setup / Hold ECO</span><span class="chip">Metric Provenance</span><span class="chip">Design-Space Exploration</span><span class="chip">Guarded Automation</span></div>`;
+    <p class="toolline">Cadence Genus, Innovus, and Tempus &middot; Python &middot; Tcl &middot; Claude/Codex</p>`;
 
   const glance = byHeading('At a Glance');
-  if (glance) {
-    const cards = glance.querySelectorAll('.chart-card');
-    if (cards[0]) {
-      cards[0].querySelector('h4').textContent = 'Area and power in the best Innovus run';
-      cards[0].querySelector('.csub').textContent = 'Change from the clean baseline; lower is better';
-    }
-    if (cards[1]) {
-      cards[1].querySelector('h4').textContent = 'Original QoR values';
-      cards[1].querySelector('.csub').textContent = 'Clean baseline compared directly with the best observed implementation run';
-    }
-    if (cards[2]) {
-      cards[2].querySelector('h4').textContent = 'DRC results from 16 selected runs';
-      cards[2].querySelector('.csub').textContent = '11 with zero DRC · 4 with violations · 1 without a report; all 23 runs are in the dashboard';
-    }
-  }
+  if (glance) glance.innerHTML = `
+    <h2>What changed</h2><div class="rule"></div>
+    <div class="agentic-results">
+      <div class="agentic-result"><h3>Setup margin</h3><p>Best Innovus run compared with the clean baseline</p>
+        <div class="agentic-bar"><span>Baseline</span><span class="agentic-track"><span class="agentic-fill" style="width:81%"></span></span><strong>1.789 ns</strong></div>
+        <div class="agentic-bar"><span>Best run</span><span class="agentic-track"><span class="agentic-fill" style="width:100%"></span></span><strong>2.215 ns</strong></div>
+        <small>+0.426 ns setup slack</small></div>
+      <div class="agentic-result hold"><h3>Hold repair</h3><p>Failing endpoints in independent Tempus checks</p>
+        <div class="agentic-bar"><span>Initial</span><span class="agentic-track"><span class="agentic-fill" style="width:100%"></span></span><strong>10</strong></div>
+        <div class="agentic-bar"><span>Pass 1</span><span class="agentic-track"><span class="agentic-fill" style="width:50%"></span></span><strong>5</strong></div>
+        <div class="agentic-bar"><span>Final</span><span class="agentic-track"></span><strong>0</strong></div>
+        <small>Zero failing endpoints after two repair passes</small></div>
+      <div class="agentic-result savings"><h3>Area and power</h3><p>Reduction in the best Innovus run, relative to baseline</p>
+        <div class="agentic-bar"><span>Cell area</span><span class="agentic-track"><span class="agentic-fill" style="width:20%"></span></span><strong>0.8%</strong></div>
+        <div class="agentic-bar"><span>Power</span><span class="agentic-track"><span class="agentic-fill" style="width:93%"></span></span><strong>3.7%</strong></div>
+        <small>Bar scale: 0&ndash;4% lower is better</small></div>
+    </div>`;
 
   const results = byHeading('Results & Measurements');
   if (results) results.innerHTML = `
-    <h2>Observations and inference</h2><div class="rule"></div>
-    <div class="tbl-cap">Clean baseline and best Innovus exploration run</div>
-    <div class="tbl-wrap"><table class="data"><thead><tr><th>Metric</th><th>Clean baseline</th><th>Best observed run</th><th>Change</th></tr></thead><tbody>
-      <tr><td>Setup WNS</td><td>+1.789 ns</td><td>+2.215 ns</td><td>+0.426 ns (4.26% of clock)</td></tr>
-      <tr><td>Hold WNS</td><td>+0.170 ns</td><td>+0.176 ns</td><td>+0.006 ns</td></tr>
-      <tr><td>Cell area</td><td>199,338.698 &micro;m&sup2;</td><td>197,728.015 &micro;m&sup2;</td><td>-0.8%</td></tr>
-      <tr><td>Total power</td><td>16.586 mW</td><td>15.976 mW</td><td>-3.7%</td></tr>
-      <tr><td>DRC / connectivity</td><td>0 / 0</td><td>0 / 0</td><td>Clean</td></tr>
-    </tbody></table></div>
-    <p class="tbl-note">The best exploration run is <code>util055_margin10_ar12_run006_codex_coarse_qor_sweep</code>. It passed the Innovus checks but is not the separately repaired Tempus sign-off run. The linked dashboard contains all 23 runs and their source reports.</p>
-
-    <div class="tbl-cap">Independent Tempus nominal hold-closure sequence</div>
-    <div class="tbl-wrap"><table class="data"><thead><tr><th>Stage</th><th>Setup WNS</th><th>Hold WNS</th><th>Hold TNS</th><th>Hold FEP</th></tr></thead><tbody>
-      <tr><td>Initial nominal Tempus check</td><td>+2.192 ns</td><td>-0.003 ns</td><td>-0.018 ns</td><td>10</td></tr>
-      <tr><td>First bounded hold repair</td><td>+2.192 ns</td><td>-0.005 ns</td><td>-0.017 ns</td><td>5</td></tr>
-      <tr><td>Residual-path repair</td><td>+2.192 ns</td><td>0.000 ns</td><td>0</td><td>0</td></tr>
-    </tbody></table></div>
-    <p class="tbl-note">Signoff scope: setup judged on the slow and typical views (av_SS, av_SF, av_TT; worst av_SS and av_SF), hold on the fast views (av_FF, av_FS). The verdict requires WNS, TNS and failing-path count to be clean across all listed views, not just the worst one.</p>
-    <div class="tbl-cap">What the sign-off ECO cost</div>
-    <div class="tbl-wrap"><table class="data"><thead><tr><th>Metric</th><th>Implementation-QoR winner</th><th>Tempus signoff run (post-ECO)</th><th>ECO cost</th></tr></thead><tbody><tr><td>Setup WNS (Innovus-measured)</td><td>2.215 ns</td><td>2.164 ns</td><td>&minus;0.051 ns</td></tr><tr><td>Hold WNS (Innovus-measured)</td><td>0.176 ns</td><td>0.248 ns</td><td>+0.072 ns</td></tr><tr><td>Cell area</td><td>197,728.015 &micro;m&sup2;</td><td>197,826.412 &micro;m&sup2;</td><td>+0.05%</td></tr><tr><td>Cell count</td><td>25,609</td><td>25,626</td><td>+17 cells</td></tr><tr><td>Total power</td><td>15.976 mW</td><td>15.983 mW</td><td>+0.04%</td></tr></tbody></table></div>
-    <p class="tbl-note">The first repair removed half of the failing endpoints even though a different path became the new worst path. On the final post-ECO database, Tempus reported +2.192 ns setup and 0.000 ns hold; Innovus reported +2.164 ns setup, +0.248 ns hold, DRC 0, and connectivity violations 0. These are different tools and timing views.</p>
-
-    <div class="tbl-cap">What Dashboard V2 does</div>
-    <div class="tbl-wrap"><table class="data"><thead><tr><th>Dashboard view</th><th>Purpose</th></tr></thead><tbody>
-      <tr><td>Baseline-to-best and pass tracker</td><td>Compares implementation QoR and preserves failed runs instead of hiding them.</td></tr>
-      <tr><td>Coarse-to-fine strategy</td><td>Shows the current search phase and a validated next-action recommendation without inventing TCL.</td></tr>
-      <tr><td>Run comparison and trends</td><td>Tracks setup, hold, DRC, connectivity, area, power, wirelength, vias, and congestion.</td></tr>
-      <tr><td>Critical paths and provenance</td><td>Links parsed metrics and path details back to line-level source evidence.</td></tr>
-      <tr><td>Agent and convergence views</td><td>Records Claude/Codex attribution, token/runtime data, guardrail state, and stopping criteria.</td></tr>
-    </tbody></table></div>
-    <p class="tbl-note">Dashboard V2 is an audit and decision-support layer. The LLM helps interpret evidence and suggest the next bounded experiment; the engineer, validation scripts, and fresh Cadence results remain responsible for accepting each change.</p>`;
+    <h2>Results</h2><div class="rule"></div>
+    <p>Innovus passed its checks, but an independent Tempus run exposed short hold paths. I repaired those paths locally, rerouted, and checked timing again. The LLM proposed experiments; the Cadence results decided what stayed.</p>
+    <details class="agentic-detail"><summary>View measurements and repair steps</summary>
+      <div class="tbl-cap">Clean baseline vs. best Innovus run</div>
+      <div class="tbl-wrap"><table class="data"><thead><tr><th>Metric</th><th>Baseline</th><th>Best run</th></tr></thead><tbody>
+        <tr><td>Setup WNS</td><td>+1.789 ns</td><td>+2.215 ns</td></tr>
+        <tr><td>Hold WNS</td><td>+0.170 ns</td><td>+0.176 ns</td></tr>
+        <tr><td>Cell area</td><td>199,338.698 &micro;m&sup2;</td><td>197,728.015 &micro;m&sup2;</td></tr>
+        <tr><td>Total power</td><td>16.586 mW</td><td>15.976 mW</td></tr>
+        <tr><td>DRC / connectivity violations</td><td>0 / 0</td><td>0 / 0</td></tr>
+      </tbody></table></div>
+      <div class="tbl-cap">Independent Tempus hold check</div>
+      <div class="tbl-wrap"><table class="data"><thead><tr><th>Stage</th><th>Setup WNS</th><th>Hold WNS</th><th>Hold TNS</th><th>Failing endpoints</th></tr></thead><tbody>
+        <tr><td>Before repair</td><td>+2.192 ns</td><td>&minus;0.003 ns</td><td>&minus;0.018 ns</td><td>10</td></tr>
+        <tr><td>First repair</td><td>+2.192 ns</td><td>&minus;0.005 ns</td><td>&minus;0.017 ns</td><td>5</td></tr>
+        <tr><td>Final repair</td><td>+2.192 ns</td><td>0.000 ns</td><td>0</td><td>0</td></tr>
+      </tbody></table></div>
+      <p class="tbl-note">The first pass halved the failing-path count even though a different path became the new worst path. The final checks covered setup in slow/typical views and hold in fast views.</p>
+      <div class="tbl-cap">Cost of the final ECO, measured in Innovus</div>
+      <div class="tbl-wrap"><table class="data"><thead><tr><th>Metric</th><th>Best exploration run</th><th>Post-ECO run</th></tr></thead><tbody>
+        <tr><td>Setup WNS</td><td>+2.215 ns</td><td>+2.164 ns</td></tr>
+        <tr><td>Hold WNS</td><td>+0.176 ns</td><td>+0.248 ns</td></tr>
+        <tr><td>Cell area</td><td>197,728.015 &micro;m&sup2;</td><td>197,826.412 &micro;m&sup2;</td></tr>
+        <tr><td>Cell count</td><td>25,609</td><td>25,626</td></tr>
+        <tr><td>Total power</td><td>15.976 mW</td><td>15.983 mW</td></tr>
+      </tbody></table></div>
+      <p class="tbl-note">This study used a new floorplan baseline for one 64-PE tile at nominal voltage; its area and power are not directly comparable with the earlier accelerator implementation. The dashboard links the 23 runs to their source reports.</p>
+    </details>`;
 
   const challenges = byHeading('Design Challenges & Tradeoffs');
-  if (challenges) challenges.innerHTML = `
-    <h2>Known limitations</h2><div class="rule"></div><div class="entry"><ul>
-      <li><b>Implementation-clean was not signoff-clean:</b> Innovus passed, but independent Tempus analysis exposed short fast-corner hold paths. Every ECO therefore required rerouting, parasitic re-extraction, and both setup and hold rechecks.</li>
-      <li><b>Local hold delay can consume setup margin:</b> half-adder downsizing and BUFX2 insertion were restricted to small, single-fanout path groups because broad optimization would risk unnecessary area, power, or setup regressions.</li>
-      <li><b>WNS alone can mislead:</b> after the first repair, hold FEP improved from 10 to 5 while WNS moved from -0.003 to -0.005 ns because a different residual path became worst.</li>
-      <li><b>Methodology boundary:</b> closure covers nominal-voltage project views for one compute tile. The SF/FS names alias the available slow/fast libraries, and the flow does not claim foundry-qualified production signoff.</li>
-    </ul></div>`;
+  if (challenges) challenges.remove();
 
   const takeaway = byHeading('What I Took Away');
-  if (takeaway) takeaway.innerHTML = `
-    <h2>Conclusions and future work</h2><div class="rule"></div><p style="color:var(--ink-2);max-width:74ch;margin:0">The useful role of the language model was strategic and bounded: interpret compact evidence and propose the next legal experiment. Deterministic parsing, scoring, command validation, reruns, and signoff gates decided whether a change was accepted. Tempus closure reinforced that optimization is complete only when an independent timing view agrees with the implementation result.</p>`;
+  if (takeaway) takeaway.remove();
 
   /* Remove the older generic project-flow and research-figure renderers. This
      project gets one purpose-built overview instead of stacked duplicates. */
@@ -1887,9 +1911,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const figures = byHeading('Figures') || byHeading('Design Evidence');
-  if (figures) figures.innerHTML = `
-    <h2>Implementation evidence</h2><div class="rule"></div>
-    <p>This optimization study used the same compute tile shown in the <a href="#proj_nncad" data-goto="proj_nncad">neural-network accelerator project</a>. The <a href="https://varshasayee-20.github.io/ppa-dashboard/" target="_blank" rel="noopener">PPA dashboard</a> shows the run inventory, retained failures, Tempus closure, and report-linked metrics.</p>`;
+  if (figures) figures.remove();
 
   /* Other legacy renderers also run on DOMContentLoaded. Clean up after every
      listener has finished so the deprecated overview cards cannot reappear. */
@@ -2030,6 +2052,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const panel = document.getElementById(projectId);
     const wrap = panel?.querySelector(':scope > .wrap');
     if (!panel || !wrap) return;
+    if (projectId === 'proj_agentic') return;
 
     panel.querySelector('.research-frame')?.remove();
     const frame = document.createElement('div');
