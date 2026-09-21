@@ -401,7 +401,7 @@ nav.tabs{gap:2px; padding-block:7px; mask-image:linear-gradient(90deg,transparen
 .sec > h2{font-size:12px;letter-spacing:.2em;color:var(--accent);margin:0 0 10px}
 .sec > h2 + .rule{height:1px;background:linear-gradient(90deg,var(--accent),var(--line) 22%,transparent);margin-bottom:24px}
 #home .sec:nth-child(3) > h2{font-family:var(--serif);font-size:clamp(28px,4vw,44px);font-weight:740;letter-spacing:-.045em;text-transform:none;color:var(--ink);margin-bottom:14px}
-#home .sec:nth-child(3) > h2::after{content:"Deep dives across digital implementation, custom IC design, and emerging compute.";display:block;max-width:58ch;margin-top:9px;color:var(--muted);font-size:14px;font-weight:450;line-height:1.6;letter-spacing:0}
+#home .sec:nth-child(3) > h2::after{content:"RRAM circuits and temporal coding, mixed-signal design, accelerator RTL, and physical implementation.";display:block;max-width:70ch;margin-top:9px;color:var(--muted);font-size:14px;font-weight:450;line-height:1.6;letter-spacing:0}
 
 .cards{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
 .card{grid-column:span 4;border-radius:20px;box-shadow:var(--shadow);border-color:var(--line);transform:translateZ(0)}
@@ -586,6 +586,9 @@ body::before{display:none}
 .research-figure.portrait-evidence .figure-box{height:clamp(620px,70vw,780px);padding:18px 28px}
 .research-figure.result-evidence .figure-box{height:clamp(440px,52vw,580px);padding:18px 28px}
 .research-figure.tall-evidence .figure-box{height:clamp(580px,68vw,760px);padding:18px 28px}
+.research-figure.wide.portrait-medium .figure-box,.research-figure.wide.result-evidence .figure-box{height:auto;min-height:0;overflow:visible}
+.research-figure.wide.portrait-medium .figure-box img{width:auto;max-width:min(100%,420px);height:auto;max-height:none}
+.research-figure.wide.result-evidence .figure-box img{width:100%;height:auto;max-height:none}
 .research-figure.crop-decoder-transient .figure-box{aspect-ratio:1470/690;height:auto;overflow:hidden;align-items:flex-start;padding:0}
 .research-figure.crop-decoder-transient .figure-box img{width:100%;height:auto;max-height:none;object-fit:contain;object-position:top center}
 .panel[id^="proj_"] .entry li,.panel[id^="proj_"] .sec>p,.panel[id^="proj_"] .tbl-note,.panel[id^="proj_"] .equation-note{text-align:justify;text-justify:inter-word}
@@ -610,6 +613,9 @@ body::before{display:none}
 .research-frame-item+.research-frame-item{border-left:1px solid var(--line)}
 .research-frame-item b{display:block;margin-bottom:7px;color:var(--accent);font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
 .research-frame-item p{margin:0;color:var(--ink-2);font-size:13px;line-height:1.65;text-align:left}
+.research-frame-compact{display:block;max-width:900px;border:0;border-left:3px solid var(--accent);margin:12px 0 30px;background:var(--alt)}
+.research-frame-compact .research-frame-item{padding:16px 20px}
+.research-frame-compact .research-frame-item p{font-size:15px}
 .research-focus{margin:26px 0 56px;padding:28px;border:1px solid var(--line);border-radius:18px;background:var(--card)}
 .research-focus .eyebrow{margin:0 0 10px;color:var(--accent);font-family:var(--mono);font-size:10px;font-weight:750;letter-spacing:.16em;text-transform:uppercase}
 .research-focus>h2{max-width:27ch;margin:0 0 12px;color:var(--ink);font-size:clamp(25px,3.3vw,38px);line-height:1.12;letter-spacing:-.035em}
@@ -728,6 +734,36 @@ footer a{color:var(--accent)}
   .panel{display:block !important; page-break-before:always}
   .print-only{display:block}
 }
+
+/* Keep the research and project evidence visually ahead of decorative UI. */
+#home .hero{min-height:0;display:grid;grid-template-columns:190px minmax(0,1fr);column-gap:36px;align-items:start;overflow:visible;padding:24px 0 34px;border:0;border-radius:0;background:none;box-shadow:none}
+#home .hero::before,#home .hero::after,#home .hero h1::before{display:none}
+#home .hero .portrait-frame{grid-column:1;grid-row:1/5;position:relative;display:block;width:190px;height:190px;overflow:hidden;border:1px solid var(--line);border-radius:50%;background:#c3c4c9}
+#home .hero .portfolio-portrait{position:absolute;top:0;left:50%;display:block;width:160%;max-width:none;height:auto;transform:translateX(-50%)}
+#home .hero h1,#home .hero .role,#home .hero .lede,#home .hero .hero-meta{grid-column:2}
+#home .hero h1{max-width:none;margin:0 0 14px;color:var(--ink);font-size:clamp(34px,5vw,54px);line-height:1.08;letter-spacing:-.035em}
+#home .hero .role{color:var(--ink-2);font-size:16px;font-weight:600}
+#home .hero .lede{max-width:74ch;color:var(--ink-2);font-size:16px;line-height:1.7}
+#home .hero .pill,#home .hero .pill.cta{min-height:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;backdrop-filter:none;color:var(--accent);font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+#home .hero a.pill:hover{transform:none;background:none;border:0;text-decoration:underline}
+.research-focus{margin:18px 0 48px;padding:0;border:0;border-radius:0;background:none}
+.research-focus-grid{display:block;margin-top:20px;border:0}
+.research-focus-item,.research-focus-item+.research-focus-item{margin:0 0 18px;padding:0;border:0}
+.research-focus-item h3{font-size:16px}
+.research-focus-item p{max-width:74ch;font-size:14px}
+.profile-link{margin:12px 0 0;font-size:14px}
+.research-focus .eyebrow,.sec>h2,.research-frame-item b,.brand span{font-family:var(--sans);font-size:18px;font-weight:650;letter-spacing:0;text-transform:none;color:var(--ink)}
+.research-focus .eyebrow,.research-frame-item b,.brand span{font-size:13px}
+.panel[id^="proj_"] .chips{display:none}
+@media(max-width:700px){
+  #home .hero{grid-template-columns:1fr;padding:18px 0 26px}
+  #home .hero .portrait-frame{grid-column:1;grid-row:1;width:140px;height:140px;margin-bottom:22px}
+  #home .hero h1,#home .hero .role,#home .hero .lede,#home .hero .hero-meta{grid-column:1}
+  #home .hero h1{font-size:36px}
+  #home .hero .lede{font-size:15px}
+  .site-link,.tab{font-size:12px}
+  nav.tabs{flex-wrap:wrap;justify-content:flex-start;column-gap:12px}
+}
 </style>
 </head>
 <body>
@@ -752,7 +788,7 @@ footer a{color:var(--accent)}
 </main>
 
 <footer><div class="wrap">
-  <p style="margin:0">Varsha Seshasayee &middot; <a href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a> &middot; <a href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a></p>
+  <p style="margin:0">Varsha Seshasayee &middot; <a href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a></p>
 </div></footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Figure viewer">
@@ -787,12 +823,13 @@ projectCount.querySelector('span').textContent = 'engineering projects';
 
 /* Keep the public portfolio project-first and evidence-led. */
 const publicNav = document.querySelector('nav.tabs');
-publicNav.innerHTML = '<button class="tab" data-target="home" role="tab" aria-selected="true">Home</button><a class="site-link" href="#projects" data-home-section="projects">Research Projects</a><a class="site-link" href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a><a class="site-link" href="#contact">Contact</a>';
+publicNav.innerHTML = '<button class="tab" data-target="home" role="tab" aria-selected="true">Home</button><a class="site-link" href="#projects" data-home-section="projects">Research Projects</a><a class="site-link" href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a><a class="site-link" href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a>';
 document.getElementById('research')?.remove();
 const homeHero = document.querySelector('#home .hero');
+homeHero.insertAdjacentHTML('afterbegin','<div class="portrait-frame"><img class="portfolio-portrait" src="images/varsha-portrait.jpeg" alt="Varsha Seshasayee" width="3968" height="5952" loading="eager" decoding="async"></div>');
 homeHero.querySelector('.role').textContent = 'Energy-efficient in-memory computing · Neuromorphic hardware · Analog/mixed-signal ICs';
-homeHero.querySelector('.lede').textContent = 'I study energy-efficient in-memory computing systems that connect memristive devices, mixed-signal circuits, and accelerator architectures for temporal and sensory processing. My current independent research maps Legendre Memory Unit state-space computation to analog memristor arrays and evaluates programming variation, read noise, conductance quantization, and energy as coupled design constraints.';
-homeHero.querySelector('.hero-meta').innerHTML = '<a class="pill cta" href="#projects" data-home-section="projects">View Research Projects</a><a class="pill" href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a><a class="pill" href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a>';
+homeHero.querySelector('.lede').textContent = 'I am interested in energy-efficient in-memory computing, especially the path from memristive devices and mixed-signal circuits to working systems. My current independent LMU study investigates how state-space computation might map to analog memristor arrays, with programming variation, read noise, conductance quantization, and energy considered together. The projects below show the circuit and implementation work behind that direction.';
+homeHero.querySelector('.hero-meta').innerHTML = '<a class="pill cta" href="#projects" data-home-section="projects">View Research Projects</a><a class="pill" href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a><a class="pill" href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a><a class="pill" href="https://www.mics.ece.vt.edu/People/Graduate/varsha_seshasayee.html" target="_blank" rel="noopener">Virginia Tech MICS alumni profile</a>';
 const researchFocus = document.createElement('section');
 researchFocus.className = 'research-focus';
 researchFocus.setAttribute('aria-labelledby', 'research-focus-title');
@@ -808,8 +845,9 @@ if (projectsSection) {
   if (heading) heading.textContent = 'Research Projects';
 }
 const publicFooter = document.querySelector('footer');
-publicFooter.id = 'contact';
-publicFooter.querySelector('.wrap').innerHTML = '<p style="margin:0"><b>Varsha Seshasayee</b> · <a href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/VarshaSayee-20" target="_blank" rel="noopener">GitHub</a></p>';
+publicFooter.removeAttribute('id');
+publicFooter.querySelector('.wrap').innerHTML = '<p style="margin:0"><b>Varsha Seshasayee</b> · <a href="https://www.linkedin.com/in/varshasayee/" target="_blank" rel="noopener">LinkedIn</a></p>';
+document.querySelector('#proj_mem .phead .meta')?.insertAdjacentHTML('afterend','<p class="profile-link"><a href="https://www.mics.ece.vt.edu/People/Graduate/varsha_seshasayee.html" target="_blank" rel="noopener">Virginia Tech MICS alumni profile ↗</a></p>');
 document.querySelector('[data-home-section="projects"]')?.addEventListener('click', event => {
   event.preventDefault();
   show('home', true);
@@ -845,7 +883,7 @@ if (systolicHomeMeta) {
   systolicHomeMeta.textContent = 'ECE 4540: VLSI Circuit Design · Virginia Tech · NCSU 45nm PDK · Fall 2019';
 }
 if (systolicProjectMeta) {
-  systolicProjectMeta.textContent = 'Capstone Project · ECE 4540: VLSI Circuit Design · Virginia Tech · Advisor: Dr. Paul K. Ampadu · NCSU 45nm PDK · Fall 2019';
+  systolicProjectMeta.textContent = 'ECE 4540 VLSI Circuit Design course project · Virginia Tech · Instructor: Dr. Paul K. Ampadu · NCSU 45 nm PDK · Fall 2019';
 }
 const elmHomeThumb = document.querySelector('#home [data-goto="proj_elm"] .thumb');
 if (elmHomeThumb) {
@@ -880,8 +918,8 @@ const researchTiles = {
     solution:'A weights-stationary 8x8 systolic tile with 64 processing elements, Q3.5 arithmetic, accumulation, and shift-based Leaky ReLU.',
     steps:['Q3.5 input + weights','8x8 PE array','32-bit accumulate','Leaky ReLU'],
     panels:[
-      {src:'images/nn_innovus_layout.png',label:'Complete Innovus layout',title:'Figure 3 - Physical implementation',caption:'Full Cadence Innovus die view with the complete boundary and Metal3/Metal4 VDD/VSS stripe grid.',dark:true},
-      {src:'images/nn_training_curve.png',label:'Training / validation',title:'Figure 4 - Verified result',caption:'Project training and validation accuracy curve; the plotted values are retained from the project output.'}
+      {src:'images/nn_innovus_layout.png',label:'Post-route die view',title:'Physical implementation',caption:'Innovus post-route view of the 64-PE compute tile and power grid.',dark:true},
+      {src:'images/nn_training_curve.png',label:'Training / validation',title:'Model accuracy',caption:'The floating-point model reached 91.54% on the held-out set; the Q3.5 hardware reached 90.28% on the same 319 samples.'}
     ],
     tags:['64 PEs','GPDK090','Cadence RTL-to-GDSII']
   },
@@ -913,7 +951,7 @@ const researchTiles = {
     solution:'Registered operands propagate through a 4x4 grid of datapath units with multiplier, adder, and accumulation logic.',
     steps:['Registered A / B','DPU grid','Multiply + add','Registered output'],
     panels:[
-      {src:'images/systolic/fig21_4x1_systolic_array_layout.png',label:'Completed 4x1 layout',title:'Figure 3 - Physical implementation',caption:'Completed 4x1 systolic-array layout from the project report; labelled 4x1 to avoid overstating the implemented layout.',dark:true},
+      {src:'images/systolic/fig21_4x1_systolic_array_layout.png',label:'4×1 layout',title:'Physical implementation',caption:'Extracted layout of the four-by-one systolic row.',dark:true},
       {src:'images/systolic/fig_4x4_array_simulation_result.png',label:'4x4 simulation waveform',title:'Figure 4 - Simulated result',caption:'Project 4x4 array simulation waveform used to verify the array-level datapath.',dark:true}
     ],
     tags:['NCSU 45 nm','Cadence Virtuoso','Schematic + layout']
@@ -924,8 +962,8 @@ const researchTiles = {
     solution:'A five-PE outer-product datapath generates partial products and uses bitonic sort/merge to combine sparse output entries.',
     steps:['CSC / CSR storage','Index selection','5-PE outer product','Bitonic merge'],
     panels:[
-      {src:'images/spmm/fig5_proposed_spmm_accelerator_architecture.png',label:'Implemented PE datapath',title:'Figure 3 - Implemented hardware architecture',caption:'Implemented architecture for partial-product generation and local sparse-data handling.'},
-      {src:'images/spmm/fig_overall_bitonic_merge_sort_architecture.png',label:'Bitonic sort / merge',title:'Figure 4 - Architecture detail',caption:'Report bitonic sorting network used to order and merge sparse partial products.'}
+      {src:'images/diagrams/spmm-implemented-dataflow.svg',label:'SpMM datapath',title:'Dataflow',caption:'Sparse formatting, five PE arms, sorting, merging, and accumulation.'},
+      {src:'images/diagrams/spmm-pe.svg',label:'Index match + product',title:'Processing element',caption:'Index matching and tagged partial-product generation.'}
     ],
     tags:['5x5 matrices','Outer product','Verilog RTL']
   },
@@ -1063,14 +1101,17 @@ Object.entries(figureSelections).forEach(([projectId, selected]) => {
 
 const evidenceCatalog = {
   proj_mem: {
-    note:'Report figures retain their thesis numbers. The first diagram is a redrawn overview. The slow-variable and STDP circuit origins are identified in the captions; the Cadence implementations and simulations are project work.',
+    note:'The figures follow the signal path from RRAM switching through temporal encoding to the two decoder circuits.',
     figures:[
-      ['images/diagrams/memristor-system-architecture.svg?v=5','Redrawn system overview','Redrawn from the thesis architecture: the encoded spike train branches to the integration decoder and the implemented literature-based STDP decoder.','wide'],
-      ['images/memristor/fig5.1_set_iv.png','Fig. 5.1 - RRAM SET characteristic','Cadence DC simulation of the 1T-1R device under SET conditions.'],
-      ['images/memristor/fig5.2_reset_iv.png','Fig. 5.2 - RRAM RESET characteristic','Cadence DC simulation of the 1T-1R device under RESET conditions.'],
+      ['images/diagrams/memristor-system-architecture.svg?v=5','Encoder and decoder architecture','The encoded spike train feeds both the integration decoder and the STDP decoder.','wide'],
+      ['images/memristor/fig5.1_set_iv.png','Fig. 5.1 - RRAM SET characteristic','SET response under a transient voltage sweep.'],
+      ['images/memristor/fig5.2_reset_iv.png','Fig. 5.2 - RRAM RESET characteristic','RESET response under a transient voltage sweep.'],
       ['images/memristor/fig3.5_current_reference_circuit.png','Fig. 3.5 - PTAT current reference','Current-reference circuit used by the voltage-to-current front end.'],
       ['images/memristor/fig3.6_operational_amplifier.png','Fig. 3.6 - Operational amplifier','Operational amplifier used in the voltage-to-current converter.'],
       ['images/memristor/fig3.7_hybrid_neuron_circuit.png','Fig. 3.7 - Hybrid RRAM-CMOS neuron','Hybrid leaky integrate-and-fire neuron used by the iterative encoder.','wide'],
+      ['images/memristor/fig3.10_or_combiner.png','Fig. 3.10 - Spike combiner','Combines the four neuron outputs into the encoded spike train.','wide'],
+      ['images/memristor/fig5.5_freq_vs_iex.png','Fig. 5.5 - Firing rate','Simulated neuron firing frequency versus excitation current.','wide'],
+      ['images/memristor/fig5.6_power_vs_iex.png','Fig. 5.6 - Neuron power','Simulated neuron power versus excitation current.','wide'],
       ['images/memristor/fig5.11_neuron_spike_waveform.png?v=2','Fig. 5.11 - Neuron spike train','Simulated neuron output spikes within the active clock window.','wide'],
       ['images/memristor/fig5.12_memristor_switching_waveform.png?v=2','Fig. 5.12 - RRAM-neuron switching','Neuron output, RRAM voltage, and resistance during switching.','wide'],
       ['images/memristor/fig5.13_spike_propagation_4neurons.png','Fig. 5.13 - Four-neuron propagation','Spike propagation through the four encoder neurons and combiner.','wide'],
@@ -1082,18 +1123,17 @@ const evidenceCatalog = {
       ['images/memristor/fig5.22_decoder_window.png','Fig. 5.22 - Window from encoded spikes','Out-window response generated from the encoded spike train across the input sweep.','wide'],
       ['images/memristor/fig4.3_integration_decoder.png','Fig. 4.3 - Complete integration decoder','Full integration-decoder circuit with the out-window-controlled integrator, sampler, threshold stage, buffer, and low-pass output.','wide'],
       ['images/memristor/fig5.23_integrator_output.png','Fig. 5.23 - Integrator output','Integration-stage output across the allowable 650-700 mV input range.','wide'],
-      ['images/memristor/fig5.24_decoder_output_levels.png','Fig. 5.24 - Ten decoded levels','Ten resolved output-voltage levels produced by the integration decoder.','wide'],
       ['images/memristor/fig5.27_complete_waveforms.png','Fig. 5.27 - End-to-end integration decoding','Input, encoded spike train, window, integrator, and decoded output shown on the report time axis.','wide'],
-      ['images/memristor/fig4.4_stdp_decoder.png','Fig. 4.4 - STDP decoder topology','Topology adapted from the cited prior work, then implemented and simulated in Cadence for this thesis.','wide'],
-      ['images/memristor/fig5.29_stdp_aligned.jpg','Fig. 5.29 - STDP aligned-spike case','Cadence result when the ISI spikes align with the reference spikes.','wide'],
-      ['images/memristor/fig5.32_stdp_babbaaaa.jpg','Fig. 5.32 - STDP BABBAAAA case','Cadence STDP-decoder result for the BABBAAAA before/after-reference pattern.','wide'],
-      ['images/memristor/fig5.33_stdp_babababb.jpg','Fig. 5.33 - STDP BABABABB case','Cadence STDP-decoder result for the BABABABB before/after-reference pattern.','wide']
+      ['images/memristor/fig4.4_stdp_decoder.png','Fig. 4.4 - STDP decoder','Circuit adapted from Zhao et al. (IEEE TCAS II, 2020), implemented and simulated in Cadence for this thesis.','wide'],
+      ['images/memristor/fig5.29_stdp_aligned.jpg','Fig. 5.29 - Aligned spikes','Aligned input and reference spikes produce a decoded output of 60.054 mV.','wide'],
+      ['images/memristor/fig5.32_stdp_babbaaaa.jpg','Fig. 5.32 - BABBAAAA pattern','Decoded output: 834.599 mV.','wide'],
+      ['images/memristor/fig5.33_stdp_babababb.jpg','Fig. 5.33 - BABABABB pattern','Decoded output: 422.929 mV.','wide']
     ]
   },
   proj_elm: {
-    note:'The first diagram is a redrawn system view. Circuit schematics and waveforms then follow the implemented signal path from input generation to frequency counting. A1-A7 retain the source identifiers used in the project document. The final trained readout remained in MATLAB.',
+    note:'Circuit schematics and waveforms follow the path from input generation to frequency counting. The trained readout was evaluated in MATLAB.',
     figures:[
-      ['images/diagrams/elm-system-architecture.svg?v=5','Redrawn system overview','Redrawn from the report architecture; timing/control fanout is shown and the trained readout is identified as MATLAB.','wide'],
+      ['images/diagrams/elm-system-architecture.svg?v=5','ELM signal path','The current-mode hidden layer is followed by frequency counting and a MATLAB-trained readout.','wide'],
       ['images/elm/A1_dac.png','A1 - DAC','DAC used by the input-generation stage.','wide'],
       ['images/elm/A2_input_generation_circuit.png','A2 - Input generation','Complete transistor-level input-generation circuit.','wide'],
       ['images/elm/A3_cascode_current_mirror.png','A3 - Cascode current mirror','Cascode current-mirror circuit used for hidden-layer weights.','wide'],
@@ -1101,8 +1141,9 @@ const evidenceCatalog = {
       ['images/elm/fig4.6_neuron_oscillator.png','Fig. 4.6 - Neuron oscillator','Current-mode oscillator used to represent hidden-layer activation.','portrait-evidence'],
       ['images/elm/fig4.7_axon_hillock.png','Fig. 4.7 - Axon-hillock circuit','Circuit used for the oscillator neuron.','portrait-evidence'],
       ['images/elm/fig5.6_freq_vs_current.png','Fig. 5.6 - Frequency versus drive current','Simulated neuron oscillation frequency as the input current changes.','wide'],
-      ['images/elm/A4_tspc_dflipflop.png','A4 - TSPC D flip-flop','Cited TSPC storage topology implemented for the digital pipeline.','wide'],
-      ['images/elm/A5_tspc_counter.png','A5 - TSPC counter stage','Counter stage implemented from the cited TSPC topology.','wide'],
+      ['images/elm/fig4.14_hidden_layer_extension.png','Fig. 4.14 - Hidden-layer extension','Rotation-counting scheme used to reuse the analog neuron hardware.','wide'],
+      ['images/elm/A4_tspc_dflipflop.png','A4 - TSPC D flip-flop','Flip-flop used in the counter pipeline. The counter approach follows Thotat and Mal (MicroCom 2016), cited in the project report.','wide'],
+      ['images/elm/A5_tspc_counter.png','A5 - TSPC counter stage','Frequency-to-digital counter stage.','wide'],
       ['images/elm/A6_carry_stage.png','A6 - Carry stage','Carry-stage circuit used by the counter.','wide'],
       ['images/elm/A7_counter_pipo.png','A7 - Counter and PIPO','Counter and PIPO circuit used for rotation counting.','wide'],
       ['images/elm/fig5.7_rotation_waveforms.png','Fig. 5.7 - Hidden-layer rotation','Cadence waveform showing input rotation while rotation enable is asserted.','wide'],
@@ -1110,62 +1151,66 @@ const evidenceCatalog = {
     ]
   },
   proj_nncad: {
-    note:'The three architecture drawings are redrawn from the implemented RTL hierarchy. Physical results apply to the nn_engine_tile_top compute tile, not the complete classifier system.',
+    note:'Architecture, precision study, physical implementation, and gate-level verification of the 64-PE compute tile.',
     figures:[
-      ['images/diagrams/nn-cadence-system-architecture.svg?v=4','Redrawn compute-tile hierarchy','Activations and frozen weights independently feed the implemented 64-PE nn_engine_tile_top.','wide'],
-      ['images/diagrams/nn-cadence-systolic-dataflow.svg?v=5','Redrawn systolic dataflow','Weights remain local to each PE; activations move horizontally and partial sums move vertically.','wide'],
-      ['images/diagrams/nn-cadence-pe-datapath.svg','Redrawn processing element','Signed-Braun multiply, accumulation, and activation datapath reconstructed from the RTL hierarchy.','wide'],
-      ['images/nn_training_curve.png','Training and validation curve','Training and validation accuracy across 50 epochs.','wide'],
+      ['images/diagrams/nn-cadence-system-architecture.svg?v=4','Compute-tile hierarchy','Activations and frozen weights feed the 64-PE nn_engine_tile_top.','wide'],
+      ['images/diagrams/nn-cadence-systolic-dataflow.svg?v=5','Systolic dataflow','Weights remain local to each PE; activations move horizontally and partial sums move vertically.','wide'],
+      ['images/diagrams/nn-cadence-pe-datapath.svg','Processing element datapath','Signed-Braun multiplication, accumulation, and activation.','wide'],
+      ['images/nn_training_curve.png','Training and validation curve','The floating-point model reached 91.54% on the held-out test set; the Q3.5 hardware reached 90.28% on the same 319 samples.','wide'],
       ['images/nn_weight_heatmaps.png','Quantized weights and biases','Frozen Q3.5 weight and bias matrices used by the hardware model.','wide'],
-      ['images/nn_innovus_layout.png','Fig. 2 - Complete routed layout','Full Cadence Innovus die view, retaining the complete boundary and Metal3/Metal4 VDD/VSS power-stripe grid.','wide']
+      ['images/nn_floorplan.png','Floorplan','Core and power-distribution planning before placement.','wide'],
+      ['images/nn_cts_report.png','Clock-tree synthesis','Clock-tree implementation check.','wide'],
+      ['images/nn_innovus_layout.png','Post-route Innovus die view','Routed compute tile with the die boundary and VDD/VSS power grid. The project report records a separate GDS stream-out.','wide'],
+      ['images/nn_timing_report.png','Post-route timing','Timing evidence for the 100 MHz implementation target.','wide'],
+      ['images/nn_area_report.png','Cell-area report','Area breakdown for the completed compute tile.','wide'],
+      ['images/nn_power_report.png','Power report','Post-route power estimate using default activity.','wide'],
+      ['images/nn_gate_level_sim.png','SDF gate-level verification','Gate-level simulation used to compare the tile with the fixed-point model.','wide']
     ]
   },
   proj_flash: {
-    note:'The architecture and DNL/INL plots are redrawn from the report circuit and result table. All Cadence and MATLAB screenshots below are original project outputs.',
+    note:'The circuit figures follow the comparator and encoding chain; the plots show the resulting transfer behavior and linearity.',
     figures:[
-      ['images/diagrams/flashadc-architecture.svg?v=4','Redrawn ADC architecture','Vin and seven resistive-ladder taps independently feed the comparator bank before thermometer-to-Gray and Gray-to-binary conversion.','wide'],
+      ['images/diagrams/flashadc-architecture.svg?v=4','ADC signal path','Vin and seven ladder taps feed the comparator bank, followed by thermometer-to-Gray and Gray-to-binary conversion.','wide'],
       ['images/flashadc/fig1_comparator_schematic.png','Fig. 1 - Comparator schematic','PMOS-input comparator used in the seven-comparator array.','wide'],
       ['images/flashadc/fig5_offset_measurement_simulation.png','Fig. 5 - Offset measurement','Comparator input-offset simulation; reported offset is -0.6569 mV.','wide'],
       ['images/flashadc/fig8_comparator_transient_output.png','Fig. 8 - Comparator transient','Transient comparator output from the report testbench.','wide'],
-      ['images/flashadc/fig10_3bit_adc_architecture.png','Fig. 10 - Complete ADC circuit','Cadence comparator array and resistive reference ladder used by the 3-bit converter.','wide'],
-      ['images/flashadc/fig13_thermometer_code_output.png','Fig. 13 - Thermometer code','Comparator-array thermometer-code transitions.','wide'],
+      ['images/flashadc/fig10_3bit_adc_architecture.png','Fig. 10 - Comparator array and encoder','Cadence schematic of the comparator bank and encoding path.','wide'],
+      ['images/flashadc/fig11_resistor_ladder_schematic.png','Fig. 11 - Reference ladder','Resistor-ladder schematic supplying the comparator reference levels.','wide'],
+      ['images/flashadc/fig13_thermometer_code_output.png','Fig. 13 - Comparator transition','Input ramp and T0 output in the comparator testbench.','wide'],
       ['images/flashadc/fig17_thermometer_to_gray_encoder.png','Fig. 17 - Thermometer-to-Gray encoder','Cadence digital encoder schematic.'],
       ['images/flashadc/fig18_decoder_design.png','Fig. 18 - Gray-to-binary decoder','Cadence decoder schematic.'],
-      ['images/flashadc/fig20_decoder_transient_cropped.png','Fig. 20 - Decoder transient','Three decoder waveform panels from the Cadence simulation; only the application controls below the plots were cropped out.','wide'],
-      ['images/flashadc/fig22_3bit_adc_transient_simulation.png','Fig. 22 - Complete ADC transient','Full circuit and output waveform composite from the report.','wide tall-evidence'],
-      ['images/diagrams/flashadc-dnl-inl.svg','Redrawn DNL / INL plot','Redrawn directly from the eight-code result table; units remain LSB.','wide'],
+      ['images/flashadc/fig20_decoder_transient_cropped.png','Fig. 20 - Decoder transient','Gray-to-binary decoder outputs during the input sweep.','wide'],
       ['images/flashadc/fig27_adc_transfer_function_plot.png','Fig. 27 - MATLAB transfer function','Original simulated-versus-ideal ADC transfer curve.','wide result-evidence']
     ]
   },
   proj_sys: {
-    note:'The completed physical array is 4×1. The 4×4 evidence consists of a complete schematic and pre-layout simulation, not a 4×4 layout.',
+    note:'The completed physical array is 4×1; the 4×4 schematic was verified in pre-layout simulation.',
     figures:[
-      ['images/diagrams/systolic-4x4-dataflow.svg?v=5','Redrawn 4×4 dataflow','A values enter from the left, B values enter from the top, and accumulated column outputs leave the bottom.','wide'],
+      ['images/diagrams/systolic-4x4-dataflow.svg?v=5','4×4 dataflow','A values enter from the left, B values enter from the top, and accumulated outputs leave the bottom.','wide'],
       ['images/systolic/fig18_dpu_schematic.png','Fig. 18 - DPU schematic','Cadence schematic containing the two input registers, multiplier, adder, and accumulator register.'],
       ['images/systolic/fig19_dpu_layout.png','Fig. 19 - DPU layout','Completed 978 µm² datapath-unit layout.','wide portrait-medium'],
       ['images/systolic/fig_dpu_post_layout_simulation_result.png','Fig. 28 - DPU post-layout simulation','Extracted DPU verification waveform.','wide'],
       ['images/systolic/fig20_4x1_systolic_array_schematic.png','Fig. 20 - 4×1 schematic','Completed four-by-one array schematic.','portrait-evidence'],
-      ['images/systolic/fig21_4x1_systolic_array_layout.png','Fig. 21 - 4×1 layout','Completed four-by-one array layout; this is not a 4×4 layout.','portrait-evidence'],
+      ['images/systolic/fig21_4x1_systolic_array_layout.png','Fig. 21 - 4×1 layout','Extracted layout of the four-by-one row.','portrait-evidence'],
       ['images/systolic/fig_4x1_array_post_layout_simulation_result.png','Fig. 29 - 4×1 post-layout simulation','Post-layout waveform for the completed 4×1 array.','wide'],
       ['images/systolic/fig26_4x4_systolic_array_schematic.png','Fig. 26 - 4×4 schematic','Complete 4×4 Cadence array schematic assembled from four 4×1 rows.','wide'],
       ['images/systolic/fig_4x4_array_pre_layout_simulation_result.png','Fig. 30 - 4×4 pre-layout outputs, view 1','First output group from the complete 4×4 pre-layout simulation.','wide'],
-      ['images/systolic/fig_4x4_array_simulation_result.png','Fig. 30 - 4×4 pre-layout outputs, view 2','Second output group from the same 4×4 pre-layout simulation; no post-layout claim is made.','wide']
+      ['images/systolic/fig_4x4_array_simulation_result.png','4×4 pre-layout outputs, additional view','Second output group from the 4×4 schematic simulation.','wide']
     ]
   },
   proj_spmm: {
-    note:'These are redrawn explanations of the implemented RTL and testbench. The testbench checks all 25 outputs against hard-coded expected values; no simulator waveform or synthesis/PPA result is claimed on this page.',
+    note:'The diagrams trace sparse formatting through outer-product generation, sorting, merging, and the final matrix check.',
     figures:[
-      ['images/diagrams/spmm-implemented-dataflow.svg','Redrawn implemented RTL architecture','Dense inputs pass through fixed-slot sparse conversion, five PEs, sorting, merging, accumulation, and dense output.','wide'],
-      ['images/diagrams/spmm-pe.svg','Redrawn processing element','Index matching and partial-product generation reconstructed from the RTL.','wide'],
-      ['images/diagrams/spmm-bitonic-sort.svg?v=4','Redrawn sorting network','Six compare-exchange layers order eight partial-product tuples before equal-index merging.','wide'],
-      ['images/diagrams/spmm-verification-flow.svg','Redrawn verification flow','The self-checking testbench compares DUT outputs with the expected matrix stored in the testbench.','wide'],
-      ['images/spmm/fig5_proposed_spmm_accelerator_architecture.png','Course architecture figure','Initial course-project architecture that preceded the later complete RTL implementation.','wide']
+      ['images/diagrams/spmm-implemented-dataflow.svg','SpMM datapath','Dense inputs pass through sparse formatting, five PEs, sorting, merging, accumulation, and dense output.','wide'],
+      ['images/diagrams/spmm-pe.svg','Processing element','Index matching and partial-product generation.','wide'],
+      ['images/diagrams/spmm-bitonic-sort.svg?v=4','Sorting network','Eight-input sorting stage ahead of equal-index merging.','wide'],
+      ['images/diagrams/spmm-verification-flow.svg','Verification flow','The testbench compares all 25 DUT outputs with the expected matrix.','wide']
     ]
   },
   proj_eog: {
-    note:'The first diagram is a redrawn project-specific control path. The circuit, prototype photographs, and measured traces are original project evidence.',
+    note:'The circuit, prototype, and measured traces follow the signal from the electrodes to the robot command.',
     figures:[
-      ['images/diagrams/eog-system-overview.svg','Redrawn EOG control path','Five electrodes feed two analog channels; the controller classifies blink, left, right, or center and transmits the robot command.','wide'],
+      ['images/diagrams/eog-system-overview.svg','EOG control path','Five electrodes feed two analog channels; the controller classifies blink, left, right, or center.','wide'],
       ['images/eog/eog_analog_frontend.png','Fig. 12 - Analog front end','LTspice acquisition, filtering, amplification, and level-shifting circuit for one channel.','wide'],
       ['images/eog/eog_simulated_waveform.png','Fig. 13 - Front-end transient','Simulated microvolt input and level-shifted output of the complete analog channel.','wide'],
       ['images/eog/eog_electrodes.png','Fig. 17 - Prepared electrodes','Prepared Ag/AgCl electrodes used for EOG acquisition.'],
@@ -1241,7 +1286,7 @@ if (flashResultsSection) {
 const elmResultsSection = projectSection('proj_elm', 'Results & Measurements');
 if (elmResultsSection) {
   elmResultsSection.insertAdjacentHTML('beforeend',
-    '<div class="native-analysis"><h3>Classification Results</h3><div class="tbl-wrap"><table class="data"><thead><tr><th>Implementation</th><th>Training Accuracy</th><th>Testing Accuracy</th></tr></thead><tbody><tr><td>Mixed-signal VLSI implementation</td><td>100%</td><td>58.33%</td></tr><tr><td>MATLAB software implementation</td><td>100%</td><td>66.67%</td></tr></tbody></table></div><p class="equation-note">The report attributes the testing gap to overfitting in the small training and test set.</p></div>');
+    '<div class="native-analysis"><h3>Classification Results</h3><p>Binary UCI Skin Segmentation task, using 29 training and 12 test samples selected for this circuit study.</p><div class="tbl-wrap"><table class="data"><thead><tr><th>Implementation</th><th>Training Accuracy</th><th>Testing Accuracy</th></tr></thead><tbody><tr><td>Mixed-signal circuit with MATLAB readout</td><td>100%</td><td>7/12 (58.33%)</td></tr><tr><td>MATLAB software model</td><td>100%</td><td>8/12 (66.67%)</td></tr></tbody></table></div><p class="equation-note">The circuit path classified one fewer test sample correctly. This small split is useful for a proof of concept, not a reliable estimate of generalization.</p></div>');
 }
 
 // Keep every project text-first: contributions, tools, results, challenges,
@@ -1399,20 +1444,35 @@ function drawCharts(panelId){
       <h4>Original QoR values</h4>
       <p class="csub">Clean baseline compared directly with the best observed implementation run</p>
       <div class="qor-values" aria-label="Original baseline and best-run quality-of-results values">
-        <div class="qor-value-row"><strong>Setup WNS</strong><span class="qor-reading">+1.789 ns</span><span class="qor-arrow">&rarr;</span><span class="qor-reading">+2.215 ns</span><span class="qor-delta">+23.8% slack</span></div>
-        <div class="qor-value-row"><strong>Hold WNS</strong><span class="qor-reading">+0.170 ns</span><span class="qor-arrow">&rarr;</span><span class="qor-reading">+0.176 ns</span><span class="qor-delta">+3.5% slack</span></div>
+        <div class="qor-value-row"><strong>Setup WNS</strong><span class="qor-reading">+1.789 ns</span><span class="qor-arrow">&rarr;</span><span class="qor-reading">+2.215 ns</span><span class="qor-delta">+0.426 ns</span></div>
+        <div class="qor-value-row"><strong>Hold WNS</strong><span class="qor-reading">+0.170 ns</span><span class="qor-arrow">&rarr;</span><span class="qor-reading">+0.176 ns</span><span class="qor-delta">+0.006 ns</span></div>
         <div class="qor-value-row"><strong>Cell area</strong><span class="qor-reading">199,338.698 &micro;m&sup2;</span><span class="qor-arrow">&rarr;</span><span class="qor-reading">197,728.015 &micro;m&sup2;</span><span class="qor-delta">0.8% smaller</span></div>
         <div class="qor-value-row"><strong>Total power</strong><span class="qor-reading">16.586 mW</span><span class="qor-arrow">&rarr;</span><span class="qor-reading">15.976 mW</span><span class="qor-delta">3.7% lower</span></div>
       </div>`;
   }
+  if (panelId === 'proj_flash') {
+    const powerCard = document.getElementById('flash_power')?.closest('.chart-card');
+    if (powerCard) {
+      powerCard.querySelector('h4').textContent = 'Power in separate simulations';
+      powerCard.querySelector('.csub').textContent = 'Single comparator, decoder, and assembled ADC testbenches';
+      powerCard.insertAdjacentHTML('beforeend','<p class="cnote">These are separate testbench measurements; the full-ADC value is not the sum of the other two bars.</p>');
+    }
+  }
   const specs = (CHART_DATA[panelId] || [])
     .filter(spec => spec.id !== 'qor_abs')
-    .map(spec => spec.id === 'qor_drc' ? {
+    .map(spec => spec.id === 'qor_delta' ? {
+      ...spec,
+      title:'Area and power in the best Innovus run',
+      sub:'Change from the clean baseline; lower is better',
+      labels:['Cell area','Total power'],
+      datasets:[{label:'Change from baseline (%)',data:[-0.8,-3.7],signColors:true}],
+      xTitle:'Change from baseline (%)'
+    } : spec.id === 'qor_drc' ? {
       ...spec,
       type:'bar',
       horizontal:false,
-      title:'DRC results across 16 implementation runs',
-      sub:'11 DRC-clean runs · 4 runs with violations · 1 run without a saved DRC report',
+      title:'DRC results from 16 selected runs',
+      sub:'11 with zero DRC · 4 with violations · 1 without a saved DRC report; the dashboard tracks all 23 runs',
       labels:['R1','R2','R3','R4','R5','R6','R7','R8','R9','R10','R11','R12','R13','R14','R15','R16'],
       datasets:[{label:'DRC violations',data:[150,404,128,null,0,0,0,0,0,0,0,0,0,0,0,30],drcColors:true}],
       unit:' violations',
@@ -1437,6 +1497,23 @@ function drawCharts(panelId){
         'Run 009 · Genus area reclaim',
         'Run 010 · area/buffer relief'
       ]
+    } : spec.id === 'flash_power' ? {
+      ...spec,
+      title:'Power from separate simulations',
+      sub:'Component and assembled-ADC testbenches; bars are not additive',
+      labels:['Single comparator testbench','Decoder testbench','Full ADC testbench']
+    } : spec.id === 'flash_dnlinl' ? {
+      ...spec,
+      sub:'Code-transition analysis; 5 mV sweep step equals 0.04 LSB'
+    } : spec.id === 'nncad_area' ? {
+      ...spec,
+      sub:'64 signed Braun multipliers account for 46.7% of 202,502.5 µm² cell area',
+      datasets:spec.datasets.map(data => ({...data,label:'Cell area (µm²)'})),
+      unit:' µm²'
+    } : spec.id === 'sys_delay' ? {
+      ...spec,
+      title:'Delay estimates by building block',
+      sub:'1.11 ns delayed-clock and 2.22 ns shared-clock DPU estimates, not measured fmax'
     } : spec);
   if (!specs.length) { drawn.add(panelId); return; }
 
@@ -1617,8 +1694,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const scopeNote = panel.querySelector('.phead + .ppa + .note');
   if (title) title.textContent = 'LLM-Assisted RTL-to-GDS Optimization & Tempus Closure';
   if (meta) meta.textContent = 'Independent R&D Project · Cadence Genus / Innovus / Tempus · GPDK090 90 nm · 2026';
-  if (ppa) ppa.innerHTML = '16-run V2 study &middot; best Innovus run: +23.8% setup WNS, -0.8% area, -3.7% power &middot; final nominal Tempus: setup +2.192 ns, hold 0.000 ns, TNS 0, FEP 0';
-  if (scopeNote) scopeNote.innerHTML = 'I built this project to explore a practical question: can an LLM help an engineer decide what to try next in an RTL-to-GDS flow? Claude and Codex interpreted compact, source-linked reports and suggested bounded experiments; Python guardrails and Cadence sign-off decided what was accepted. Across 16 implementation runs, the flow improved the 8&times;8 compute tile and reached clean nominal setup and hold in Tempus.';
+  if (ppa) ppa.innerHTML = '23 recorded runs &middot; best Innovus exploration run: +0.426 ns setup WNS, 0.8% less cell area, 3.7% less power &middot; final Tempus: +2.192 ns setup, 0.000 ns hold, TNS 0, FEP 0';
+  if (scopeNote) scopeNote.innerHTML = 'I reused the 64-PE <code>nn_engine_tile_top</code> from my neural-network accelerator as a test case for physical-design optimization. This study starts from a new floorplan baseline, so its area and power differ from the earlier implementation. Across 23 recorded runs&mdash;16 Codex, 2 Claude, and 5 baseline or manual&mdash;the language models helped choose experiments; I reviewed each proposal, and fresh Cadence results determined whether the change stayed.';
   if (scopeNote && !panel.querySelector('.ppa-dashboard-link')) {
     scopeNote.insertAdjacentHTML('afterend', '<div class="hero-meta ppa-dashboard-link" style="margin-top:16px"><a class="pill cta" href="https://varshasayee-20.github.io/ppa-dashboard/" target="_blank" rel="noopener">Open PPA V2 Dashboard &nearr;</a></div>');
   }
@@ -1631,9 +1708,9 @@ document.addEventListener('DOMContentLoaded', () => {
     <h2>My Contributions</h2><div class="rule"></div><div class="entry"><ul>
       <li>Built deterministic Python parsers that reduce Genus, Innovus, and Tempus reports to compact timing, physical-verification, area, power, congestion, and runtime records with source provenance.</li>
       <li>Built a constrained, human-reviewed LLM planning assistant for Claude/Codex. It reads compact implementation evidence and selects from an allowed physical-design action space, while Python validates commands, scores QoR, records proposals, and enforces DRC, connectivity, setup, and hold guardrails.</li>
-      <li>Generated Dashboard V2 to compare 16 runs, track pass/fail state, expose critical paths, visualize metric trends, record agent attribution and token/runtime data, and link displayed values back to their source reports.</li>
+      <li>Built a dashboard for all 23 recorded runs. It keeps failed experiments alongside passing ones and links timing, area, power, and physical-check values to their source reports.</li>
       <li>Used independent Tempus STA to identify ten small nominal fast-corner hold failures after Innovus was clean. Applied two bounded hold-repair passes: three BUFX2 insertions plus seven half-adder downsizes reduced the failing endpoints to five; five additional local BUFX2 insertions closed the residual paths.</li>
-      <li>Rerouted the ECOs, re-extracted parasitics, and rechecked both tools. Final Tempus setup remained +2.192 ns and hold reached 0.000 ns with zero TNS and zero failing endpoints; Innovus remained DRC- and connectivity-clean.</li>
+      <li>Rerouted the ECOs, re-extracted parasitics, and rechecked both tools. The final nominal Tempus check reported +2.192 ns setup WNS and 0.000 ns hold WNS, with zero TNS and failing endpoints. Innovus on the post-ECO database reported +2.164 ns setup WNS, +0.248 ns hold WNS, and zero DRC and connectivity violations.</li>
     </ul></div>`;
 
   const tools = byHeading('Tools & Technologies');
@@ -1646,31 +1723,31 @@ document.addEventListener('DOMContentLoaded', () => {
   if (glance) {
     const cards = glance.querySelectorAll('.chart-card');
     if (cards[0]) {
-      cards[0].querySelector('h4').textContent = 'Best Innovus run vs. clean baseline';
-      cards[0].querySelector('.csub').textContent = 'Positive is better for slack; negative is better for area and power';
+      cards[0].querySelector('h4').textContent = 'Area and power in the best Innovus run';
+      cards[0].querySelector('.csub').textContent = 'Change from the clean baseline; lower is better';
     }
     if (cards[1]) {
       cards[1].querySelector('h4').textContent = 'Original QoR values';
       cards[1].querySelector('.csub').textContent = 'Clean baseline compared directly with the best observed implementation run';
     }
     if (cards[2]) {
-      cards[2].querySelector('h4').textContent = 'DRC results across 16 implementation runs';
-      cards[2].querySelector('.csub').textContent = '11 DRC-clean runs · 4 runs with violations · 1 run without a saved DRC report';
+      cards[2].querySelector('h4').textContent = 'DRC results from 16 selected runs';
+      cards[2].querySelector('.csub').textContent = '11 with zero DRC · 4 with violations · 1 without a report; all 23 runs are in the dashboard';
     }
   }
 
   const results = byHeading('Results & Measurements');
   if (results) results.innerHTML = `
     <h2>Results &amp; Measurements</h2><div class="rule"></div>
-    <div class="tbl-cap">Dashboard V2: clean baseline to best implementation run</div>
+    <div class="tbl-cap">Clean baseline and best Innovus exploration run</div>
     <div class="tbl-wrap"><table class="data"><thead><tr><th>Metric</th><th>Clean baseline</th><th>Best observed run</th><th>Change</th></tr></thead><tbody>
-      <tr><td>Setup WNS</td><td>+1.789 ns</td><td>+2.215 ns</td><td>+23.8%</td></tr>
-      <tr><td>Hold WNS</td><td>+0.170 ns</td><td>+0.176 ns</td><td>+3.5%</td></tr>
+      <tr><td>Setup WNS</td><td>+1.789 ns</td><td>+2.215 ns</td><td>+0.426 ns (4.26% of clock)</td></tr>
+      <tr><td>Hold WNS</td><td>+0.170 ns</td><td>+0.176 ns</td><td>+0.006 ns</td></tr>
       <tr><td>Cell area</td><td>199,338.698 &micro;m&sup2;</td><td>197,728.015 &micro;m&sup2;</td><td>-0.8%</td></tr>
       <tr><td>Total power</td><td>16.586 mW</td><td>15.976 mW</td><td>-3.7%</td></tr>
       <tr><td>DRC / connectivity</td><td>0 / 0</td><td>0 / 0</td><td>Clean</td></tr>
     </tbody></table></div>
-    <p class="tbl-note">The best-observed row is <code>util055_margin10_ar12_run006_codex_coarse_qor_sweep</code>. Dashboard V2 indexes 16 runs and links each reported value to its parsed source report.</p>
+    <p class="tbl-note">The best exploration run is <code>util055_margin10_ar12_run006_codex_coarse_qor_sweep</code>. It passed the Innovus checks but is not the separately repaired Tempus sign-off run. The linked dashboard contains all 23 runs and their source reports.</p>
 
     <div class="tbl-cap">Independent Tempus nominal hold-closure sequence</div>
     <div class="tbl-wrap"><table class="data"><thead><tr><th>Stage</th><th>Setup WNS</th><th>Hold WNS</th><th>Hold TNS</th><th>Hold FEP</th></tr></thead><tbody>
@@ -1678,7 +1755,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <tr><td>First bounded hold repair</td><td>+2.192 ns</td><td>-0.005 ns</td><td>-0.017 ns</td><td>5</td></tr>
       <tr><td>Residual-path repair</td><td>+2.192 ns</td><td>0.000 ns</td><td>0</td><td>0</td></tr>
     </tbody></table></div>
-    <p class="tbl-note">The first repair removed half of the failing endpoints even though a different residual path became the new worst path. After rerouting and SPEF re-extraction, final Innovus results were setup +2.164 ns, hold +0.248 ns, DRC 0, and connectivity violations 0.</p>
+    <p class="tbl-note">The first repair removed half of the failing endpoints even though a different path became the new worst path. On the final post-ECO database, Tempus reported +2.192 ns setup and 0.000 ns hold; Innovus reported +2.164 ns setup, +0.248 ns hold, DRC 0, and connectivity violations 0. These are different tools and timing views.</p>
 
     <div class="tbl-cap">What Dashboard V2 does</div>
     <div class="tbl-wrap"><table class="data"><thead><tr><th>Dashboard view</th><th>Purpose</th></tr></thead><tbody>
@@ -1732,8 +1809,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const figures = byHeading('Figures') || byHeading('Design Evidence');
   if (figures) figures.innerHTML = `
-    <h2>Physical Design Evidence</h2><div class="rule"></div>
-    <div class="fig-group"><div class="figs"><figure class="fig wide physical-evidence"><div class="box"><img class="fig-img" src="images/nn_innovus_layout.png" alt="Complete Innovus layout of nn_engine_tile_top with power grid" loading="lazy" decoding="async"></div><figcaption>Complete routed <code>nn_engine_tile_top</code> Innovus view, including the die boundary and visible power-distribution grid used by the optimization study.</figcaption></figure></div></div>`;
+    <h2>Implementation Evidence</h2><div class="rule"></div>
+    <p>This optimization study used the same compute tile shown in the <a href="#proj_nncad" data-goto="proj_nncad">neural-network accelerator project</a>. The <a href="https://varshasayee-20.github.io/ppa-dashboard/" target="_blank" rel="noopener">PPA dashboard</a> shows the run inventory, retained failures, Tempus closure, and report-linked metrics.</p>`;
 
   /* Other legacy renderers also run on DOMContentLoaded. Clean up after every
      listener has finished so the deprecated overview cards cannot reappear. */
@@ -1744,12 +1821,6 @@ document.addEventListener('DOMContentLoaded', () => {
       section.querySelector(':scope > h2')?.textContent.trim() === 'Results & Measurements');
     const finalFlow = panel.querySelector('.agentic-closure-flow');
     if (finalResults && finalFlow) finalResults.insertAdjacentElement('afterend', finalFlow);
-
-    const physicalEvidence = [...panel.querySelectorAll(':scope > .wrap > .sec')].find(section =>
-      section.querySelector(':scope > h2')?.textContent.trim() === 'Physical Design Evidence');
-    if (physicalEvidence) physicalEvidence.innerHTML = `
-      <h2>Physical Design Evidence</h2><div class="rule"></div>
-      <div class="fig-group"><div class="figs"><figure class="fig wide physical-evidence"><div class="box"><img class="fig-img" src="images/nn_innovus_layout.png" alt="Complete Innovus layout of the eight-by-eight compute tile with its power grid" loading="lazy" decoding="async"></div><figcaption>Complete routed 8&times;8 compute-tile view from Innovus, including the die boundary and power-distribution grid used in the optimization study.</figcaption></figure></div></div>`;
 
     const finalMemristorNote = document.querySelector('#proj_mem > .wrap > .note');
     if (finalMemristorNote) finalMemristorNote.textContent = 'The thesis evidence below includes the actual decoder-window generator, the complete integration decoder, device and neuron characterization, window simulations, and representative STDP-decoder simulations.';
@@ -1806,19 +1877,19 @@ document.addEventListener('DOMContentLoaded', () => {
       contributions: [
         'Mapped the ELM input and hidden-layer computation onto a mixed-signal 180 nm CMOS implementation; the trained second-stage readout remained in MATLAB.',
         'Implemented the DAC/input-generation path, current-mirror weight network, and current-mode axon-hillock neuron whose oscillation rate represents hidden-layer activation.',
-        'Implemented the cited TSPC D flip-flop, counter, carry, and PIPO circuits and integrated them into the rotation-counting extension used to reuse the analog neuron hardware.',
+        'Implemented the TSPC D flip-flop, counter, carry, and PIPO circuits for rotation counting. The counter approach follows Thotat and Mal (MicroCom 2016), cited in the project report.',
         'Verified oscillator response, digital timing, hidden-layer rotation, and the MATLAB readout classification results.'
       ],
-      interpretation: 'Rotation counting reduced the number of analog neurons, but it coupled oscillator frequency to counter and register timing. The report also attributes the testing gap to overfitting in the small dataset. A larger dataset, mismatch analysis, and a hardware readout stage remain to be evaluated.'
+      interpretation: 'Rotation counting reduces analog-neuron replication, but makes counter and register timing depend on the oscillator period. On the 12-sample test split, the circuit and MATLAB paths differed by one classification. I would test a larger dataset and device mismatch before drawing conclusions about generalization.'
     },
     proj_agentic: {
       question: 'Can an LLM help choose useful RTL-to-GDS experiments without being allowed to bypass deterministic implementation and sign-off checks?',
       approach: 'Parse Genus, Innovus, and Tempus reports; let a constrained, human-reviewed LLM propose one allowed change; rerun the flow; then accept or reject the result with scripted guardrails.',
-      evidence: 'Sixteen recorded runs, source-linked metrics, rejected DRC regressions, two bounded hold-repair passes, and final nominal Tempus setup and hold closure.',
+      evidence: 'Twenty-three recorded runs, source-linked metrics, rejected DRC regressions, two bounded hold-repair passes, and nominal Tempus setup and hold closure.',
       contributions: [
         'Built deterministic parsers for Genus, Innovus, and Tempus reports so timing, area, power, physical-verification, congestion, and runtime values remain linked to their source files.',
         'Added a human-reviewed LLM planning layer that can select only from an allowed physical-design action set; Python validates commands and enforces DRC, connectivity, setup, and hold guardrails.',
-        'Generated Dashboard V2 to compare 16 implementation runs, retain failed experiments, expose critical paths, and record proposal, runtime, and source-report provenance.',
+        'Built Dashboard V2 to compare all 23 recorded runs, retain failed experiments, expose critical paths, and record proposal, runtime, and source-report provenance.',
         'Used independent Tempus analysis to find residual hold failures, applied two bounded repair passes, rerouted and re-extracted the design, and reached +2.192 ns setup WNS, 0.000 ns hold WNS, zero TNS, and zero failing endpoints while Innovus remained DRC- and connectivity-clean.'
       ],
       interpretation: 'The LLM was most useful as a bounded experiment planner; it did not decide whether a run passed. Fresh Cadence results and deterministic checks made that decision. The next question is whether different proposal strategies can improve closure gain per run, runtime, and failed-run rate across more blocks and timing corners.'
@@ -1840,7 +1911,7 @@ document.addEventListener('DOMContentLoaded', () => {
       approach: 'Convert dense inputs to fixed-slot CSC/CSR data, generate partial products in five PEs, sort by output index, merge collisions, and accumulate into dense C.',
       evidence: 'The self-checking Verilog testbench compares all 25 outputs with hard-coded expected values, including all 13 expected nonzero entries.',
       contributions: [
-        'Implemented the complete synthesizable 5×5 SpMM datapath in Verilog using fixed-slot CSC/CSR-style sparse storage.',
+        'Implemented a 5×5 SpMM datapath in Verilog using fixed-slot CSC/CSR-style sparse storage.',
         'Built the five-PE outer-product stage, partial-product storage, bitonic sorter, equal-index merge and accumulation logic, dense output accumulator, and four-state controller.',
         'Created block-level and system-level tests for sparse formatting, sorting, merging, and final accumulation.',
         'Checked every output location against the 5×5 expected matrix stored in the testbench, including all 13 nonzero results.'
@@ -1848,16 +1919,16 @@ document.addEventListener('DOMContentLoaded', () => {
       interpretation: 'The fixed-size representation made the datapath deterministic and straightforward to verify, but it also fixes the storage and sorter structure to one matrix size. Synthesis and PPA results are not reported. The next step is to parameterize dimensions and sparsity and measure memory traffic, throughput, area, and power.'
     },
     proj_eog: {
-      question: 'Can a two-channel analog front end turn low-frequency eye movements into repeatable wireless robot commands?',
+      question: 'Can a two-channel analog front end produce eye-movement signals clean enough to drive threshold-based robot commands?',
       approach: 'Acquire horizontal and vertical EOG, amplify and band-limit the signals, shift them into the ADC range, classify gestures, and transmit direction commands.',
       evidence: 'LTspice front-end simulation, prepared electrodes and robot hardware, measured oscilloscope traces, and digitized movement and blink waveforms.',
       contributions: [
         'Designed the two-channel EOG acquisition chain using INA118 instrumentation amplifiers, active filtering, and level shifting for the microcontroller ADC.',
         'Prepared the electrode interface and characterized horizontal and vertical eye-movement signals in simulation and on the oscilloscope.',
-        'Implemented threshold-based blink, left, right, and center classification and transmitted the command at 115.2 kbps through the HC-12 link.',
+        'Implemented threshold-based blink, left, right, and center classification. The HC-12 serial interface was configured at 115200 bps.',
         'Integrated the analog front end, embedded controller, wireless link, and robot-car hardware into a working prototype.'
       ],
-      interpretation: 'The prototype showed that the analog conditioning and embedded control chain could translate eye movement into robot motion, but the thresholds were sensitive to electrode placement and user-dependent signal amplitude. The next step is per-user calibration with adaptive thresholds and measured end-to-end command latency.'
+      interpretation: 'The prototype translated observed eye movements into robot motion. I did not measure per-gesture accuracy or end-to-end command latency; those would need repeated trials with electrode placement and per-user calibration controlled.'
     },
     proj_flash: {
       question: 'Can a 3-bit Flash ADC meet the project power and linearity targets using a seven-comparator architecture in 180 nm CMOS?',
@@ -1866,8 +1937,8 @@ document.addEventListener('DOMContentLoaded', () => {
       contributions: [
         'Designed and simulated the seven-comparator Flash ADC signal path in Cadence Virtuoso, including the resistor ladder and both encoding stages.',
         'Characterized the comparator response and the complete ADC transient behavior across the input range.',
-        'Calculated the power budget from the circuit simulations and evaluated transfer-function linearity using DNL and INL. The 19.82 dB SQNR value is the ideal 3-bit expression, not a measured simulation result.',
-        'Compared the simulated code transitions with the ideal MATLAB transfer curve without assigning the remaining transition error to an unverified cause.'
+        'Measured full-ADC power in simulation and evaluated transfer-function linearity using DNL and INL.',
+        'Compared the simulated code transitions with the ideal MATLAB transfer curve. Separating comparator-offset and ladder-mismatch effects would require further mismatch analysis.'
       ],
       interpretation: 'The simulated design met the project power and linearity targets. The comparator simulation reported −4° phase margin and −0.6569 mV offset, so stability and offset require further work. A latch or sample-and-hold stage and mismatch analysis would be needed before claiming robust conversion.'
     }
@@ -1884,11 +1955,11 @@ document.addEventListener('DOMContentLoaded', () => {
     panel.querySelector('.research-frame')?.remove();
     const frame = document.createElement('div');
     frame.className = 'research-frame';
-    frame.innerHTML = [
-      ['Question', study.question],
-      ['Approach', study.approach],
-      ['Evidence', study.evidence]
-    ].map(([label, copy]) => `<div class="research-frame-item"><b>${label}</b><p>${escapeText(copy)}</p></div>`).join('');
+    const featured = ['proj_mem','proj_nncad','proj_flash'].includes(projectId);
+    frame.classList.toggle('research-frame-compact', !featured);
+    frame.innerHTML = featured
+      ? [['Question', study.question], ['Approach', study.approach], ['Evidence', study.evidence]].map(([label, copy]) => `<div class="research-frame-item"><b>${label}</b><p>${escapeText(copy)}</p></div>`).join('')
+      : `<div class="research-frame-item"><b>Project focus</b><p>${escapeText(study.question)} ${escapeText(study.approach)}</p></div>`;
     const insertionPoint = wrap.querySelector('.ppa') || wrap.querySelector('.phead');
     insertionPoint?.insertAdjacentElement('afterend', frame);
 
@@ -1896,7 +1967,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contributions) contributions.innerHTML = `<h2>My Contributions</h2><div class="rule"></div><div class="entry"><ul>${study.contributions.map(item => `<li>${escapeText(item)}</li>`).join('')}</ul></div>`;
 
     const takeaway = directSection(panel, 'What I Took Away') || directSection(panel, 'Interpretation and Next Question');
-    if (takeaway) takeaway.innerHTML = `<h2>Interpretation and Next Question</h2><div class="rule"></div><p style="color:var(--ink-2);max-width:78ch;margin:0;text-align:justify">${escapeText(study.interpretation)}</p>`;
+    if (takeaway) takeaway.innerHTML = `<h2>${featured ? 'Interpretation and Next Question' : 'What I Learned'}</h2><div class="rule"></div><p style="color:var(--ink-2);max-width:78ch;margin:0;text-align:justify">${escapeText(study.interpretation)}</p>`;
   });
 
   /* Correct legacy report text that is still present in the static markup. */
@@ -1922,7 +1993,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (row.cells[0]?.textContent.trim() === 'Benchmark comparison') row.cells[1].textContent = 'Integration-decoder behavior compared with the Cadence implementation of the cited STDP topology.';
     });
     const note = memResults.querySelector('.tbl-note');
-    if (note) note.textContent = 'All values are Cadence simulation results from the thesis. The 627.7 µW value belongs to the implemented literature-based STDP topology; it is not an external measured result.';
+    if (note) note.textContent = 'These values come from Cadence simulations of the encoder, integration decoder, complete system, and STDP decoder.';
   }
 
   const nnPpa = document.querySelector('#proj_nncad .ppa');
@@ -1931,7 +2002,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (sysPpa) sysPpa.innerHTML = '978 &micro;m&sup2; DPU layout &middot; 7-cycle array sequence &middot; 1.2 ns simulation clock &middot; DPU and 4&times;1 post-layout evidence &middot; 4&times;4 pre-layout verification';
 
   const flashPpa = document.querySelector('#proj_flash .ppa');
-  if (flashPpa) flashPpa.innerHTML = '514.9 &micro;W simulated ADC power &middot; |DNL| and |INL| &le; 0.12 LSB &middot; ideal 3-bit SQNR expression: 19.82 dB';
+  if (flashPpa) flashPpa.innerHTML = '514.9 &micro;W simulated ADC power &middot; |DNL| and |INL| &le; 0.12 LSB';
   const flashResults = directSection(document.getElementById('proj_flash'), 'Results & Measurements');
   if (flashResults) {
     [...flashResults.querySelectorAll('tbody tr')].forEach(row => {
@@ -1939,6 +2010,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     const phaseNote = flashResults.querySelector('.tbl-note');
     if (phaseNote) phaseNote.textContent = 'The comparator was evaluated as an open-loop slicing stage. The reported −4° phase margin is retained as a limitation; the report does not establish closed-loop stability or a mismatch distribution.';
+    flashResults.insertAdjacentHTML('beforeend','<p class="tbl-note">The input sweep used 5 mV steps, equal to 0.04 LSB for a 125 mV code width. The DNL and INL values therefore have a 0.04 LSB step-size resolution.</p>');
   }
   const spmmResultsFinal = directSection(document.getElementById('proj_spmm'), 'Results & Measurements');
   if (spmmResultsFinal) {
@@ -1950,6 +2022,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const note = spmmResultsFinal.querySelector('.tbl-note');
     if (note) note.textContent = 'The current evidence is functional RTL verification. Synthesis, area, timing, and power results are not reported.';
   }
+  const spmmChallenges = directSection(document.getElementById('proj_spmm'), 'Design Challenges & Tradeoffs');
+  if (spmmChallenges) spmmChallenges.querySelectorAll('li').forEach(item => {
+    if (item.textContent.includes('25 partials per index')) item.textContent = 'Equal-index partial products have to be brought together before accumulation. The sorting and merge stages do that with fixed-size storage, which also limits the present design to 5×5 matrices.';
+  });
 
   const challengeOverrides = {
     proj_mem: [
@@ -1988,6 +2064,66 @@ document.addEventListener('DOMContentLoaded', () => {
     const copy = card?.querySelector('.body > p:not(.meta)');
     if (copy) copy.textContent = summary;
   });
+
+  // A gallery already follows each narrative; the repeated five-step strips add no new evidence.
+  document.querySelectorAll('.project-flow-block').forEach(block => block.remove());
+
+  const nnPanel = document.getElementById('proj_nncad');
+  const nnResults = directSection(nnPanel, 'Results & Measurements');
+  if (nnResults) {
+    nnResults.querySelectorAll('tbody tr').forEach(row => {
+      const metric = row.cells[0]?.textContent.trim() || '';
+      if (metric === 'Genus Synthesis' && row.cells[2]) row.cells[2].textContent = 'Not reported before CTS';
+      if (metric === 'Efficiency' && row.cells[1]) row.cells[1].textContent = '0.589 TOPS/W · 0.026 TOPS/mm² (die) · 0.047 TOPS/mm² (cell) · 17.30 M inf/s/W';
+    });
+    nnResults.insertAdjacentHTML('beforeend','<p class="tbl-note">Throughput uses two operations per multiply-accumulate. The GPDK090 project report records stream-out of <code>nn_engine_tile.gds</code>; the photograph in the gallery is the post-route Innovus view.</p>');
+  }
+  const nnCard = document.querySelector('#home [data-goto="proj_nncad"] .meta');
+  if (nnCard) nnCard.textContent = 'Indian Institute of Science, Bengaluru · GPDK090 90 nm · Jan–Oct 2025';
+
+  const sysPanel = document.getElementById('proj_sys');
+  const sysMeta = document.querySelector('#home [data-goto="proj_sys"] .meta');
+  if (sysMeta) sysMeta.textContent = 'ECE 4540 VLSI Circuit Design course project · Virginia Tech · NCSU 45 nm · Fall 2019';
+  const sysResults = directSection(sysPanel, 'Results & Measurements');
+  if (sysResults) {
+    sysResults.querySelectorAll('tbody tr').forEach(row => {
+      const metric = row.cells[0]?.textContent.trim() || '';
+      if (/theoretical shared-clock frequency/i.test(metric) && row.cells[1]) row.cells[1].textContent = 'Not characterized; 1.2 ns was the simulation stimulus period';
+    });
+    sysResults.insertAdjacentHTML('beforeend','<p class="tbl-note">The report records a seven-cycle output sequence for each tested array: the 4×1 outputs appear over cycles 4–7, and the 4×4 schematic was also run for seven cycles. The 1.11 ns and 2.22 ns values are estimated DPU clocking-scheme latencies, not measured maximum clock periods.</p>');
+  }
+
+  const eogPanel = document.getElementById('proj_eog');
+  const eogResults = directSection(eogPanel, 'Results & Measurements');
+  if (eogResults) eogResults.querySelectorAll('tbody tr').forEach(row => {
+    const metric = row.cells[0]?.textContent.trim() || '';
+    if (metric === 'Signal-conditioning band') row.cells[1].textContent = '≈0.72–15.9 Hz design target, calculated from R and C';
+    if (metric === '50 Hz attenuation') row.cells[1].textContent = 'Approximately −27 dB in LTspice cascaded-filter simulation';
+    if (metric === 'Wireless data rate') { row.cells[0].textContent = 'HC-12 serial setting'; row.cells[1].textContent = '115200 bps (UART setting, not measured over-air throughput)'; }
+  });
+  const eogMeta = document.querySelector('#home [data-goto="proj_eog"] .meta');
+  if (eogMeta) eogMeta.textContent = 'Shiv Nadar University · Supervisor: Prof. R. N. Biswas · Dec 2017';
+
+  const flashChart = document.getElementById('flash_power')?.closest('.chart-card');
+  if (flashChart) {
+    flashChart.querySelector('h4').textContent = 'Power from separate simulations';
+    flashChart.querySelector('.csub').textContent = 'Single comparator, decoder, and full ADC are different testbenches';
+  }
+  const flashDnlCard = document.getElementById('flash_dnlinl')?.closest('.chart-card');
+  if (flashDnlCard) flashDnlCard.querySelector('.csub').textContent = 'Code-transition analysis; 5 mV sweep step equals 0.04 LSB';
+  const sysDelayCard = document.getElementById('sys_delay')?.closest('.chart-card');
+  if (sysDelayCard) {
+    sysDelayCard.querySelector('h4').textContent = 'Delay estimates by building block';
+    sysDelayCard.querySelector('.csub').textContent = 'Clocking-scheme latency estimates, not measured maximum clock frequency';
+  }
+  const nnAreaCard = document.getElementById('nncad_area')?.closest('.chart-card');
+  if (nnAreaCard) nnAreaCard.querySelector('.csub').textContent = '64 signed Braun multipliers account for 46.7% of 202,502.5 µm² cell area';
+  if (flashResults) flashResults.insertAdjacentHTML('beforeend','<p class="tbl-note">The comparator (68.55 µW), decoder (279 µW), and assembled ADC (514.9 µW) values come from separate testbenches. Their operating conditions are not documented consistently enough to add the block values into a total; 514.9 µW is the separately simulated full-circuit result.</p>');
+  const flashPpaCard = document.querySelector('#home [data-goto="proj_flash"] .meta');
+  if (flashPpaCard) flashPpaCard.textContent = 'Virginia Tech · TSMC 180 nm CMOS · Spring 2020';
+
+  const memResultsFinal = directSection(document.getElementById('proj_mem'), 'Results & Measurements');
+  if (memResultsFinal) memResultsFinal.insertAdjacentHTML('beforeend','<div class="tbl-cap">STDP decoder response to three spike patterns</div><div class="tbl-wrap"><table class="data"><thead><tr><th>Input pattern</th><th>Decoded output</th></tr></thead><tbody><tr><td>Spikes aligned with reference</td><td>60.054 mV</td></tr><tr><td>BABBAAAA</td><td>834.599 mV</td></tr><tr><td>BABABABB</td><td>422.929 mV</td></tr></tbody></table></div>');
 });
 </script>
 </body>
