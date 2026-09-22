@@ -1180,7 +1180,9 @@ const evidenceCatalog = {
       ['images/elm/fig5.11_counter_pipo_waveform.png','Fig. 5.11 - Counter and PIPO timing','Neuron output clock, six-bit counter state, PIPO output, and PIPO clock.','wide'],
       ['images/elm/fig5.2_timing_diagram.png','Fig. 5.2 - Input and neuron timing','Demultiplexer selects the input channel; neuron enable starts the oscillator after data loading.','wide'],
       ['images/elm/fig5.9_hidden_layer_rotation.png','Fig. 5.9 - Rotation response','One neuron output changes frequency after the rotation control pulse for the report\'s example input pattern.','wide'],
-      ['images/elm/fig5.10_counter_waveform.png','Fig. 5.10 - Six-bit counter','The neuron output clocks the p5–p0 counter during the enabled interval.','wide']
+      ['images/elm/fig5.10_counter_waveform.png','Fig. 5.10 - Six-bit counter','The neuron output clocks the p5–p0 counter during the enabled interval.','wide'],
+      ['images/elm/table5.9_classification_results.png','Table 5.9 - Classification totals','Report results for the circuit-derived hidden layer with MATLAB readout and the MATLAB-only ELM.','wide'],
+      ['images/elm/fig4.2_mixed_signal_architecture.png','Fig. 4.2 - Referenced system architecture','Architecture cited from Yao et al. in the report; the FPGA second stage shown here was proposed, not implemented in this project.','wide']
     ]
   },
   proj_nncad: {
@@ -1260,7 +1262,7 @@ const evidenceCatalog = {
 
 const evidenceGroups = {
   proj_mem: {design:[0,3,4,5,6,13,18,21], simulation:[1,2,9,10,11,12,14,15,17,19,22,23,24], results:[7,8,16,20]},
-  proj_elm: {design:[0,1,2,3,5,6,7,8,9,10], simulation:[4,13,14,15,12], results:[11]},
+  proj_elm: {design:[0,17,1,2,3,5,6,7,8,9,10], simulation:[4,13,14], results:[11,15,12,16]},
   proj_nncad: {design:[0,1,2,5,6,8], simulation:[3,7,12], results:[4,9,10,11,13]},
   proj_flash: {design:[0,1,4,5,7,8], simulation:[2,3,6,9], results:[10]},
   proj_sys: {design:[0,1,2,4,5,7], simulation:[3,6], results:[8,9]},
